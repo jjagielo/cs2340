@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/endGameScreen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A8000000">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/endScreenText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textSize="35dp"
+            android:text="GAME OVER\nFinal Score: ___\nYOU BEAT THE GAME" />
+
+        <Button
+            android:id="@+id/returnButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Return to Start" />
+    </LinearLayout>
+</LinearLayout>
