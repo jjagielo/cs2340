@@ -2,17 +2,18 @@ package com.example.sprint1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.content.Intent;
 import android.widget.EditText;
 import android.widget.Button;
-import android.view.View;
+import android.widget.RadioGroup;
 
-public class InitialConfiguration extends AppCompatActivity {
+public class InitialConfiguration extends Activity {
 
     EditText name;
     Button continueBtn;
-    int hp, character;
+    boolean isAllFieldsChecked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,32 +22,53 @@ public class InitialConfiguration extends AppCompatActivity {
 
         name = findViewById(R.id.editTextName);
         continueBtn = findViewById(R.id.continueBtn);
+        isAllFieldsChecked = false;
 
         continueBtn.setOnClickListener(v -> {
-            Intent game = new Intent(this, GameScreen.class);
-            startActivity(game);
-            finish();
+            isAllFieldsChecked = checkAllFields();
+
+            RadioGroup difficultyRadioGroup = findViewById(R.id.difficultyRadioGroup);
+            double difficulty = 1;
+
+            int checkedDifficulty = difficultyRadioGroup.getCheckedRadioButtonId();
+            if (checkedDifficulty == R.id.radioButton1) {
+                difficulty = 0.5;
+            } else if (checkedDifficulty == R.id.radioButton2) {
+                difficulty = 0.75;
+            } else if (checkedDifficulty == R.id.radioHard) {
+                difficulty = 1;
+            } else {
+                difficulty = 0.5;
+            }
+
+            RadioGroup characterRadioGroup = findViewById(R.id.characterRadioGroup);
+            int character = 1;
+
+            int checkedCharacter = characterRadioGroup.getCheckedRadioButtonId();
+            if (checkedDifficulty == R.id.character1) {
+                character = 1;
+            } else if (checkedDifficulty == R.id.character2) {
+                character = 2;
+            } else if (checkedDifficulty == R.id.character3) {
+                character = 3;
+            } else {
+                character = 1;
+            }
+
+            if (isAllFieldsChecked) {
+                Intent game = new Intent(this, GameScreen.class);
+                startActivity(game);
+                finish();
+            }
         });
     }
 
-    //difficulty settings
-    public void buttonClicked(View view) {
-
-        if (view.getId() == R.id.button1) {
-            hp = 5;
-        } else if (view.getId() == R.id.button2) {
-            hp = 4;
-        } else if (view.getId() == R.id.button3) {
-            hp = 3;
+    private boolean checkAllFields() {
+        if (name.length() == 0 || name == null) {
+            name.setError("Must input a valid name!");
+            return false;
         }
 
-        if (view.getId() == R.id.imageButton) {
-            character = 1;
-        } else if (view.getId() == R.id.imageButton2) {
-            character = 2;
-        } else if (view.getId() == R.id.imageButton3) {
-            character = 3;
-        }
-
+        return true;
     }
 }
