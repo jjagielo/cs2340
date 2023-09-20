@@ -64,7 +64,7 @@ public class InitialConfiguration extends Activity {
     }
 
     private boolean checkAllFields() {
-        if (name.length() == 0 || name == null) {
+        if (name.length() == 0 || name == null || !(name.toString().trim().length() > 0)) {
             name.setError("Must input a valid name!");
             return false;
         }
