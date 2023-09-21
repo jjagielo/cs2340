@@ -1,19 +1,13 @@
 package com.example.sprint1;
 
 import android.content.Intent;
-import android.graphics.RectF;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.app.Activity;
-import android.os.Bundle;
-import android.content.Intent;
 import android.widget.EditText;
 import android.widget.Button;
-import android.widget.RadioGroup;
-import androidx.appcompat.app.AppCompatActivity;
 
 
 public class GameScreen extends Activity {
