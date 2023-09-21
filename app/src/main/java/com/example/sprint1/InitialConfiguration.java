@@ -57,6 +57,7 @@ public class InitialConfiguration extends Activity {
 
             if (isAllFieldsChecked) {
                 Intent game = new Intent(this, GameScreen.class);
+                game.putExtra("difficulty", difficulty);
                 startActivity(game);
                 finish();
             }
