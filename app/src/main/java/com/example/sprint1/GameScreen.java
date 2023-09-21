@@ -20,8 +20,6 @@ public class GameScreen extends Activity {
     //Difficulty Property
     private double difficulty;
 
-    // Temp button to end game
-    public Button endButton;
     private EditText playerName;
     private EditText playerDifficulty;
     int screenWidth;
@@ -59,6 +57,12 @@ public class GameScreen extends Activity {
         gameLayout.addView(playerView);
 
 
+        Button endButton = findViewById(R.id.endScreenButton);
+        endButton.setOnClickListener(v -> {
+            Intent end = new Intent(this, EndScreen.class);
+            startActivity(end);
+            finish();
+        });
 
     } // onCreate
 
