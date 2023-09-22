@@ -29,6 +29,11 @@
             android:exported="false"
             android:screenOrientation="landscape" />
 
+        <activity
+            android:name="com.example.sprint1.GameScreen"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+
     </application>
 
 </manifest>
