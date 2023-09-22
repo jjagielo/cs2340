@@ -59,7 +59,7 @@ public class InitialConfiguration extends Activity {
                 Intent game = new Intent(InitialConfiguration.this, GameScreen.class);
                 game.putExtra("difficulty", difficulty);
                 game.putExtra("character", character);
-                game.putExtra("playerName", name.getText());
+                game.putExtra("playerName", String.valueOf(name.getText()));
                 startActivity(game);
                 finish();
             }

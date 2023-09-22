@@ -14,16 +14,6 @@ import android.widget.Button;
 public class GameScreen extends Activity {
     //Difficulty Property
     double difficulty;
-
-    private EditText playerDifficulty;
-    int screenWidth;
-    int screenHeight;
-
-    // Player's Position
-    private float playerX, playerY;
-    RelativeLayout gameLayout;
-
-    private PlayerView playerView;
     ImageView character;
     int charInt;
 
@@ -64,43 +54,15 @@ public class GameScreen extends Activity {
         healthText.setText("Health: " + health);
 
 
-        gameLayout = findViewById(R.id.gameScreen);
-
-        playerX = screenWidth / 2;
-        playerY = screenHeight / 2;
-
-        difficulty = getIntent().getDoubleExtra("difficulty", 0.5);
-
-        playerView = new PlayerView(this, playerX, playerY, 50);
-        gameLayout.addView(playerView);
-
 
         Button endButton = findViewById(R.id.endScreenButton);
         endButton.setOnClickListener(v -> {
-            Intent end = new Intent(this, EndScreen.class);
+            Intent end = new Intent(GameScreen.this, EndScreen.class);
             startActivity(end);
             finish();
         }); // endButton
 
     } // onCreate
 
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_DPAD_RIGHT:
-                playerX += 50;
-                break;
-            case KeyEvent.KEYCODE_DPAD_LEFT:
-                playerX -= 50;
-                break;
-            case KeyEvent.KEYCODE_DPAD_UP:
-                playerY -= 50;
-                break;
-            case KeyEvent.KEYCODE_DPAD_DOWN:
-                playerY += 50;
-                break;
-        } // switch
-        playerView.updatePosition(playerX, playerY);
-        return true;
-    } // OnKeyDown
 
 } // GameScreen

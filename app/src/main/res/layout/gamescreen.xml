@@ -63,12 +63,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="321dp"
-        android:layout_marginTop="361dp"
-        android:text="End Game"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginStart="322dp"
+        android:layout_marginTop="17dp"
+        android:text="End Game" />
 
     <ImageView
         android:id="@+id/characterImage"
