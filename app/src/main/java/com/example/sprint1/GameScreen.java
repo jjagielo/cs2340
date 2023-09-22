@@ -1,27 +1,19 @@
 package com.example.sprint1;
 
 import android.content.Intent;
-import android.graphics.RectF;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.app.Activity;
-import android.os.Bundle;
-import android.content.Intent;
 import android.widget.EditText;
 import android.widget.Button;
-import android.widget.RadioGroup;
-import androidx.appcompat.app.AppCompatActivity;
 
 
 public class GameScreen extends Activity {
     //Difficulty Property
     private double difficulty;
 
-    // Temp button to end game
-    public Button endButton;
     private EditText playerName;
     private EditText playerDifficulty;
     int screenWidth;
@@ -59,6 +51,12 @@ public class GameScreen extends Activity {
         gameLayout.addView(playerView);
 
 
+        Button endButton = findViewById(R.id.endScreenButton);
+        endButton.setOnClickListener(v -> {
+            Intent end = new Intent(this, EndScreen.class);
+            startActivity(end);
+            finish();
+        });
 
     } // onCreate
 
