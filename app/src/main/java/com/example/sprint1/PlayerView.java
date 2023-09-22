@@ -19,7 +19,7 @@ public class PlayerView extends View {
         paint = new Paint();
         paint.setColor(Color.RED);
         paint.setStyle(Paint.Style.FILL);
-    }
+    } // PlayerView
 
     @Override
     protected void onDraw(Canvas canvas) {
