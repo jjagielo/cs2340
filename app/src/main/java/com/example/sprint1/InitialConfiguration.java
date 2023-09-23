@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.RadioGroup;
@@ -43,21 +44,22 @@ public class InitialConfiguration extends Activity {
 
             RadioGroup characterRadioGroup = findViewById(R.id.characterRadioGroup);
             int character = 1;
-
-            int checkedCharacter = characterRadioGroup.getCheckedRadioButtonId();
-            if (checkedDifficulty == R.id.character1) {
+            if (characterRadioGroup.getCheckedRadioButtonId() == R.id.character1) {
                 character = 1;
-            } else if (checkedDifficulty == R.id.character2) {
+            } else if (characterRadioGroup.getCheckedRadioButtonId() == R.id.character2) {
                 character = 2;
-            } else if (checkedDifficulty == R.id.character3) {
+            } else if (characterRadioGroup.getCheckedRadioButtonId() == R.id.character3) {
                 character = 3;
-            } else {
-                character = 1;
             }
 
+
+            Log.d("character", "Value: " + Integer.toString(character));
+
             if (isAllFieldsChecked) {
-                Intent game = new Intent(this, GameScreen.class);
+                Intent game = new Intent(InitialConfiguration.this, GameScreen.class);
                 game.putExtra("difficulty", difficulty);
+                game.putExtra("character", character);
+                game.putExtra("playerName", String.valueOf(name.getText()));
                 startActivity(game);
                 finish();
             }
