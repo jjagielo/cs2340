@@ -14,19 +14,25 @@ import android.widget.Button;
 public class GameScreen extends Activity {
     //Difficulty Property
     double difficulty;
+    // Character Sprite
     ImageView character;
+    // Character Selection
     int charInt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Set gamescreen as current screen for user
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gamescreen);
+        // Initialize difficultyText to display difficulty user selected
         TextView difficultyText = (TextView) findViewById(R.id.difficultyTextView);
 
+        // Initialize nameText to display name user inputted
         TextView nameText = (TextView) findViewById(R.id.nameTextView);
         String name = getIntent().getStringExtra("playerName");
         nameText.setText("Name: " + name);
 
+        // Displays the difficulty user selected as well as health associated with chosen difficulty
         difficulty = getIntent().getDoubleExtra("difficulty", 0.5);
         String health = "100";
         if (difficulty == 1) {
@@ -40,6 +46,7 @@ public class GameScreen extends Activity {
             health = "200";
         } // if
 
+        // Changes the sprite to the one user selected
         character = (ImageView) findViewById(R.id.characterImage);
         charInt = getIntent().getIntExtra("character", 1);
         if (charInt == 1) {
@@ -50,11 +57,11 @@ public class GameScreen extends Activity {
             character.setImageResource(R.drawable.dwarf_f_idle_anim_f3);
         } // if
 
+        // Displays health based on difficulty
         TextView healthText = (TextView) findViewById(R.id.healthTextView);
         healthText.setText("Health: " + health);
 
-
-
+        // Implements endButton functionality to send user to endscreen
         Button endButton = findViewById(R.id.endScreenButton);
         endButton.setOnClickListener(v -> {
             Intent end = new Intent(GameScreen.this, EndScreen.class);
