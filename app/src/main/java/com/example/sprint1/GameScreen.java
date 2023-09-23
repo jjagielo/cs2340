@@ -2,20 +2,13 @@ package com.example.sprint1;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.app.Activity;
-import android.widget.EditText;
 import android.widget.Button;
 
 
 public class GameScreen extends Activity {
-    //Difficulty Property
-    double difficulty;
-    ImageView character;
-    int charInt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +20,8 @@ public class GameScreen extends Activity {
         String name = getIntent().getStringExtra("playerName");
         nameText.setText("Name: " + name);
 
-        difficulty = getIntent().getDoubleExtra("difficulty", 0.5);
+        //Difficulty Property
+        double difficulty = getIntent().getDoubleExtra("difficulty", 0.5);
         String health = "100";
         if (difficulty == 1) {
             difficultyText.setText("Difficulty: Hard");
@@ -40,8 +34,8 @@ public class GameScreen extends Activity {
             health = "200";
         } // if
 
-        character = (ImageView) findViewById(R.id.characterImage);
-        charInt = getIntent().getIntExtra("character", 1);
+        ImageView character = (ImageView) findViewById(R.id.characterImage);
+        int charInt = getIntent().getIntExtra("character", 1);
         if (charInt == 1) {
             character.setImageResource(R.drawable.knight_f_idle_anim_f0);
         } else if (charInt == 2) {
