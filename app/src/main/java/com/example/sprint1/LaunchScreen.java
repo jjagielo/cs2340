@@ -1,7 +1,5 @@
 package com.example.sprint1;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,19 +7,27 @@ import android.widget.Button;
 
 public class LaunchScreen extends Activity {
 
-    Button start;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // displaying the launch screen xml file
         super.onCreate(savedInstanceState);
         setContentView(R.layout.launchscreen);
 
-        start = findViewById(R.id.StartButton);
+        // instantiating the start and quit buttons
+        Button start = findViewById(R.id.StartButton);
+        Button quit = findViewById(R.id.QuitButton);
 
+        // sends the player to different screens depending on the pressed button
+        // to the initial configuration screen
         start.setOnClickListener(v -> {
             Intent config = new Intent(this, InitialConfiguration.class);
             startActivity(config);
             finish();
+        });
+        // to quit the game
+        quit.setOnClickListener(v -> {
+            finish();
+            System.exit(0);
         });
     }
 }
