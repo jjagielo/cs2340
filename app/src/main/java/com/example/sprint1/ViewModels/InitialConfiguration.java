@@ -1,4 +1,4 @@
-package com.example.sprint1;
+package com.example.sprint1.ViewModels;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.RadioGroup;
+
+import com.example.sprint1.R;
 
 public class InitialConfiguration extends Activity {
 

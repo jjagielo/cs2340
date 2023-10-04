@@ -1,4 +1,4 @@
-package com.example.sprint1;
+package com.example.sprint1.ViewModels;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,9 +7,10 @@ import android.widget.TextView;
 import android.app.Activity;
 import android.widget.Button;
 
+import com.example.sprint1.R;
+
 
 public class GameScreen extends Activity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,9 +1,11 @@
-package com.example.sprint1;
+package com.example.sprint1.ViewModels;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+
+import com.example.sprint1.R;
 
 public class EndScreen extends Activity {
 
@@ -13,7 +15,7 @@ public class EndScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.endscreen);
 
-        // instantiating the retun button
+        // instantiating the return button
         Button end = findViewById(R.id.returnButton);
 
         // sending the player to the launch screen when the button is pressed
