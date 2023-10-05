@@ -2,13 +2,13 @@ package com.example.sprint1.ViewModels;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.app.Activity;
 import android.widget.Button;
 
 import com.example.sprint1.R;
-
 
 public class GameScreen extends Activity {
 
@@ -18,6 +18,8 @@ public class GameScreen extends Activity {
     ImageView character;
     // Character Selection
     int charInt;
+    // Player score
+    int score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,23 @@ public class GameScreen extends Activity {
         // Displays health based on difficulty
         TextView healthText = (TextView) findViewById(R.id.healthTextView);
         healthText.setText("Health: " + health);
+
+        // displays the score and decrements it every 2 seconds
+        TextView scoreText = findViewById(R.id.scoreTextView);
+        score = 100;
+
+        Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                scoreText.setText("Score: " + score);
+                if (score > 0) {
+                    score -=5;
+                }
+                handler.postDelayed(this, 2000);
+            }
+        };
+        handler.postDelayed(runnable, 0);
 
         // Implements endButton functionality to send user to endscreen
         Button endButton = findViewById(R.id.endScreenButton);
