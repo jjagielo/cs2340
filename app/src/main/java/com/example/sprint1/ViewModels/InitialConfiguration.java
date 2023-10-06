@@ -1,4 +1,4 @@
-package com.example.sprint1;
+package com.example.sprint1.ViewModels;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,10 +8,16 @@ import android.widget.EditText;
 import android.widget.Button;
 import android.widget.RadioGroup;
 
+import com.example.sprint1.R;
+
 public class InitialConfiguration extends Activity {
 
     private EditText name;
     private boolean isAllFieldsChecked;
+
+    public InitialConfiguration(EditText name) {
+        this.name = name;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,5 +83,9 @@ public class InitialConfiguration extends Activity {
         }
 
         return true;
+    }
+
+    public boolean getIsAllFieldsChecked() {
+        return isAllFieldsChecked;
     }
 }
