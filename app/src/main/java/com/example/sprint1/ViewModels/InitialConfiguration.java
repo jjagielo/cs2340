@@ -15,6 +15,10 @@ public class InitialConfiguration extends Activity {
     private EditText name;
     private boolean isAllFieldsChecked;
 
+    public InitialConfiguration(EditText name) {
+        this.name = name;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // displaying the initial configuration xml file
@@ -79,5 +83,9 @@ public class InitialConfiguration extends Activity {
         }
 
         return true;
+    }
+
+    public boolean getIsAllFieldsChecked() {
+        return isAllFieldsChecked;
     }
 }

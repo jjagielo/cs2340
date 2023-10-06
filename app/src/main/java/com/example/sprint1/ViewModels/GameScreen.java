@@ -21,6 +21,8 @@ public class GameScreen extends Activity {
     // Player score
     int score;
 
+    public GameScreen () {}
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Set gamescreen as current screen for user
@@ -89,4 +91,8 @@ public class GameScreen extends Activity {
         }); // endButton
 
     } // onCreate
+
+    public int getScore() {
+        return score;
+    }
 } // GameScreen
