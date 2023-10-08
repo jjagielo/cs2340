@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#786464"
-    tools:context=".InitialConfiguration">
+    tools:context=".ViewModels.InitialConfiguration">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -161,7 +161,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView5"
             app:layout_constraintVertical_bias="0.0"
-            tools:src="@drawable/elf_f_idle_anim_f0" />
+            android:src="@drawable/elf_f_idle_anim_f0" />
 
         <ImageView
             android:id="@+id/imageView5"
@@ -170,7 +170,7 @@
             android:layout_marginEnd="192dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7"
-            tools:src="@drawable/knight_f_idle_anim_f0" />
+            android:src="@drawable/knight_f_idle_anim_f0" />
 
         <ImageView
             android:id="@+id/imageView6"
@@ -181,7 +181,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.286"
             app:layout_constraintStart_toEndOf="@+id/characterRadioGroup"
-            tools:src="@drawable/dwarf_f_idle_anim_f3" />
+            android:src="@drawable/dwarf_f_idle_anim_f3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
