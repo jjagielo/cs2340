@@ -6,8 +6,9 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class Leaderboard {
+    private List<ScoreData> leaderboard;
 
-    private ArrayList<ScoreData> leaderboard;
+    private static Leaderboard instance;
     
     private Leaderboard() {
         leaderboard = new ArrayList<>();

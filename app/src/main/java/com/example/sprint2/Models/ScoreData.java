@@ -3,12 +3,12 @@ package com.example.sprint2.Models;
 public class ScoreData {
 
     private String name;
-    private int score;
+    private int finalScore;
     private String attempt;
 
-    public ScoreData(String name, int score, String attempt) {
+    public ScoreData(String name, int finalScore, String attempt) {
         this.name = name;
-        this.score = score;
+        this.finalScore = finalScore;
         this.attempt = attempt;
     }
 
@@ -16,8 +16,8 @@ public class ScoreData {
         return this.name;
     }
 
-    public int getScore() {
-        return this.score;
+    public int getFinalScore() {
+        return this.finalScore;
     }
 
     public int getAttempt() {

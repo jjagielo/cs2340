@@ -3,10 +3,25 @@ package com.example.sprint1.Models;
 public class Player {
     private String name;
     private int health;
+    private Leaderboard leaderboard;
 
-    public Player(String name, int health) {
+    private static Player player;
+
+    private Player(String name, int health) {
         this.name = name;
         this.health = health;
+        this.leaderboard = new Leaderboard();
+    }
+
+    public static Player getPlayer(String name, int health) {
+        if (player == null) {
+            synchronized(Player.class) {
+                if (player == null) {
+                    player = new Player(name, health);
+                }
+            }
+        }
+        return player;
     }
 
     public String getName() {
