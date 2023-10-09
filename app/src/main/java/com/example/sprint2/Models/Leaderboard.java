@@ -48,5 +48,9 @@ public class Leaderboard {
     public ScoreData getScore(int index) {
         return this.leaderboard.get(index);
     }
+
+    public List<ScoreData> getLeaderboard() {
+        return leaderboard;
+    } // getLeaderboard
     
 }
