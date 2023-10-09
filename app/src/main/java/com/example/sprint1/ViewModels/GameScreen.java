@@ -26,6 +26,9 @@ public class GameScreen extends Activity {
     //number of attempts
     static int attempt;
 
+    static String name;
+    static String dateTime;
+
     public GameScreen () {}
 
     @Override
@@ -39,7 +42,7 @@ public class GameScreen extends Activity {
 
         // Initialize nameText to display name user inputted
         TextView nameText = (TextView) findViewById(R.id.nameTextView);
-        String name = getIntent().getStringExtra("playerName");
+        name = getIntent().getStringExtra("playerName");
         nameText.setText("Name: " + name);
 
         // Displays the difficulty user selected as well as health associated with chosen difficulty
@@ -91,7 +94,7 @@ public class GameScreen extends Activity {
         // Get the current date and time
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        String dateTime = dateFormat.format(calendar.getTime());
+        dateTime = dateFormat.format(calendar.getTime());
 
         // Implements endButton functionality to send user to endscreen
         Button endButton = findViewById(R.id.endScreenButton);
@@ -112,5 +115,13 @@ public class GameScreen extends Activity {
     public static int getAttempt() {
         return attempt;
     }
+    public static String getName() {
+        return name;
+    }
+    public static String getDateTime() {
+        return dateTime;
+    }
+
+
 
 } // GameScreen
