@@ -22,7 +22,9 @@ public class GameScreen extends Activity {
     // Character Selection
     int charInt;
     // Player score
-    int score;
+    static int score;
+    //number of attempts
+    static int attempt;
 
     public GameScreen () {}
 
@@ -33,6 +35,7 @@ public class GameScreen extends Activity {
         setContentView(R.layout.gamescreen);
         // Initialize difficultyText to display difficulty user selected
         TextView difficultyText = (TextView) findViewById(R.id.difficultyTextView);
+        attempt++;
 
         // Initialize nameText to display name user inputted
         TextView nameText = (TextView) findViewById(R.id.nameTextView);
@@ -86,7 +89,7 @@ public class GameScreen extends Activity {
         handler.postDelayed(runnable, 0);
 
         // Get the current date and time
-        Calendar calendar = Calendar.getinstance();
+        Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String dateTime = dateFormat.format(calendar.getTime());
 
@@ -100,7 +103,14 @@ public class GameScreen extends Activity {
 
     } // onCreate
 
-    public int getScore() {
+    public static int getScore() {
         return score;
     }
+    public static void resetScore(){
+        score = 100;
+    }
+    public static int getAttempt() {
+        return attempt;
+    }
+
 } // GameScreen

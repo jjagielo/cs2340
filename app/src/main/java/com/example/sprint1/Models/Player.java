@@ -1,4 +1,5 @@
 package com.example.sprint1.Models;
+import com.example.sprint2.Models.Leaderboard;
 
 public class Player {
     private String name;
