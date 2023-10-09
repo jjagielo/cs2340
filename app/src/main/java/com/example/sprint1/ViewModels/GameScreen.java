@@ -86,7 +86,7 @@ public class GameScreen extends Activity {
         handler.postDelayed(runnable, 0);
 
         // Get the current date and time
-        Calendar calendar = Calendar.getinstance();
+        Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         String dateTime = dateFormat.format(calendar.getTime());
 

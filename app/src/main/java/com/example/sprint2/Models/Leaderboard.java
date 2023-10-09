@@ -13,7 +13,7 @@ public class Leaderboard {
     private Leaderboard() {
         leaderboard = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            leaderboard.addScore(new ScoreData(null, 0, null));
+            instance.addScore(new ScoreData(null, 0, null));
         }
     }
 
@@ -32,7 +32,7 @@ public class Leaderboard {
         boolean inserted = false;
 
         for (int i = 0; i < leaderboard.size(); i++) {
-            if (newScore.getScore() > leaderboard.get(i).getScore()) {
+            if (newScore.getFinalScore() > leaderboard.get(i).getFinalScore()) {
                 leaderboard.add(i, newScore);
                 inserted = true;
                 break;

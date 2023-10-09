@@ -1,4 +1,3 @@
-package com.example.sprint1;
 package com.example.sprint2;
 
 import static junit.framework.TestCase.assertEquals;

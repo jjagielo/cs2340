@@ -22,11 +22,11 @@ public class EndScreen extends Activity {
 
         // Find the TextView by its ID
         TextView recentScore = findViewById(R.id.recentScoreText);
-        TextView lbrd1 = findViewById(R.id.leaderboard1text);
-        TextView lbrd2 = findViewById(R.id.leaderboard2text);
-        TextView lbrd3 = findViewById(R.id.leaderboard3text);
-        TextView lbrd4 = findViewById(R.id.leaderboard4text);
-        TextView lbrd5 = findViewById(R.id.leaderboard5text);
+        TextView lbrd1 = findViewById(R.id.leaderboard1Text);
+        TextView lbrd2 = findViewById(R.id.leaderboard2Text);
+        TextView lbrd3 = findViewById(R.id.leaderboard3Text);
+        TextView lbrd4 = findViewById(R.id.leaderboard4Text);
+        TextView lbrd5 = findViewById(R.id.leaderboard5Text);
 
         // Set leaderboard programmatically
         recentScore.setText("Most recent attempt: ");
