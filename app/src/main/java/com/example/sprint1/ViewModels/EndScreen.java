@@ -8,6 +8,8 @@ import android.widget.TextView;
 import java.util.*;
 
 import com.example.sprint1.R;
+import com.example.sprint2.Models.Leaderboard;
+import com.example.sprint2.Models.ScoreData;
 
 public class EndScreen extends Activity {
 
@@ -22,20 +24,27 @@ public class EndScreen extends Activity {
 
         // Find the TextView by its ID
         TextView recentScore = findViewById(R.id.recentScoreText);
-        TextView lbrd1 = findViewById(R.id.leaderboard1text);
-        TextView lbrd2 = findViewById(R.id.leaderboard2text);
-        TextView lbrd3 = findViewById(R.id.leaderboard3text);
-        TextView lbrd4 = findViewById(R.id.leaderboard4text);
-        TextView lbrd5 = findViewById(R.id.leaderboard5text);
+        TextView lbrd1 = findViewById(R.id.leaderboard1Text);
+        TextView lbrd2 = findViewById(R.id.leaderboard2Text);
+        TextView lbrd3 = findViewById(R.id.leaderboard3Text);
+        TextView lbrd4 = findViewById(R.id.leaderboard4Text);
+        TextView lbrd5 = findViewById(R.id.leaderboard5Text);
+
+
+        //Set recent score
+        Leaderboard.getinstance().addScore(new ScoreData(null, GameScreen.getScore(), GameScreen.getAttempt()));
+
 
         // Set leaderboard programmatically
-        recentScore.setText("Most recent attempt: ");
-        lbrd1.setText("1st: ");
-        lbrd2.setText("2nd: ");
-        lbrd3.setText("3rd: ");
-        lbrd4.setText("4th: ");
-        lbrd5.setText("5th: ");
-        
+        recentScore.setText("Most recent attempt: " + GameScreen.getScore());
+        lbrd1.setText("1st: " + getScore(0));
+        lbrd2.setText("2nd: " + getScore(1));
+        lbrd3.setText("3rd: " + getScore(2));
+        lbrd4.setText("4th: " + getScore(3));
+        lbrd5.setText("5th: " + getScore(4));
+
+        //Reset Score on game screen for next attempt
+        GameScreen.resetScore();
 
 
         // sending the player to the launch screen when the button is pressed
@@ -44,5 +53,9 @@ public class EndScreen extends Activity {
             startActivity(start);
             finish();
         });
+    }
+
+    private int getScore(int index){
+        return Leaderboard.getinstance().getLeaderboard().get(index).getFinalScore();
     }
 }

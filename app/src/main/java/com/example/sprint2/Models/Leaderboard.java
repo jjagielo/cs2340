@@ -10,10 +10,10 @@ public class Leaderboard {
 
     private static Leaderboard instance;
     
-    private Leaderboard() {
+    public Leaderboard() {
         leaderboard = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            leaderboard.addScore(new ScoreData(null, 0, null));
+            leaderboard.add(new ScoreData(null, 0, 0));
         }
     }
 
@@ -28,11 +28,15 @@ public class Leaderboard {
         return instance;
     }
 
+    public List<ScoreData> getLeaderboard(){
+        return leaderboard;
+    }
+
     public void addScore(ScoreData newScore) {
         boolean inserted = false;
 
         for (int i = 0; i < leaderboard.size(); i++) {
-            if (newScore.getScore() > leaderboard.get(i).getScore()) {
+            if (newScore.getFinalScore() > leaderboard.get(i).getFinalScore()) {
                 leaderboard.add(i, newScore);
                 inserted = true;
                 break;
@@ -45,8 +49,8 @@ public class Leaderboard {
         
     }
 
-    public ScoreData getScore(int index) {
-        return this.leaderboard.get(index);
+    public int getScore(int index) {
+        return this.leaderboard.get(index).getFinalScore();
     }
     
 }
