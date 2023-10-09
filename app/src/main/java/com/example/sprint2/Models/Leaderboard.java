@@ -17,15 +17,15 @@ public class Leaderboard {
         }
     }
 
-    public static Leaderboard getLeaderboard() {
-        if (leaderboard == null) {
+    public static Leaderboard getinstance() {
+        if (instance == null) {
             synchronized(Leaderboard.class) {
-                if (leaderboard == null) {
-                    leaderboard = new Leaderboard();
+                if (instance == null) {
+                    instance = new Leaderboard();
                 }
             }
         }
-        return leaderboard;
+        return instance;
     }
 
     public void addScore(ScoreData newScore) {
