@@ -1,5 +1,8 @@
 package com.example.sprint1.ViewModels;
 
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -81,6 +84,11 @@ public class GameScreen extends Activity {
             }
         };
         handler.postDelayed(runnable, 0);
+
+        // Get the current date and time
+        Calendar calendar = Calendar.getinstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String dateTime = dateFormat.format(calendar.getTime());
 
         // Implements endButton functionality to send user to endscreen
         Button endButton = findViewById(R.id.endScreenButton);
