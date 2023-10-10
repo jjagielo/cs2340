@@ -1,6 +1,8 @@
 package com.example.sprint1.Models;
 import com.example.sprint2.Models.Leaderboard;
 
+import com.example.sprint2.Models.Leaderboard;
+
 public class Player {
     private String name;
     private int health;
@@ -11,7 +13,7 @@ public class Player {
     private Player(String name, int health) {
         this.name = name;
         this.health = health;
-        this.leaderboard = new Leaderboard();
+        this.leaderboard = Leaderboard.getinstance();
     }
 
     public static Player getPlayer(String name, int health) {
