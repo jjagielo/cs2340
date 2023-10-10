@@ -32,16 +32,18 @@ public class EndScreen extends Activity {
 
 
         //Set recent score
-        Leaderboard.getinstance().addScore(new ScoreData(null, GameScreen.getScore(), GameScreen.getAttempt()));
+        Leaderboard.getinstance().addScore(new ScoreData(GameScreen.getName(), GameScreen.getScore(),
+                GameScreen.getAttempt(), GameScreen.getDateTime()));
 
 
         // Set leaderboard programmatically
-        recentScore.setText("Most recent attempt: " + GameScreen.getScore());
-        lbrd1.setText("1st: " + getScore(0));
-        lbrd2.setText("2nd: " + getScore(1));
-        lbrd3.setText("3rd: " + getScore(2));
-        lbrd4.setText("4th: " + getScore(3));
-        lbrd5.setText("5th: " + getScore(4));
+        recentScore.setText("Most recent attempt: " + GameScreen.getName() + ", " + GameScreen.getScore() +
+                ", Attempt: " + GameScreen.getAttempt() + ", " + GameScreen.getDateTime());
+        lbrd1.setText("1st: " + getName(0) + ", " + getScore(0) + ", Attempt: " + getAttempt(0) + ", " + getDateTime(0));
+        lbrd2.setText("2nd: " + getName(1) + ", " + getScore(1) + ", Attempt: " + getAttempt(1) + ", " + getDateTime(1));
+        lbrd3.setText("3rd: " + getName(2) + ", " + getScore(2) + ", Attempt: " + getAttempt(2) + ", " + getDateTime(2));
+        lbrd4.setText("4th: " + getName(3) + ", " + getScore(3) + ", Attempt: " + getAttempt(3) + ", " + getDateTime(3));
+        lbrd5.setText("5th: " + getName(4) + ", " + getScore(4) + ", Attempt: " + getAttempt(4) + ", " + getDateTime(4));
 
         //Reset Score on game screen for next attempt
         GameScreen.resetScore();
@@ -57,5 +59,14 @@ public class EndScreen extends Activity {
 
     private int getScore(int index){
         return Leaderboard.getinstance().getLeaderboard().get(index).getFinalScore();
+    }
+    private int getAttempt(int index){
+        return Leaderboard.getinstance().getLeaderboard().get(index).getAttempt();
+    }
+    private String getName(int index){
+        return Leaderboard.getinstance().getLeaderboard().get(index).getName();
+    }
+    private String getDateTime(int index){
+        return Leaderboard.getinstance().getLeaderboard().get(index).getDateTime();
     }
 }

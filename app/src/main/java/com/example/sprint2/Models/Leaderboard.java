@@ -13,7 +13,7 @@ public class Leaderboard {
     public Leaderboard() {
         leaderboard = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            leaderboard.add(new ScoreData(null, 0, 0));
+            leaderboard.add(new ScoreData("Default", 0, 0, ""));
         }
     }
 
@@ -51,6 +51,9 @@ public class Leaderboard {
 
     public int getScore(int index) {
         return this.leaderboard.get(index).getFinalScore();
+    }
+    public String getDateTime(int index) {
+        return this.leaderboard.get(index).getDateTime();
     }
     
 }
