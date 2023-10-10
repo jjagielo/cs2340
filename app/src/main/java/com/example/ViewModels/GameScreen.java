@@ -1,4 +1,4 @@
-package com.example.sprint1.ViewModels;
+package com.example.ViewModels;
 
 import java.util.Calendar;
 import java.text.SimpleDateFormat;

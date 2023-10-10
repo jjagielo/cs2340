@@ -1,7 +1,4 @@
-package com.example.sprint1.Models;
-import com.example.sprint2.Models.Leaderboard;
-
-import com.example.sprint2.Models.Leaderboard;
+package com.example.Models;
 
 public class Player {
     private String name;
