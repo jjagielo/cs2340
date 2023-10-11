@@ -1,12 +1,17 @@
-package com.example.sprint1;
+package com.example.sprint1.ViewModels;
+
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.app.Activity;
 import android.widget.Button;
 
+import com.example.sprint1.R;
 
 public class GameScreen extends Activity {
 
@@ -16,6 +21,15 @@ public class GameScreen extends Activity {
     ImageView character;
     // Character Selection
     int charInt;
+    // Player score
+    static int score;
+    //number of attempts
+    static int attempt;
+
+    static String name;
+    static String dateTime;
+
+    public GameScreen () {}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +38,11 @@ public class GameScreen extends Activity {
         setContentView(R.layout.gamescreen);
         // Initialize difficultyText to display difficulty user selected
         TextView difficultyText = (TextView) findViewById(R.id.difficultyTextView);
+        attempt++;
 
         // Initialize nameText to display name user inputted
         TextView nameText = (TextView) findViewById(R.id.nameTextView);
-        String name = getIntent().getStringExtra("playerName");
+        name = getIntent().getStringExtra("playerName");
         nameText.setText("Name: " + name);
 
         // Displays the difficulty user selected as well as health associated with chosen difficulty
@@ -59,6 +74,28 @@ public class GameScreen extends Activity {
         TextView healthText = (TextView) findViewById(R.id.healthTextView);
         healthText.setText("Health: " + health);
 
+        // displays the score and decrements it every 2 seconds
+        TextView scoreText = findViewById(R.id.scoreTextView);
+        score = 100;
+
+        Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                scoreText.setText("Score: " + score);
+                if (score > 0) {
+                    score -=5;
+                }
+                handler.postDelayed(this, 2000);
+            }
+        };
+        handler.postDelayed(runnable, 0);
+
+        // Get the current date and time
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        dateTime = dateFormat.format(calendar.getTime());
+
         // Implements endButton functionality to send user to endscreen
         Button endButton = findViewById(R.id.endScreenButton);
         endButton.setOnClickListener(v -> {
@@ -68,4 +105,23 @@ public class GameScreen extends Activity {
         }); // endButton
 
     } // onCreate
+
+    public static int getScore() {
+        return score;
+    }
+    public static void resetScore(){
+        score = 100;
+    }
+    public static int getAttempt() {
+        return attempt;
+    }
+    public static String getName() {
+        return name;
+    }
+    public static String getDateTime() {
+        return dateTime;
+    }
+
+
+
 } // GameScreen

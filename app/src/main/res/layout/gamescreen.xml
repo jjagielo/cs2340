@@ -53,7 +53,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="619dp"
         android:layout_marginTop="4dp"
-        android:text="Score: 0"
+        android:text="Score: "
         android:textColor="#FFFFFF" />
 
     <Button
