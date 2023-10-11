@@ -77,7 +77,7 @@ public class InitialConfiguration extends Activity {
     }
 
     // checks if the user inputted a proper name, else throw an error
-    private boolean checkAllFields() {
+    public boolean checkAllFields() {
         if (name.length() == 0 || name == null || !(name.toString().trim().length() > 0)) {
             name.setError("Must input a valid name!");
             return false;

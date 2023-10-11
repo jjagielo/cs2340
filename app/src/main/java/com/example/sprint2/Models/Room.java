@@ -40,4 +40,19 @@ public class Room {
         // Cycle to the next background tile
         currentTileIndex = (currentTileIndex + 1) % backgrounds.length;
     }
+
+    // Getter for the 'backgrounds' array
+    public Bitmap[] getBackgrounds() {
+        return backgrounds;
+    }
+
+    // Getter for the 'backgroundRect'
+    public Rect getBackgroundRect() {
+        return backgroundRect;
+    }
+
+    // Getter for the 'currentTileIndex'
+    public int getCurrentTileIndex() {
+        return currentTileIndex;
+    }
 }
