@@ -8,12 +8,6 @@
     android:background="#000000"
     android:screenOrientation="landscape">
 
-    <ImageView
-        android:id="@+id/roomCanvas"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop" />
-
     <TextView
         android:id="@+id/nameTextView"
         android:layout_width="wrap_content"
@@ -83,15 +77,5 @@
         android:layout_marginStart="359dp"
         android:layout_marginTop="248dp"
         android:src="@drawable/dwarf_f_idle_anim_f3" />
-
-
-    <Button
-        android:id="@+id/nextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/scoreTextView"
-        android:layout_marginTop="181dp"
-        android:text="Next" />
-
 
 </RelativeLayout>
