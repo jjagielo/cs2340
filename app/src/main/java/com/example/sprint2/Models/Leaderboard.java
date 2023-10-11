@@ -1,7 +1,9 @@
-package com.example.Models;
+package com.example.sprint2.Models;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Leaderboard {
     private List<ScoreData> leaderboard;

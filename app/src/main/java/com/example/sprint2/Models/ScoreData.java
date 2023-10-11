@@ -1,4 +1,4 @@
-package com.example.Models;
+package com.example.sprint2.Models;
 
 public class ScoreData {
 
@@ -26,7 +26,7 @@ public class ScoreData {
         return this.finalScore;
     }
 
-    public String getAttempt() {
+    public int getAttempt() {
         return this.attempt;
     }
 
