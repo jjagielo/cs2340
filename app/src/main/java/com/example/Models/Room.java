@@ -6,7 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
-import com.example.sprint1.R;
+import com.example.R;
 
 public class Room {
     private Bitmap[] backgrounds;
