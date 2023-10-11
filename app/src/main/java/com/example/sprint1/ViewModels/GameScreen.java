@@ -10,8 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.app.Activity;
 import android.widget.Button;
+import android.util.DisplayMetrics;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 
 import com.example.sprint1.R;
+import com.example.sprint2.Models.Room;
 
 public class GameScreen extends Activity {
 
@@ -29,6 +33,12 @@ public class GameScreen extends Activity {
     static String name;
     static String dateTime;
 
+    Room room;
+
+    int screenWidth;
+    int screenHeight;
+
+
     public GameScreen () {}
 
     @Override
@@ -36,6 +46,19 @@ public class GameScreen extends Activity {
         // Set gamescreen as current screen for user
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gamescreen);
+
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        screenWidth = displayMetrics.widthPixels;
+        screenHeight = displayMetrics.heightPixels;
+
+
+        // Initialize the Room with the screen dimensions
+        room = new Room(this, screenWidth, screenHeight);
+        // Start drawing the room background
+        drawRoomBackground();
+
         // Initialize difficultyText to display difficulty user selected
         TextView difficultyText = (TextView) findViewById(R.id.difficultyTextView);
         attempt++;
@@ -96,6 +119,16 @@ public class GameScreen extends Activity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         dateTime = dateFormat.format(calendar.getTime());
 
+
+        //temporary next button for the tiles
+        Button nextButton = findViewById(R.id.nextButton);
+        nextButton.setOnClickListener(v -> {
+            // Handle "Next" button click
+            room.nextTile();
+            drawRoomBackground();
+        });
+
+
         // Implements endButton functionality to send user to endscreen
         Button endButton = findViewById(R.id.endScreenButton);
         endButton.setOnClickListener(v -> {
@@ -105,6 +138,22 @@ public class GameScreen extends Activity {
         }); // endButton
 
     } // onCreate
+
+
+    private void drawRoomBackground() {
+        // Create a Bitmap to draw the room background
+        Bitmap roomBitmap = Bitmap.createBitmap(screenWidth, screenHeight, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(roomBitmap);
+
+        // Draw the room on the canvas (Replace with your Room class logic)
+        room.draw(canvas);
+
+        // Find the ImageView for the roomCanvas
+        ImageView roomCanvas = findViewById(R.id.roomCanvas);
+
+        // Set the Bitmap as the source for the ImageView
+        roomCanvas.setImageBitmap(roomBitmap);
+    }
 
     public static int getScore() {
         return score;
