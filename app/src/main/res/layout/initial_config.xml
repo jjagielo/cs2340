@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#786464"
-    tools:context=".ViewModels.InitialConfiguration">
+    tools:context="com.example.ViewModels.InitialConfiguration">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

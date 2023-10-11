@@ -2,8 +2,8 @@ package com.example.sprint1;
 
 import static junit.framework.TestCase.assertEquals;
 
-import com.example.sprint1.ViewModels.GameScreen;
-import com.example.sprint1.ViewModels.InitialConfiguration;
+import com.example.ViewModels.GameScreen;
+import com.example.ViewModels.InitialConfiguration;
 
 import org.junit.Test;
 

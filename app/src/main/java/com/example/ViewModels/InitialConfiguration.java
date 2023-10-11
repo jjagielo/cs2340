@@ -1,4 +1,4 @@
-package com.example.sprint1.ViewModels;
+package com.example.ViewModels;
 
 import android.app.Activity;
 import android.os.Bundle;
