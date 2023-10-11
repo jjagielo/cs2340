@@ -99,6 +99,7 @@ public class GameScreen extends Activity {
         // Implements endButton functionality to send user to endscreen
         Button endButton = findViewById(R.id.endScreenButton);
         endButton.setOnClickListener(v -> {
+            handler.removeCallbacks(runnable);
             Intent end = new Intent(GameScreen.this, EndScreen.class);
             startActivity(end);
             finish();
