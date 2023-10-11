@@ -1,5 +1,4 @@
 package com.example.sprint1;
-package com.example.sprint2;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -13,17 +12,17 @@ public class JasonTest {
     public void testArrayOrdering() {
         Leaderboard lbrd = new Leaderboard();
 
-        ScoreData score1 = new ScoreData("Jason", 75, "Att. 1");
-        ScoreData score2 = new ScoreData("Jason", 35, "Att. 2");
-        ScoreData score3 = new ScoreData("Jason", 100, "Att. 3");
+        ScoreData score1 = new ScoreData("Jason", 75, 1, "");
+        ScoreData score2 = new ScoreData("Jason", 35, 2, "");
+        ScoreData score3 = new ScoreData("Jason", 100, 3, "");
 
-        lbrd.add(score1);
-        lbrd.add(score2);
-        lbrd.add(score3);
+        lbrd.addScore(score1);
+        lbrd.addScore(score2);
+        lbrd.addScore(score3);
 
-        assertEquals(100, lbrd.getScore(0).getFinalScore());
-        assertEquals(75, lbrd.getScore(1).getFinalScore());
-        assertEquals(35, lbrd.getScore(2).getFinalScore());
+        assertEquals(100, lbrd.getScore(0));
+        assertEquals(75, lbrd.getScore(1));
+        assertEquals(35, lbrd.getScore(2));
     }
 
     @Test

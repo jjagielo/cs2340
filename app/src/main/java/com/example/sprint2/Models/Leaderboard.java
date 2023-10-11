@@ -52,6 +52,14 @@ public class Leaderboard {
     public int getScore(int index) {
         return this.leaderboard.get(index).getFinalScore();
     }
+    public String getName(int index) {
+        return this.leaderboard.get(index).getName();
+    }
+
+    public int getAttempt(int index) {
+        return this.leaderboard.get(index).getAttempt();
+    }
+
     public String getDateTime(int index) {
         return this.leaderboard.get(index).getDateTime();
     }
