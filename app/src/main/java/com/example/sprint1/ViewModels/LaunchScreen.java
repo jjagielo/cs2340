@@ -1,4 +1,4 @@
-package com.example.ViewModels;
+package com.example.sprint1.ViewModels;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.sprint1.R;
+import com.example.sprint1.ViewModels.InitialConfiguration;
 
 public class LaunchScreen extends Activity {
 
