@@ -1,4 +1,4 @@
-package com.example.sprint2.Models;
+package com.example.Models;
 
 import android.content.Context;
 import android.graphics.Bitmap;
