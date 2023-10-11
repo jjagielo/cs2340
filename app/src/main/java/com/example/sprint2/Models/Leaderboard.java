@@ -2,8 +2,6 @@ package com.example.sprint2.Models;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class Leaderboard {
     private List<ScoreData> leaderboard;
@@ -19,7 +17,7 @@ public class Leaderboard {
 
     public static Leaderboard getinstance() {
         if (instance == null) {
-            synchronized(Leaderboard.class) {
+            synchronized (Leaderboard.class) {
                 if (instance == null) {
                     instance = new Leaderboard();
                 }
@@ -28,7 +26,7 @@ public class Leaderboard {
         return instance;
     }
 
-    public List<ScoreData> getLeaderboard(){
+    public List<ScoreData> getLeaderboard() {
         return leaderboard;
     }
 

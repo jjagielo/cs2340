@@ -16,7 +16,7 @@ public class Player {
 
     public static Player getPlayer(String name, int health) {
         if (player == null) {
-            synchronized(Player.class) {
+            synchronized (Player.class) {
                 if (player == null) {
                     player = new Player(name, health);
                 }

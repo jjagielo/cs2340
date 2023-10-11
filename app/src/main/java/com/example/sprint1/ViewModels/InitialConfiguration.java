@@ -18,7 +18,7 @@ public class InitialConfiguration extends Activity {
     public InitialConfiguration(EditText name) {
         this.name = name;
     }
-    public InitialConfiguration(){}
+    public InitialConfiguration() { }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -20,26 +20,22 @@ import com.example.sprint2.Models.Room;
 public class GameScreen extends Activity {
 
     //Difficulty Property
-    double difficulty;
+    private double difficulty;
     // Character Sprite
-    ImageView character;
+    private ImageView character;
     // Character Selection
-    int charInt;
+    private int charInt;
     // Player score
-    static int score;
+    private static int score;
     //number of attempts
-    static int attempt;
+    private static int attempt;
+    private static String name;
+    private static String dateTime;
+    private Room room;
+    private int screenWidth;
+    private int screenHeight;
 
-    static String name;
-    static String dateTime;
-
-    Room room;
-
-    int screenWidth;
-    int screenHeight;
-
-
-    public GameScreen () {}
+    public GameScreen() { }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +103,7 @@ public class GameScreen extends Activity {
             public void run() {
                 scoreText.setText("Score: " + score);
                 if (score > 0) {
-                    score -=5;
+                    score -= 5;
                 }
                 handler.postDelayed(this, 2000);
             }
@@ -159,7 +155,7 @@ public class GameScreen extends Activity {
     public static int getScore() {
         return score;
     }
-    public static void resetScore(){
+    public static void resetScore() {
         score = 100;
     }
     public static int getAttempt() {

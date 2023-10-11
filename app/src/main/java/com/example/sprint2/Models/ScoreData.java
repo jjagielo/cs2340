@@ -30,4 +30,4 @@ public class ScoreData {
         return this.attempt;
     }
 
- }
+}
