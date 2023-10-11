@@ -16,8 +16,8 @@ import android.util.DisplayMetrics;
 
 
 
-import com.example.sprint1.R;
-import com.example.sprint2.Models.Room;
+import com.example.R;
+import com.example.Models.Room;
 
 public class GameScreen extends Activity {
 
