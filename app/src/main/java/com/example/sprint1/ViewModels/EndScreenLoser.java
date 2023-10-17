@@ -5,11 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
-import java.util.*;
 
 import com.example.sprint1.R;
-import com.example.sprint2.Models.Leaderboard;
-import com.example.sprint2.Models.ScoreData;
+import com.example.sprint1.Models.Leaderboard;
+import com.example.sprint1.Models.ScoreData;
 
 public class EndScreenLoser extends Activity {
 

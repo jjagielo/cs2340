@@ -15,7 +15,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 import com.example.sprint1.R;
-import com.example.sprint2.Models.Room;
+import com.example.sprint1.Models.Room;
 
 public class GameScreen extends Activity {
 

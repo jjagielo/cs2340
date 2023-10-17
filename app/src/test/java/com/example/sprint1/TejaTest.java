@@ -8,8 +8,8 @@ import static org.junit.Assert.assertSame;
 
 
 import com.example.sprint1.Models.Player;
-import com.example.sprint2.Models.Leaderboard;
-import com.example.sprint2.Models.ScoreData;
+import com.example.sprint1.Models.Leaderboard;
+import com.example.sprint1.Models.ScoreData;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.example.sprint2.Models;
+package com.example.sprint1.Models;
 
 public class ScoreData {
 

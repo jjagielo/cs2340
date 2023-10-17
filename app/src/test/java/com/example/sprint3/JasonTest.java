@@ -1,3 +1,5 @@
+package com.example.sprint3;
+
 import org.junit.Test;
 
 public class JasonTest {
