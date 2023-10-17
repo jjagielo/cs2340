@@ -1,4 +1,5 @@
 package com.example.sprint1.Models;
+import com.example.sprint2.Models.Leaderboard;
 
 public class Player {
     private String name;
@@ -15,7 +16,7 @@ public class Player {
 
     public static Player getPlayer(String name, int health) {
         if (player == null) {
-            synchronized(Player.class) {
+            synchronized (Player.class) {
                 if (player == null) {
                     player = new Player(name, health);
                 }

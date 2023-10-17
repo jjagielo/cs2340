@@ -10,33 +10,58 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.app.Activity;
 import android.widget.Button;
+import android.util.DisplayMetrics;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 
 import com.example.sprint1.R;
+import com.example.sprint2.Models.Room;
 
 public class GameScreen extends Activity {
 
     //Difficulty Property
-    double difficulty;
+    private double difficulty;
     // Character Sprite
-    ImageView character;
+    private ImageView character;
     // Character Selection
-    int charInt;
+    private int charInt;
     // Player score
-    int score;
+    private static int score;
+    //number of attempts
+    private static int attempt;
+    private static String name;
+    private static String dateTime;
+    private Room room;
+    private int screenWidth;
+    private int screenHeight;
 
-    public GameScreen () {}
+    public GameScreen() { }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Set gamescreen as current screen for user
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gamescreen);
+
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        screenWidth = displayMetrics.widthPixels;
+        screenHeight = displayMetrics.heightPixels;
+
+
+        // Initialize the Room with the screen dimensions
+        room = new Room(this, screenWidth, screenHeight);
+        // Start drawing the room background
+        drawRoomBackground();
+
         // Initialize difficultyText to display difficulty user selected
         TextView difficultyText = (TextView) findViewById(R.id.difficultyTextView);
+        attempt++;
 
         // Initialize nameText to display name user inputted
         TextView nameText = (TextView) findViewById(R.id.nameTextView);
-        String name = getIntent().getStringExtra("playerName");
+        name = getIntent().getStringExtra("playerName");
         nameText.setText("Name: " + name);
 
         // Displays the difficulty user selected as well as health associated with chosen difficulty
@@ -78,7 +103,7 @@ public class GameScreen extends Activity {
             public void run() {
                 scoreText.setText("Score: " + score);
                 if (score > 0) {
-                    score -=5;
+                    score -= 5;
                 }
                 handler.postDelayed(this, 2000);
             }
@@ -86,13 +111,24 @@ public class GameScreen extends Activity {
         handler.postDelayed(runnable, 0);
 
         // Get the current date and time
-        Calendar calendar = Calendar.getinstance();
+        Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        String dateTime = dateFormat.format(calendar.getTime());
+        dateTime = dateFormat.format(calendar.getTime());
+
+
+        //temporary next button for the tiles
+        Button nextButton = findViewById(R.id.nextButton);
+        nextButton.setOnClickListener(v -> {
+            // Handle "Next" button click
+            room.nextTile();
+            drawRoomBackground();
+        });
+
 
         // Implements endButton functionality to send user to endscreen
         Button endButton = findViewById(R.id.endScreenButton);
         endButton.setOnClickListener(v -> {
+            handler.removeCallbacks(runnable);
             Intent end = new Intent(GameScreen.this, EndScreen.class);
             startActivity(end);
             finish();
@@ -100,7 +136,38 @@ public class GameScreen extends Activity {
 
     } // onCreate
 
-    public int getScore() {
+
+    private void drawRoomBackground() {
+        // Create a Bitmap to draw the room background
+        Bitmap roomBitmap = Bitmap.createBitmap(screenWidth, screenHeight, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(roomBitmap);
+
+        // Draw the room on the canvas (Replace with your Room class logic)
+        room.draw(canvas);
+
+        // Find the ImageView for the roomCanvas
+        ImageView roomCanvas = findViewById(R.id.roomCanvas);
+
+        // Set the Bitmap as the source for the ImageView
+        roomCanvas.setImageBitmap(roomBitmap);
+    }
+
+    public static int getScore() {
         return score;
     }
+    public static void resetScore() {
+        score = 100;
+    }
+    public static int getAttempt() {
+        return attempt;
+    }
+    public static String getName() {
+        return name;
+    }
+    public static String getDateTime() {
+        return dateTime;
+    }
+
+
+
 } // GameScreen

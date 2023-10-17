@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.sprint1.R;
-import com.example.sprint1.ViewModels.InitialConfiguration;
 
 public class LaunchScreen extends Activity {
 
@@ -15,6 +14,7 @@ public class LaunchScreen extends Activity {
         // displaying the launch screen xml file
         super.onCreate(savedInstanceState);
         setContentView(R.layout.launchscreen);
+        System.out.print("created");
 
         // instantiating the start and quit buttons
         Button start = findViewById(R.id.StartButton);
@@ -23,7 +23,8 @@ public class LaunchScreen extends Activity {
         // sends the player to different screens depending on the pressed button
         // to the initial configuration screen
         start.setOnClickListener(v -> {
-            Intent config = new Intent(this, InitialConfiguration.class);
+            System.out.print("start clicked");
+            Intent config = new Intent(LaunchScreen.this, InitialConfiguration.class);
             startActivity(config);
             finish();
         });

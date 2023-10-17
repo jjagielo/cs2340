@@ -5,18 +5,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import java.util.*;
 
 import com.example.sprint1.R;
 import com.example.sprint2.Models.Leaderboard;
 import com.example.sprint2.Models.ScoreData;
 
-public class EndScreen extends Activity {
+public class EndScreenLoser extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // displaying the end screen xml file
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.endscreen_winner);
+        setContentView(R.layout.endscreen_loser);
 
         // instantiating the return button
         Button end = findViewById(R.id.returnButton);
