@@ -1,4 +1,4 @@
-package com.example.sprint2.Models;
+package com.example.sprint1.Models;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 import com.example.sprint1.R;
+
 
 public class Room {
     private Bitmap[] backgrounds;

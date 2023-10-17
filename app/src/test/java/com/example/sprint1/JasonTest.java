@@ -2,8 +2,8 @@ package com.example.sprint1;
 
 import static junit.framework.TestCase.assertEquals;
 
-import com.example.sprint2.Models.Leaderboard;
-import com.example.sprint2.Models.ScoreData;
+import com.example.sprint1.Models.Leaderboard;
+import com.example.sprint1.Models.ScoreData;
 
 import org.junit.Test;
 
