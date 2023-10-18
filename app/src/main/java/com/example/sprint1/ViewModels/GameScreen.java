@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.app.Activity;
@@ -21,6 +23,11 @@ public class GameScreen extends Activity {
 
     //Difficulty Property
     private double difficulty;
+
+    private Boolean isUpPressed = false;
+    private Boolean isDownPressed = false;
+    private Boolean isLeftPressed = false;
+    private Boolean isRightPressed = false;
     // Character Sprite
     private ImageView character;
     // Character Selection
@@ -122,6 +129,57 @@ public class GameScreen extends Activity {
             // Handle "Next" button click
             room.nextTile();
             drawRoomBackground();
+        });
+
+        Handler handlerMovement = new Handler();
+        Runnable runnableMovement = new Runnable() {
+            @Override
+            public void run() {
+                if (isUpPressed) {
+                    character.setY(character.getY() - 4);
+                }
+                if (isLeftPressed) {
+                    character.setX(character.getX() - 4);
+                }
+                if (isDownPressed) {
+                    character.setY(character.getY() + 4);
+                }
+                if (isRightPressed) {
+                    character.setX(character.getX() + 4);
+                }
+                handlerMovement.postDelayed(this, 80);
+            }
+        };
+        handlerMovement.postDelayed(runnableMovement, 0);
+
+        //Movement Buttons
+        Button upButton = findViewById(R.id.upButton);
+        upButton.setOnClickListener(v -> {
+           isUpPressed = !isUpPressed;
+           if(isDownPressed){
+               isDownPressed = false;
+           }
+        });
+        Button downButton = findViewById(R.id.downButton);
+        downButton.setOnClickListener(v -> {
+            isDownPressed = !isDownPressed;
+            if(isUpPressed){
+                isUpPressed = false;
+            }
+        });
+        Button leftButton = findViewById(R.id.leftButton);
+        leftButton.setOnClickListener(v -> {
+            isLeftPressed = !isLeftPressed;
+            if(isRightPressed){
+                isRightPressed = false;
+            }
+        });
+        Button rightButton = findViewById(R.id.rightButton);
+        rightButton.setOnClickListener(v -> {
+            isRightPressed = !isRightPressed;
+            if(isLeftPressed){
+                isLeftPressed = false;
+            }
         });
 
 

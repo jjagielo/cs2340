@@ -9,6 +9,16 @@
     android:screenOrientation="landscape">
 
 
+    <Button
+        android:id="@+id/downButton3"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="85dp"
+        android:layout_marginBottom="10dp"
+        android:text="Down" />
+
     <ImageView
         android:id="@+id/roomCanvas"
         android:layout_width="match_parent"
@@ -93,5 +103,45 @@
         android:layout_below="@+id/scoreTextView"
         android:layout_marginTop="181dp"
         android:text="Next" />
+
+    <Button
+        android:id="@+id/upButton"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="85dp"
+        android:layout_marginBottom="70dp"
+        android:text="UP" />
+
+    <Button
+        android:id="@+id/downButton"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="85dp"
+        android:layout_marginBottom="10dp"
+        android:text="Down" />
+
+    <Button
+        android:id="@+id/rightButton"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="149dp"
+        android:layout_marginBottom="9dp"
+        android:text="Right" />
+
+    <Button
+        android:id="@+id/leftButton"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="Left" />
 
 </RelativeLayout>
