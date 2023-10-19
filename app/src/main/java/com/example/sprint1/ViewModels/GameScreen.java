@@ -131,6 +131,7 @@ public class GameScreen extends Activity {
             drawRoomBackground();
         });
 
+        // Run function for movement
         Handler handlerMovement = new Handler();
         Runnable runnableMovement = new Runnable() {
             @Override
@@ -181,6 +182,12 @@ public class GameScreen extends Activity {
                 isLeftPressed = false;
             }
         });
+
+        //Movement key inputs
+        @Override
+        public boolean onKeyDown(int keyCode, KeyEvent event){
+
+        }
 
 
         // Implements endButton functionality to send user to endscreen
