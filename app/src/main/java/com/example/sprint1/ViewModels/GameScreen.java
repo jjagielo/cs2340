@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,6 +23,7 @@ import android.view.KeyEvent;
 
 import androidx.compose.ui.graphics.Outline;
 
+import com.example.sprint1.Models.Player;
 import com.example.sprint1.R;
 import com.example.sprint1.Models.Room;
 
@@ -29,14 +31,13 @@ public class GameScreen extends Activity {
 
     //Difficulty Property
     private double difficulty;
-
     private Boolean isUpPressed = false;
     private Boolean isDownPressed = false;
     private Boolean isLeftPressed = false;
     private Boolean isRightPressed = false;
     // Character Sprite
     private ImageView character;
-
+    private Player player;
     //Door sprite
     private ImageView door;
     // Character Selection
@@ -46,12 +47,15 @@ public class GameScreen extends Activity {
     //number of attempts
     private static int attempt;
     private static String name;
+    private int healthInt;
     private static String dateTime;
     private Room room;
     private int screenWidth;
     private int screenHeight;
 
-    public GameScreen() { }
+    public GameScreen() {
+        player = Player.getPlayer("playerName", 100);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,12 +90,15 @@ public class GameScreen extends Activity {
         if (difficulty == 1) {
             difficultyText.setText("Difficulty: Hard");
             health = "100";
+            healthInt = 100;
         } else if (difficulty == 0.75) {
             difficultyText.setText("Difficulty: Medium");
             health = "150";
+            healthInt = 150;
         } else if (difficulty == 0.5) {
             difficultyText.setText("Difficulty: Easy");
             health = "200";
+            healthInt = 200;
         } // if
 
         //Door
@@ -109,7 +116,7 @@ public class GameScreen extends Activity {
             character.setImageResource(R.drawable.dwarf_f_idle_anim_f3);
         } // if
 
-
+        player = Player.getPlayer(name, healthInt);
 
         // Displays health based on difficulty
         TextView healthText = (TextView) findViewById(R.id.healthTextView);
@@ -262,6 +269,9 @@ public class GameScreen extends Activity {
     }
     public static String getDateTime() {
         return dateTime;
+    }
+    public Player getPlayer() {
+        return player;
     }
 
 
