@@ -4,13 +4,8 @@ import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.app.Activity;
@@ -18,10 +13,8 @@ import android.widget.Button;
 import android.util.DisplayMetrics;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.view.KeyEvent;
 
-import androidx.compose.ui.graphics.Outline;
-
+import com.example.sprint1.Models.Player;
 import com.example.sprint1.R;
 import com.example.sprint1.Models.Room;
 
@@ -29,14 +22,13 @@ public class GameScreen extends Activity {
 
     //Difficulty Property
     private double difficulty;
-
     private Boolean isUpPressed = false;
     private Boolean isDownPressed = false;
     private Boolean isLeftPressed = false;
     private Boolean isRightPressed = false;
     // Character Sprite
     private ImageView character;
-
+    private Player player;
     //Door sprite
     private ImageView door;
     // Character Selection
@@ -46,12 +38,15 @@ public class GameScreen extends Activity {
     //number of attempts
     private static int attempt;
     private static String name;
+    private int healthInt;
     private static String dateTime;
     private Room room;
     private int screenWidth;
     private int screenHeight;
 
-    public GameScreen() { }
+    public GameScreen() {
+        player = Player.getPlayer("playerName", 100);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,66 +54,22 @@ public class GameScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gamescreen);
 
-
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         screenWidth = displayMetrics.widthPixels;
         screenHeight = displayMetrics.heightPixels;
-
-
         // Initialize the Room with the screen dimensions
         room = new Room(this, screenWidth, screenHeight);
         // Start drawing the room background
         drawRoomBackground();
 
-        // Initialize difficultyText to display difficulty user selected
-        TextView difficultyText = (TextView) findViewById(R.id.difficultyTextView);
         attempt++;
 
-        // Initialize nameText to display name user inputted
-        TextView nameText = (TextView) findViewById(R.id.nameTextView);
-        name = getIntent().getStringExtra("playerName");
-        nameText.setText("Name: " + name);
-
-        // Displays the difficulty user selected as well as health associated with chosen difficulty
-        difficulty = getIntent().getDoubleExtra("difficulty", 0.5);
-        String health = "100";
-        if (difficulty == 1) {
-            difficultyText.setText("Difficulty: Hard");
-            health = "100";
-        } else if (difficulty == 0.75) {
-            difficultyText.setText("Difficulty: Medium");
-            health = "150";
-        } else if (difficulty == 0.5) {
-            difficultyText.setText("Difficulty: Easy");
-            health = "200";
-        } // if
-
-        //Door
-        door = (ImageView) findViewById(R.id.doorImage);
-        door.setImageResource(R.drawable.door_removebg_preview__1_);
-
-        // Changes the sprite to the one user selected
-        character = (ImageView) findViewById(R.id.characterImage);
-        charInt = getIntent().getIntExtra("character", 1);
-        if (charInt == 1) {
-            character.setImageResource(R.drawable.knight_f_idle_anim_f0);
-        } else if (charInt == 2) {
-            character.setImageResource(R.drawable.elf_f_idle_anim_f0);
-        } else if (charInt == 3) {
-            character.setImageResource(R.drawable.dwarf_f_idle_anim_f3);
-        } // if
-
-
-
-        // Displays health based on difficulty
-        TextView healthText = (TextView) findViewById(R.id.healthTextView);
-        healthText.setText("Health: " + health);
+        initPlayer();
 
         // displays the score and decrements it every 2 seconds
         TextView scoreText = findViewById(R.id.scoreTextView);
         score = 100;
-
         Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override
@@ -137,7 +88,6 @@ public class GameScreen extends Activity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         dateTime = dateFormat.format(calendar.getTime());
 
-
         //temporary next button for the tiles
         Button nextButton = findViewById(R.id.nextButton);
         nextButton.setOnClickListener(v -> {
@@ -148,14 +98,18 @@ public class GameScreen extends Activity {
             drawRoomBackground();
         });
 
+        //Door
+        door = (ImageView) findViewById(R.id.doorImage);
+        door.setImageResource(R.drawable.door_removebg_preview__1_);
+
         // Run function for movement
         Handler handlerMovement = new Handler();
         Runnable runnableMovement = new Runnable() {
             @Override
             public void run() {
-
-                if(character.getX() > door.getX()-80 && character.getX() < door.getX()+80 &&
-                    character.getY() > door.getY()-140 && character.getY() < door.getY()+140){
+                if (character.getX() > door.getX() - 80 && character.getX() < door.getX() + 80
+                        && character.getY() > door.getY() - 140 && character.getY() < door.getY()
+                        + 140) {
                     room.nextTile();
                     character.setX(350);
                     character.setY(500);
@@ -175,51 +129,40 @@ public class GameScreen extends Activity {
                     character.setX(character.getX() + 20);
                 }
 
-
-
                 handlerMovement.postDelayed(this, 80);
             }
-
-
-
-
         };
         handlerMovement.postDelayed(runnableMovement, 0);
 
         //Movement Buttons
         Button upButton = findViewById(R.id.upButton);
         upButton.setOnClickListener(v -> {
-           isUpPressed = !isUpPressed;
-           if(isDownPressed){
-               isDownPressed = false;
-           }
+            isUpPressed = !isUpPressed;
+            if (isDownPressed) {
+                isDownPressed = false;
+            }
         });
         Button downButton = findViewById(R.id.downButton);
         downButton.setOnClickListener(v -> {
             isDownPressed = !isDownPressed;
-            if(isUpPressed){
+            if (isUpPressed) {
                 isUpPressed = false;
             }
         });
         Button leftButton = findViewById(R.id.leftButton);
         leftButton.setOnClickListener(v -> {
             isLeftPressed = !isLeftPressed;
-            if(isRightPressed){
+            if (isRightPressed) {
                 isRightPressed = false;
             }
         });
         Button rightButton = findViewById(R.id.rightButton);
         rightButton.setOnClickListener(v -> {
             isRightPressed = !isRightPressed;
-            if(isLeftPressed){
+            if (isLeftPressed) {
                 isLeftPressed = false;
             }
         });
-
-        //Movement key inputs
-
-
-
 
         // Implements endButton functionality to send user to endscreen
         Button endButton = findViewById(R.id.endScreenButton);
@@ -229,9 +172,7 @@ public class GameScreen extends Activity {
             startActivity(end);
             finish();
         }); // endButton
-
     } // onCreate
-
 
     private void drawRoomBackground() {
         // Create a Bitmap to draw the room background
@@ -246,6 +187,50 @@ public class GameScreen extends Activity {
 
         // Set the Bitmap as the source for the ImageView
         roomCanvas.setImageBitmap(roomBitmap);
+    }
+
+    private void initPlayer() {
+        // Initialize difficultyText to display difficulty user selected
+        TextView difficultyText = (TextView) findViewById(R.id.difficultyTextView);
+
+        // Initialize nameText to display name user inputted
+        TextView nameText = (TextView) findViewById(R.id.nameTextView);
+        name = getIntent().getStringExtra("playerName");
+        nameText.setText("Name: " + name);
+
+        // Displays the difficulty user selected as well as health associated with chosen difficulty
+        difficulty = getIntent().getDoubleExtra("difficulty", 0.5);
+        String health = "100";
+        if (difficulty == 1) {
+            difficultyText.setText("Difficulty: Hard");
+            health = "100";
+            healthInt = 100;
+        } else if (difficulty == 0.75) {
+            difficultyText.setText("Difficulty: Medium");
+            health = "150";
+            healthInt = 150;
+        } else if (difficulty == 0.5) {
+            difficultyText.setText("Difficulty: Easy");
+            health = "200";
+            healthInt = 200;
+        } // if
+
+        // Changes the sprite to the one user selected
+        character = (ImageView) findViewById(R.id.characterImage);
+        charInt = getIntent().getIntExtra("character", 1);
+        if (charInt == 1) {
+            character.setImageResource(R.drawable.knight_f_idle_anim_f0);
+        } else if (charInt == 2) {
+            character.setImageResource(R.drawable.elf_f_idle_anim_f0);
+        } else if (charInt == 3) {
+            character.setImageResource(R.drawable.dwarf_f_idle_anim_f3);
+        } // if
+
+        player = Player.getPlayer(name, healthInt);
+
+        // Displays health based on difficulty
+        TextView healthText = (TextView) findViewById(R.id.healthTextView);
+        healthText.setText("Health: " + health);
     }
 
     public static int getScore() {
@@ -263,7 +248,7 @@ public class GameScreen extends Activity {
     public static String getDateTime() {
         return dateTime;
     }
-
-
-
+    public Player getPlayer() {
+        return player;
+    }
 } // GameScreen
