@@ -4,6 +4,9 @@ import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MotionEvent;
@@ -15,6 +18,9 @@ import android.widget.Button;
 import android.util.DisplayMetrics;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.view.KeyEvent;
+
+import androidx.compose.ui.graphics.Outline;
 
 import com.example.sprint1.R;
 import com.example.sprint1.Models.Room;
@@ -30,6 +36,9 @@ public class GameScreen extends Activity {
     private Boolean isRightPressed = false;
     // Character Sprite
     private ImageView character;
+
+    //Door sprite
+    private ImageView door;
     // Character Selection
     private int charInt;
     // Player score
@@ -85,6 +94,10 @@ public class GameScreen extends Activity {
             health = "200";
         } // if
 
+        //Door
+        door = (ImageView) findViewById(R.id.doorImage);
+        door.setImageResource(R.drawable.door_removebg_preview__1_);
+
         // Changes the sprite to the one user selected
         character = (ImageView) findViewById(R.id.characterImage);
         charInt = getIntent().getIntExtra("character", 1);
@@ -95,6 +108,8 @@ public class GameScreen extends Activity {
         } else if (charInt == 3) {
             character.setImageResource(R.drawable.dwarf_f_idle_anim_f3);
         } // if
+
+
 
         // Displays health based on difficulty
         TextView healthText = (TextView) findViewById(R.id.healthTextView);
@@ -128,27 +143,46 @@ public class GameScreen extends Activity {
         nextButton.setOnClickListener(v -> {
             // Handle "Next" button click
             room.nextTile();
+            character.setX(350);
+            character.setY(500);
             drawRoomBackground();
         });
 
+        // Run function for movement
         Handler handlerMovement = new Handler();
         Runnable runnableMovement = new Runnable() {
             @Override
             public void run() {
-                if (isUpPressed) {
-                    character.setY(character.getY() - 4);
+
+                if(character.getX() > door.getX()-80 && character.getX() < door.getX()+80 &&
+                    character.getY() > door.getY()-140 && character.getY() < door.getY()+140){
+                    room.nextTile();
+                    character.setX(350);
+                    character.setY(500);
+                    drawRoomBackground();
                 }
-                if (isLeftPressed) {
-                    character.setX(character.getX() - 4);
+
+                if (isUpPressed && character.getY() > 10) {
+                    character.setY(character.getY() - 20);
                 }
-                if (isDownPressed) {
-                    character.setY(character.getY() + 4);
+                if (isLeftPressed && character.getX() > 250) {
+                    character.setX(character.getX() - 20);
                 }
-                if (isRightPressed) {
-                    character.setX(character.getX() + 4);
+                if (isDownPressed && character.getY() < screenHeight - 270) {
+                    character.setY(character.getY() + 20);
                 }
+                if (isRightPressed && character.getX() < screenWidth - 300) {
+                    character.setX(character.getX() + 20);
+                }
+
+
+
                 handlerMovement.postDelayed(this, 80);
             }
+
+
+
+
         };
         handlerMovement.postDelayed(runnableMovement, 0);
 
@@ -181,6 +215,10 @@ public class GameScreen extends Activity {
                 isLeftPressed = false;
             }
         });
+
+        //Movement key inputs
+
+
 
 
         // Implements endButton functionality to send user to endscreen
