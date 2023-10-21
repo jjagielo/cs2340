@@ -1,27 +1,33 @@
 package com.example.sprint1.Models;
 
+import android.widget.ImageView;
+
 public class Player {
     private String name;
     private int health;
-    private float x;
-    private float y;
-    private Leaderboard leaderboard;
-
+    private double difficulty;
+    private ImageView character;
     private static Player player;
 
-    private Player(String name, int health) {
+    private Player(String name, double diff, ImageView charc) {
         this.name = name;
-        this.health = health;
-        this.x = 0.0f;
-        this.y = 0.0f;
-        this.leaderboard = new Leaderboard();
+        this.difficulty = diff;
+        this.character = charc;
+        health = 100;
+        if (difficulty == 1) {
+            health = 100;
+        } else if (difficulty == 0.75) {
+            health = 150;
+        } else if (difficulty == 0.5) {
+            health = 200;
+        } // if
     }
 
-    public static Player getPlayer(String name, int health) {
+    public static Player getPlayer(String name, double difficulty, ImageView charc) {
         if (player == null) {
             synchronized (Player.class) {
                 if (player == null) {
-                    player = new Player(name, health);
+                    player = new Player(name, difficulty, charc);
                 }
             }
         }
@@ -37,11 +43,19 @@ public class Player {
     }
 
     public float getX() {
-        return x;
+        return character.getX();
     }
 
     public float getY() {
-        return y;
+        return character.getY();
+    }
+
+    public double getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(double diff) {
+        this.difficulty = diff;
     }
 
     public void setName(String name) {
@@ -53,10 +67,15 @@ public class Player {
     }
 
     public void setX(float x) {
-        this.x = x;
+        character.setX(x);
     }
 
     public void setY(float y) {
-        this.y = y;
+        character.setY(y);
+    }
+
+    public void changePos(float x, float y) {
+        character.setY(y);
+        character.setX(x);
     }
 }

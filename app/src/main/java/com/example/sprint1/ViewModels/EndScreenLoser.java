@@ -56,7 +56,7 @@ public class EndScreenLoser extends Activity {
 
         // sending the player to the launch screen when the button is pressed
         end.setOnClickListener(v -> {
-            Intent start = new Intent(this, LaunchScreen.class);
+            Intent start = new Intent(EndScreenLoser.this, LaunchScreen.class);
             startActivity(start);
             finish();
         });

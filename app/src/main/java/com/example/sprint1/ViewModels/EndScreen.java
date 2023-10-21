@@ -56,7 +56,7 @@ public class EndScreen extends Activity {
 
         // sending the player to the launch screen when the button is pressed
         end.setOnClickListener(v -> {
-            Intent start = new Intent(this, LaunchScreen.class);
+            Intent start = new Intent(EndScreen.this, LaunchScreen.class);
             startActivity(start);
             finish();
         });
