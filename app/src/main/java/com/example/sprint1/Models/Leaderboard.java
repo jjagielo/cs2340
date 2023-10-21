@@ -8,7 +8,7 @@ public class Leaderboard {
 
     private static Leaderboard instance;
     
-    public Leaderboard() {
+    private Leaderboard() {
         leaderboard = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             leaderboard.add(new ScoreData("Default", 0, 0, ""));

@@ -44,10 +44,6 @@ public class GameScreen extends Activity {
     private int screenWidth;
     private int screenHeight;
 
-    public GameScreen() {
-        player = Player.getPlayer("playerName", 100);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Set gamescreen as current screen for user
@@ -93,8 +89,8 @@ public class GameScreen extends Activity {
         nextButton.setOnClickListener(v -> {
             // Handle "Next" button click
             room.nextTile();
-            character.setX(350);
-            character.setY(500);
+            player.setX(350);
+            player.setY(500);
             drawRoomBackground();
         });
 
@@ -107,26 +103,26 @@ public class GameScreen extends Activity {
         Runnable runnableMovement = new Runnable() {
             @Override
             public void run() {
-                if (character.getX() > door.getX() - 80 && character.getX() < door.getX() + 80
-                        && character.getY() > door.getY() - 140 && character.getY() < door.getY()
+                if (player.getX() > door.getX() - 80 && player.getX() < door.getX() + 80
+                        && player.getY() > door.getY() - 140 && player.getY() < door.getY()
                         + 140) {
                     room.nextTile();
-                    character.setX(350);
-                    character.setY(500);
+                    player.setX(350);
+                    player.setY(500);
                     drawRoomBackground();
                 }
 
-                if (isUpPressed && character.getY() > 10) {
-                    character.setY(character.getY() - 20);
+                if (isUpPressed && player.getY() > 10) {
+                    player.setY(player.getY() - 20);
                 }
-                if (isLeftPressed && character.getX() > 250) {
-                    character.setX(character.getX() - 20);
+                if (isLeftPressed && player.getX() > 250) {
+                    player.setX(player.getX() - 20);
                 }
-                if (isDownPressed && character.getY() < screenHeight - 270) {
-                    character.setY(character.getY() + 20);
+                if (isDownPressed && player.getY() < screenHeight - 270) {
+                    player.setY(player.getY() + 20);
                 }
-                if (isRightPressed && character.getX() < screenWidth - 300) {
-                    character.setX(character.getX() + 20);
+                if (isRightPressed && player.getX() < screenWidth - 300) {
+                    player.setX(player.getX() + 20);
                 }
 
                 handlerMovement.postDelayed(this, 80);
@@ -196,24 +192,10 @@ public class GameScreen extends Activity {
         // Initialize nameText to display name user inputted
         TextView nameText = (TextView) findViewById(R.id.nameTextView);
         name = getIntent().getStringExtra("playerName");
-        nameText.setText("Name: " + name);
 
         // Displays the difficulty user selected as well as health associated with chosen difficulty
         difficulty = getIntent().getDoubleExtra("difficulty", 0.5);
-        String health = "100";
-        if (difficulty == 1) {
-            difficultyText.setText("Difficulty: Hard");
-            health = "100";
-            healthInt = 100;
-        } else if (difficulty == 0.75) {
-            difficultyText.setText("Difficulty: Medium");
-            health = "150";
-            healthInt = 150;
-        } else if (difficulty == 0.5) {
-            difficultyText.setText("Difficulty: Easy");
-            health = "200";
-            healthInt = 200;
-        } // if
+
 
         // Changes the sprite to the one user selected
         character = (ImageView) findViewById(R.id.characterImage);
@@ -226,11 +208,13 @@ public class GameScreen extends Activity {
             character.setImageResource(R.drawable.dwarf_f_idle_anim_f3);
         } // if
 
-        player = Player.getPlayer(name, healthInt);
+        player = Player.getPlayer(name, difficulty, character);
 
         // Displays health based on difficulty
         TextView healthText = (TextView) findViewById(R.id.healthTextView);
-        healthText.setText("Health: " + health);
+        healthText.setText("Health: " + player.getHealth());
+        difficultyText.setText("Difficulty: " + player.getDifficulty());
+        nameText.setText("Name: " + player.getName());
     }
 
     public static int getScore() {
