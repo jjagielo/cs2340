@@ -92,7 +92,7 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver {
 
     public void alert(int score) {
         if (score == 10) {
-            setHealth(this.health+10);
+            setHealth(this.health + 10);
         }
     }
 

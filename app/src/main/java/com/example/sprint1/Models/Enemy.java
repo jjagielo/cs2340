@@ -4,7 +4,7 @@ import android.widget.ImageView;
 
 import java.util.Random;
 
-public class Enemy implements EntityMovement{
+public class Enemy implements EntityMovement {
     private int health;
     private double difficulty;
     private ImageView character;
