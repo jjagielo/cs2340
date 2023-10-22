@@ -84,16 +84,6 @@ public class GameScreen extends Activity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         dateTime = dateFormat.format(calendar.getTime());
 
-        //temporary next button for the tiles
-        Button nextButton = findViewById(R.id.nextButton);
-        nextButton.setOnClickListener(v -> {
-            // Handle "Next" button click
-            room.nextTile();
-            player.changePos(350, player.getY());
-            player.changePos(player.getX(), 500);
-            drawRoomBackground();
-        });
-
         //Door
         door = (ImageView) findViewById(R.id.doorImage);
         door.setImageResource(R.drawable.door_removebg_preview__1_);
@@ -103,26 +93,76 @@ public class GameScreen extends Activity {
         Runnable runnableMovement = new Runnable() {
             @Override
             public void run() {
-                if (player.getX() > door.getX() - 80 && player.getX() < door.getX() + 80
-                        && player.getY() > door.getY() - 140 && player.getY() < door.getY()
-                        + 140) {
-                    room.nextTile();
-                    player.changePos(350, player.getY());
-                    player.changePos(player.getX(), 500);
-                    drawRoomBackground();
-                }
+                if (attempt == 1) {
+                    if (player.getX() > door.getX() - 80 && player.getX() < door.getX() + 80
+                            && player.getY() > door.getY() - 140 && player.getY() < door.getY()
+                            + 140) {
+                        if (room.getCurrentTileIndex() == 3) {
+                            isUpPressed = false;
+                            isDownPressed = false;
+                            isLeftPressed = false;
+                            isRightPressed = false;
+                            handler.removeCallbacks(runnable);
+                            Intent end = new Intent(GameScreen.this, EndScreen.class);
+                            startActivity(end);
+                            finish();
+                        }
+                        room.nextTile();
+                        player.changePos(350, player.getY());
+                        player.changePos(player.getX(), 500);
+                        drawRoomBackground();
+                    }
 
-                if (isUpPressed && player.getY() > 10) {
-                    player.changePos(player.getX(), player.getY() - 20);
-                }
-                if (isLeftPressed && player.getX() > 250) {
-                    player.changePos(player.getX() - 20, player.getY());
-                }
-                if (isDownPressed && player.getY() < screenHeight - 270) {
-                    player.changePos(player.getX(), player.getY() + 20);
-                }
-                if (isRightPressed && player.getX() < screenWidth - 300) {
-                    player.changePos(player.getX() + 20, player.getY());
+                    if (isUpPressed && player.getY() > 10) {
+                        player.changePos(player.getX(), player.getY() - 20);
+                    }
+                    if (isLeftPressed && player.getX() > 250) {
+                        player.changePos(player.getX() - 20, player.getY());
+                    }
+                    if (isDownPressed && player.getY() < screenHeight - 270) {
+                        player.changePos(player.getX(), player.getY() + 20);
+                    }
+                    if (isRightPressed && player.getX() < screenWidth - 300) {
+                        player.changePos(player.getX() + 20, player.getY());
+                    }
+                } else {
+                    if (character.getX() > door.getX() - 80 && character.getX() < door.getX() + 80
+                            && character.getY() > door.getY() - 140 && character.getY() < door.getY()
+                            + 140) {
+                        if (room.getCurrentTileIndex() == 3) {
+                            isUpPressed = false;
+                            isDownPressed = false;
+                            isLeftPressed = false;
+                            isRightPressed = false;
+                            handler.removeCallbacks(runnable);
+                            Intent end = new Intent(GameScreen.this, EndScreen.class);
+                            startActivity(end);
+                            finish();
+                        }
+                        room.nextTile();
+                        character.setX(350);
+                        character.setY(500);
+                        player.changePos(350, player.getY());
+                        player.changePos(player.getX(), 500);
+                        drawRoomBackground();
+                    }
+
+                    if (isUpPressed && character.getY() > 10) {
+                        player.changePos(player.getX(), player.getY() - 20);
+                        character.setY(character.getY() - 20);
+                    }
+                    if (isLeftPressed && character.getX() > 250) {
+                        player.changePos(player.getX() - 20, player.getY());
+                        character.setX(character.getX() - 20);
+                    }
+                    if (isDownPressed && character.getY() < screenHeight - 270) {
+                        player.changePos(player.getX(), player.getY() + 20);
+                        character.setY(character.getY() + 20);
+                    }
+                    if (isRightPressed && character.getX() < screenWidth - 300) {
+                        player.changePos(player.getX() + 20, player.getY());
+                        character.setX(character.getX() + 20);
+                    }
                 }
 
                 handlerMovement.postDelayed(this, 80);
@@ -159,15 +199,6 @@ public class GameScreen extends Activity {
                 isLeftPressed = false;
             }
         });
-
-        // Implements endButton functionality to send user to endscreen
-        Button endButton = findViewById(R.id.endScreenButton);
-        endButton.setOnClickListener(v -> {
-            handler.removeCallbacks(runnable);
-            Intent end = new Intent(GameScreen.this, EndScreen.class);
-            startActivity(end);
-            finish();
-        }); // endButton
     } // onCreate
 
     private void drawRoomBackground() {
@@ -185,6 +216,7 @@ public class GameScreen extends Activity {
         roomCanvas.setImageBitmap(roomBitmap);
     }
 
+    // initialize player's attributes and how they are displayed
     private void initPlayer() {
         // Initialize difficultyText to display difficulty user selected
         TextView difficultyText = (TextView) findViewById(R.id.difficultyTextView);
