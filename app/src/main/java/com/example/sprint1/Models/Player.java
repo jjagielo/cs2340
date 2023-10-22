@@ -2,7 +2,7 @@ package com.example.sprint1.Models;
 
 import android.widget.ImageView;
 
-public class Player {
+public class Player implements EntityMovement {
     private String name;
     private int health;
     private double difficulty;
@@ -74,8 +74,9 @@ public class Player {
         character.setY(y);
     }
 
-    public void changePos(float x, float y) {
-        character.setY(y);
-        character.setX(x);
+    @Override
+    public void changePos(float newX, float newY) {
+        character.setY(newY);
+        character.setX(newX);
     }
 }
