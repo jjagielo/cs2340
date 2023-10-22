@@ -245,8 +245,16 @@ public class GameScreen extends Activity {
         // Displays health based on difficulty
         TextView healthText = (TextView) findViewById(R.id.healthTextView);
         healthText.setText("Health: " + player.getHealth());
-        difficultyText.setText("Difficulty: " + player.getDifficulty());
         nameText.setText("Name: " + player.getName());
+
+        if (difficulty == 1) {
+            difficultyText.setText("Difficulty: Hard");
+        } else if (difficulty == 0.75) {
+            difficultyText.setText("Difficulty: Medium");
+        } else if (difficulty == 0.5) {
+            difficultyText.setText("Difficulty: Easy");
+        } // if
+
     }
 
     public static int getScore() {
@@ -265,6 +273,6 @@ public class GameScreen extends Activity {
         return dateTime;
     }
     public Player getPlayer() {
-        return player;
+        return Player.getPlayer(name, difficulty, character);
     }
 } // GameScreen
