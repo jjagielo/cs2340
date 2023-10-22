@@ -50,6 +50,14 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver {
         return character.getY();
     }
 
+    public float getInitX() {
+        return 0.0f;
+    }
+
+    public float getInitY() {
+        return 0.0f;
+    }
+
     public double getDifficulty() {
         return difficulty;
     }
