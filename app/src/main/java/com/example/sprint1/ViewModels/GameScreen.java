@@ -127,7 +127,8 @@ public class GameScreen extends Activity {
                     }
                 } else {
                     if (character.getX() > door.getX() - 80 && character.getX() < door.getX() + 80
-                            && character.getY() > door.getY() - 140 && character.getY() < door.getY()
+                            && character.getY() > door.getY() - 140 && character.getY()
+                            < door.getY()
                             + 140) {
                         if (room.getCurrentTileIndex() == 3) {
                             isUpPressed = false;
@@ -170,35 +171,7 @@ public class GameScreen extends Activity {
         };
         handlerMovement.postDelayed(runnableMovement, 0);
 
-        //Movement Buttons
-        Button upButton = findViewById(R.id.upButton);
-        upButton.setOnClickListener(v -> {
-            isUpPressed = !isUpPressed;
-            if (isDownPressed) {
-                isDownPressed = false;
-            }
-        });
-        Button downButton = findViewById(R.id.downButton);
-        downButton.setOnClickListener(v -> {
-            isDownPressed = !isDownPressed;
-            if (isUpPressed) {
-                isUpPressed = false;
-            }
-        });
-        Button leftButton = findViewById(R.id.leftButton);
-        leftButton.setOnClickListener(v -> {
-            isLeftPressed = !isLeftPressed;
-            if (isRightPressed) {
-                isRightPressed = false;
-            }
-        });
-        Button rightButton = findViewById(R.id.rightButton);
-        rightButton.setOnClickListener(v -> {
-            isRightPressed = !isRightPressed;
-            if (isLeftPressed) {
-                isLeftPressed = false;
-            }
-        });
+        movementButtons();
     } // onCreate
 
     private void drawRoomBackground() {
@@ -255,6 +228,38 @@ public class GameScreen extends Activity {
             difficultyText.setText("Difficulty: Easy");
         } // if
 
+    }
+
+    private void movementButtons() {
+        //Movement Buttons
+        Button upButton = findViewById(R.id.upButton);
+        upButton.setOnClickListener(v -> {
+            isUpPressed = !isUpPressed;
+            if (isDownPressed) {
+                isDownPressed = false;
+            }
+        });
+        Button downButton = findViewById(R.id.downButton);
+        downButton.setOnClickListener(v -> {
+            isDownPressed = !isDownPressed;
+            if (isUpPressed) {
+                isUpPressed = false;
+            }
+        });
+        Button leftButton = findViewById(R.id.leftButton);
+        leftButton.setOnClickListener(v -> {
+            isLeftPressed = !isLeftPressed;
+            if (isRightPressed) {
+                isRightPressed = false;
+            }
+        });
+        Button rightButton = findViewById(R.id.rightButton);
+        rightButton.setOnClickListener(v -> {
+            isRightPressed = !isRightPressed;
+            if (isLeftPressed) {
+                isLeftPressed = false;
+            }
+        });
     }
 
     public static int getScore() {
