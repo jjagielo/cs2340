@@ -19,7 +19,6 @@ public class AdiTest{
     public void testStrategyPatternPlayer() {
         GameScreen gs = new GameScreen();
         Player player = Player.getPlayer("Bob", 1.0, null);
-        System.out.println(player.getX());
 
         // Tests if ConcreteStrategy class (Player.class) implements Strategy class (EntityMovement.class)
         List<Class<?>> interfaces = Arrays.asList(player.getClass().getInterfaces());
