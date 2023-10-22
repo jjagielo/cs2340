@@ -89,8 +89,8 @@ public class GameScreen extends Activity {
         nextButton.setOnClickListener(v -> {
             // Handle "Next" button click
             room.nextTile();
-            player.setX(350);
-            player.setY(500);
+            player.changePos(350, player.getY());
+            player.changePos(player.getX(), 500);
             drawRoomBackground();
         });
 
@@ -107,22 +107,22 @@ public class GameScreen extends Activity {
                         && player.getY() > door.getY() - 140 && player.getY() < door.getY()
                         + 140) {
                     room.nextTile();
-                    player.setX(350);
-                    player.setY(500);
+                    player.changePos(350, player.getY());
+                    player.changePos(player.getX(), 500);
                     drawRoomBackground();
                 }
 
                 if (isUpPressed && player.getY() > 10) {
-                    player.setY(player.getY() - 20);
+                    player.changePos(player.getX(), player.getY() - 20);
                 }
                 if (isLeftPressed && player.getX() > 250) {
-                    player.setX(player.getX() - 20);
+                    player.changePos(player.getX() - 20, player.getY());
                 }
                 if (isDownPressed && player.getY() < screenHeight - 270) {
-                    player.setY(player.getY() + 20);
+                    player.changePos(player.getX(), player.getY() + 20);
                 }
                 if (isRightPressed && player.getX() < screenWidth - 300) {
-                    player.setX(player.getX() + 20);
+                    player.changePos(player.getX() + 20, player.getY());
                 }
 
                 handlerMovement.postDelayed(this, 80);
