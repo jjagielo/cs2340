@@ -7,7 +7,8 @@ public class Leaderboard {
     private List<ScoreData> leaderboard;
 
     private static Leaderboard instance;
-    
+
+
     private Leaderboard() {
         leaderboard = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
@@ -46,6 +47,7 @@ public class Leaderboard {
         }
         
     }
+
 
     public int getScore(int index) {
         return this.leaderboard.get(index).getFinalScore();
