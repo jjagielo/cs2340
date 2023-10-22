@@ -108,8 +108,8 @@ public class GameScreen extends Activity {
                             finish();
                         }
                         room.nextTile();
-                        player.changePos(350, player.getY());
-                        player.changePos(player.getX(), 500);
+                        player.notifyPlayer(350, player.getY());
+                        player.notifyPlayer(player.getX(), 500);
                         drawRoomBackground();
                     }
 

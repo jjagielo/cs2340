@@ -2,7 +2,7 @@ package com.example.sprint1.Models;
 
 import android.widget.ImageView;
 
-public class Player implements EntityMovement, ScoreObserver {
+public class Player implements EntityMovement, ScoreObserver, MovementObserver {
     private String name;
     private int health;
     private double difficulty;
@@ -87,4 +87,16 @@ public class Player implements EntityMovement, ScoreObserver {
             setHealth(this.health+10);
         }
     }
+
+
+    public void notifyPlayer(float newX, float newY) {
+        player.alertMovement(newX, newY);
+    }
+
+    @Override
+    public void alertMovement(float newX, float newY) {
+        character.setY(newY);
+        character.setX(newX);
+    }
+
 }

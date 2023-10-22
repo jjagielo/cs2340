@@ -40,14 +40,12 @@ public class ScoreData {
         return this.attempt;
     }
 
-    public void subscribe(ScoreObserver observer) {
-        observerList.add(observer);
-    }
-
     public void notifyObservers(int score) {
         for (ScoreObserver observer: observerList) {
             observer.alert(score);
         }
     }
+
+
 
 }
