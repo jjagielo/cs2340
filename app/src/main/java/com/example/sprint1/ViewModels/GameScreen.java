@@ -31,9 +31,8 @@ public class GameScreen extends Activity {
     private Player player;
     //Door sprite
     private ImageView door;
-    // Door Coordinate: X
+    // Door Coordinates
     private float doorX;
-    // Door Coordinate: Y
     private float doorY;
     // Character Selection
     private int charInt;
