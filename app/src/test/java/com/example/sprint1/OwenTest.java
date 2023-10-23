@@ -10,7 +10,7 @@ import org.junit.Test;
 public class OwenTest {
     @Test
     public void testArrayAttempts() {
-        Leaderboard lbrd = new Leaderboard();
+        Leaderboard lbrd = Leaderboard.getinstance();
 
         ScoreData score1 = new ScoreData("Jason", 75, 1, "");
         ScoreData score2 = new ScoreData("Owen", 35, 2, "");
@@ -27,7 +27,7 @@ public class OwenTest {
 
     @Test
     public void testName() {
-        Leaderboard lbrd = new Leaderboard();
+        Leaderboard lbrd = Leaderboard.getinstance();
 
         ScoreData score1 = new ScoreData("Jason", 75, 1, "");
         ScoreData score2 = new ScoreData("Owen", 35, 2, "");

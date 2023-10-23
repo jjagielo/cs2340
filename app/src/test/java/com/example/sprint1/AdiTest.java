@@ -2,12 +2,16 @@ package com.example.sprint1;
 
 import static junit.framework.TestCase.assertEquals;
 
+import android.widget.ImageView;
+
 import com.example.sprint1.Models.Leaderboard;
 import com.example.sprint1.Models.ScoreData;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
+import com.example.sprint1.ViewModels.InitialConfiguration;
 
 import com.example.sprint1.Models.Player;
+import com.example.sprint1.ViewModels.GameScreen;
 
 import org.junit.Test;
 
@@ -34,8 +38,11 @@ public class AdiTest {
 
     @Test
     public void testPlayerSingleton() {
-        Player p1 = Player.getPlayer("John", 100);
-        Player p2 = Player.getPlayer("Joshua", 50);
+        GameScreen gs = new GameScreen();
+        ImageView charc = new ImageView(null);
+
+        Player p1 = Player.getPlayer("John", 1, charc);
+        Player p2 = Player.getPlayer("Joshua", 2, charc);
 
         assertEquals(p1.getName(), p2.getName());
         assertEquals(p1.getHealth(), p2.getHealth());

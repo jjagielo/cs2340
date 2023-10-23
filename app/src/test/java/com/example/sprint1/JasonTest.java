@@ -10,7 +10,7 @@ import org.junit.Test;
 public class JasonTest {
     @Test
     public void testArrayOrdering() {
-        Leaderboard lbrd = new Leaderboard();
+        Leaderboard lbrd = Leaderboard.getinstance();
 
         ScoreData score1 = new ScoreData("Jason", 75, 1, "");
         ScoreData score2 = new ScoreData("Jason", 35, 2, "");
@@ -27,7 +27,7 @@ public class JasonTest {
 
     @Test
     public void testInitLeaderboardSize() {
-        Leaderboard lbrd = new Leaderboard();
+        Leaderboard lbrd = Leaderboard.getinstance();
 
         assertEquals(5, lbrd.getLeaderboard().size());
     }
