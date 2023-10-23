@@ -31,6 +31,9 @@ public class GameScreen extends Activity {
     private Player player;
     //Door sprite
     private ImageView door;
+    // Door Coordinates
+    private float doorX;
+    private float doorY;
     // Character Selection
     private int charInt;
     // Player score
@@ -87,6 +90,8 @@ public class GameScreen extends Activity {
         //Door
         door = (ImageView) findViewById(R.id.doorImage);
         door.setImageResource(R.drawable.door_removebg_preview__1_);
+        doorX = 0;
+        doorY = 0;
 
         // Run function for movement
         Handler handlerMovement = new Handler();
@@ -277,6 +282,10 @@ public class GameScreen extends Activity {
     public static String getDateTime() {
         return dateTime;
     }
+    public float getDoorX() { return doorX;}
+
+    public float getDoorY() { return doorY;}
+  
     public Player getPlayer() {
         return Player.getPlayer(name, difficulty, character);
     }
