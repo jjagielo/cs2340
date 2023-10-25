@@ -286,9 +286,13 @@ public class GameScreen extends Activity {
         return doorX;
     }
 
+<<<<<<< HEAD
     public float getDoorY() {
         return doorY;
     }
+=======
+    public float getDoorY() { return doorY;}
+>>>>>>> 1f5c174a901b20cdd96883f9c03b18e2b005fc29
   
     public Player getPlayer() {
         return Player.getPlayer(name, difficulty, character);
