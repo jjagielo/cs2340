@@ -9,7 +9,7 @@ public class Enemy implements EntityMovement {
     private double difficulty;
     private ImageView character;
 
-    public EnemyClass(double diff, ImageView charc) {
+    public Enemy(double diff, ImageView charc) {
         // Intializes Enemy variables
         this.character = charc;
         this.difficulty = diff;
