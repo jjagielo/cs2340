@@ -12,7 +12,7 @@ public class Enemy2 implements Enemy, EntityMovement {
     private float movementSpeed;
 
     public Enemy2(double diff) {
-        this. difficulty = diff;
+        this.difficulty = diff;
         this.movementSpeed = 1;
 
         if (diff == 0.5) {
@@ -48,17 +48,17 @@ public class Enemy2 implements Enemy, EntityMovement {
     // Methods implemented from Enemy interface
 
     @Override
-    public int getHealth(){
+    public int getHealth() {
         return health;
     }
 
     @Override
-    public double getDifficulty(){
+    public double getDifficulty() {
         return difficulty;
     }
 
     @Override
-    public int getCharacterID(){
+    public int getCharacterID() {
         return R.drawable.pumpkin_dude_idle_anim_f0;
     }
 
@@ -68,32 +68,32 @@ public class Enemy2 implements Enemy, EntityMovement {
     }
 
     @Override
-    public float getX(){
+    public float getX() {
         return character.getX();
     }
 
     @Override
-    public float getY(){
+    public float getY() {
         return character.getY();
     }
 
     @Override
-    public void setHealth(int newHealth){
+    public void setHealth(int newHealth) {
         health = newHealth;
     }
 
     @Override
-    public void setCharacter(ImageView charc){
+    public void setCharacter(ImageView charc) {
         character = charc;
     }
 
     @Override
-    public void setX(float x){
+    public void setX(float x) {
         character.setX(x);
     }
 
     @Override
-    public void setY(float y){
+    public void setY(float y) {
         character.setY(y);
     }
 }

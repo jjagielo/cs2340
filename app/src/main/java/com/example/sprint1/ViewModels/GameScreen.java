@@ -19,6 +19,7 @@ import com.example.sprint1.Models.Enemy1;
 import com.example.sprint1.Models.Enemy2;
 import com.example.sprint1.Models.Enemy3;
 import com.example.sprint1.Models.Enemy4;
+import com.example.sprint1.Models.EnemyFactory;
 import com.example.sprint1.Models.Player;
 import com.example.sprint1.R;
 import com.example.sprint1.Models.Room;
@@ -252,17 +253,17 @@ public class GameScreen extends Activity {
     // initialize enemies
     private void initEnemies() {
         if (room.getCurrentTileIndex() == 0) {
-            enemy1 = new Enemy1(difficulty);
-            enemy2 = new Enemy2(difficulty);
+            enemy1 = EnemyFactory.createEnemy(1, difficulty);
+            enemy2 = EnemyFactory.createEnemy(2, difficulty);
         } else if (room.getCurrentTileIndex() == 1) {
-            enemy1 = new Enemy2(difficulty);
-            enemy2 = new Enemy3(difficulty);
+            enemy1 = EnemyFactory.createEnemy(2, difficulty);
+            enemy2 = EnemyFactory.createEnemy(3, difficulty);
         } else if (room.getCurrentTileIndex() == 2) {
-            enemy1 = new Enemy3(difficulty);
-            enemy2 = new Enemy4(difficulty);
+            enemy1 = EnemyFactory.createEnemy(3, difficulty);
+            enemy2 = EnemyFactory.createEnemy(4, difficulty);
         } else if (room.getCurrentTileIndex() == 3) {
-            enemy1 = new Enemy4(difficulty);
-            enemy2 = new Enemy1(difficulty);
+            enemy1 = EnemyFactory.createEnemy(4, difficulty);
+            enemy2 = EnemyFactory.createEnemy(1, difficulty);
         }
 
         enemy1Sprite = findViewById(R.id.enemyImage1);
