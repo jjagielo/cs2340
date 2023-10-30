@@ -1,7 +1,7 @@
 package com.example.sprint1.Models;
+import com.example.sprint1.R;
 
 import android.widget.ImageView;
-
 import java.util.Random;
 
 // Need to implement "Enemy" as an interface first
@@ -9,10 +9,11 @@ public class Enemy1 implements Enemy, EntityMovement {
     private int health;
     private double difficulty;
     private ImageView character;
+    private float movementSpeed;
 
     public Enemy1(double diff) {
         this. difficulty = diff;
-        this.character = null; // Need to define a static sprite
+        this.movementSpeed = 0.5f;
 
         if (diff == 0.5) {
             health = 200;
@@ -57,8 +58,13 @@ public class Enemy1 implements Enemy, EntityMovement {
     }
 
     @Override
-    public ImageView getCharacter(){
-        return character;
+    public int getCharacterID(){
+        return R.drawable.necromancer_anim_f0;
+    }
+
+    @Override
+    public float getMovementSpeed() {
+        return movementSpeed;
     }
 
     @Override
