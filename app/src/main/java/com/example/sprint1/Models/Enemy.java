@@ -5,7 +5,8 @@ import android.widget.ImageView;
 public interface Enemy extends EntityMovement {
     int getHealth();
     double getDifficulty();
-    ImageView getCharacter();
+    int getCharacterID();
+    float getMovementSpeed();
     float getX();
     float getY();
     void setHealth(int newHealth);

@@ -1,7 +1,7 @@
 package com.example.sprint1.Models;
+import com.example.sprint1.R;
 
 import android.widget.ImageView;
-
 import java.util.Random;
 
 // Need to implement "Enemy" as an interface first
@@ -9,10 +9,11 @@ public class Enemy3 implements Enemy, EntityMovement {
     private int health;
     private double difficulty;
     private ImageView character;
+    private float movementSpeed;
 
     public Enemy3(double diff) {
-        this. difficulty = diff;
-        this.character = null; // Need to define a static sprite
+        this.difficulty = diff;
+        this.movementSpeed = 1.5f;
 
         if (diff == 0.5) {
             health = 200;
@@ -47,47 +48,52 @@ public class Enemy3 implements Enemy, EntityMovement {
     // Methods implemented from Enemy interface
 
     @Override
-    public int getHealth(){
+    public int getHealth() {
         return health;
     }
 
     @Override
-    public double getDifficulty(){
+    public double getDifficulty() {
         return difficulty;
     }
 
     @Override
-    public ImageView getCharacter(){
-        return character;
+    public int getCharacterID() {
+        return R.drawable.skelet_idle_anim_f0;
     }
 
     @Override
-    public float getX(){
+    public float getMovementSpeed() {
+        return movementSpeed;
+    }
+
+    @Override
+    public float getX() {
         return character.getX();
     }
 
     @Override
-    public float getY(){
+    public float getY() {
         return character.getY();
     }
 
     @Override
-    public void setHealth(int newHealth){
+    public void setHealth(int newHealth) {
         health = newHealth;
     }
 
     @Override
-    public void setCharacter(ImageView charc){
+    public void setCharacter(ImageView charc) {
         character = charc;
     }
 
     @Override
-    public void setX(float x){
+    public void setX(float x) {
         character.setX(x);
     }
 
     @Override
-    public void setY(float y){
+    public void setY(float y) {
         character.setY(y);
     }
 }

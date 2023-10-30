@@ -14,6 +14,12 @@ import android.util.DisplayMetrics;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
+import com.example.sprint1.Models.Enemy;
+import com.example.sprint1.Models.Enemy1;
+import com.example.sprint1.Models.Enemy2;
+import com.example.sprint1.Models.Enemy3;
+import com.example.sprint1.Models.Enemy4;
+import com.example.sprint1.Models.EnemyFactory;
 import com.example.sprint1.Models.Player;
 import com.example.sprint1.R;
 import com.example.sprint1.Models.Room;
@@ -29,6 +35,12 @@ public class GameScreen extends Activity {
     // Character Sprite
     private ImageView character;
     private Player player;
+    // enemies
+    private Enemy enemy1;
+    private Enemy enemy2;
+    // enemy sprites
+    private ImageView enemy1Sprite;
+    private ImageView enemy2Sprite;
     //Door sprite
     private ImageView door;
     // Door Coordinates
@@ -65,6 +77,8 @@ public class GameScreen extends Activity {
         attempt++;
 
         initPlayer();
+
+        initEnemies();
 
         // displays the score and decrements it every 2 seconds
         TextView scoreText = findViewById(R.id.scoreTextView);
@@ -115,6 +129,7 @@ public class GameScreen extends Activity {
                         room.nextTile();
                         player.notifyPlayer(350, player.getY());
                         player.notifyPlayer(player.getX(), 500);
+                        initEnemies();
                         drawRoomBackground();
                     }
 
@@ -150,6 +165,7 @@ public class GameScreen extends Activity {
                         character.setY(500);
                         player.changePos(350, player.getY());
                         player.changePos(player.getX(), 500);
+                        initEnemies();
                         drawRoomBackground();
                     }
 
@@ -232,7 +248,28 @@ public class GameScreen extends Activity {
         } else if (difficulty == 0.5) {
             difficultyText.setText("Difficulty: Easy");
         } // if
+    }
 
+    // initialize enemies
+    private void initEnemies() {
+        if (room.getCurrentTileIndex() == 0) {
+            enemy1 = EnemyFactory.createEnemy(1, difficulty);
+            enemy2 = EnemyFactory.createEnemy(2, difficulty);
+        } else if (room.getCurrentTileIndex() == 1) {
+            enemy1 = EnemyFactory.createEnemy(2, difficulty);
+            enemy2 = EnemyFactory.createEnemy(3, difficulty);
+        } else if (room.getCurrentTileIndex() == 2) {
+            enemy1 = EnemyFactory.createEnemy(3, difficulty);
+            enemy2 = EnemyFactory.createEnemy(4, difficulty);
+        } else if (room.getCurrentTileIndex() == 3) {
+            enemy1 = EnemyFactory.createEnemy(4, difficulty);
+            enemy2 = EnemyFactory.createEnemy(1, difficulty);
+        }
+
+        enemy1Sprite = findViewById(R.id.enemyImage1);
+        enemy1Sprite.setImageResource(enemy1.getCharacterID());
+        enemy2Sprite = findViewById(R.id.enemyImage2);
+        enemy2Sprite.setImageResource(enemy2.getCharacterID());
     }
 
     private void movementButtons() {
