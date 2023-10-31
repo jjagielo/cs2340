@@ -113,6 +113,16 @@ public class GameScreen extends Activity {
             @Override
             public void run() {
                 if (attempt == 1) {
+                    if (player.getHealth() <= 0) {
+                        isUpPressed = false;
+                        isDownPressed = false;
+                        isLeftPressed = false;
+                        isRightPressed = false;
+                        handler.removeCallbacks(runnable);
+                        Intent end = new Intent(GameScreen.this, EndScreenLoser.class);
+                        startActivity(end);
+                        finish();
+                    }
                     if (player.getX() > door.getX() - 80 && player.getX() < door.getX() + 80
                             && player.getY() > door.getY() - 140 && player.getY() < door.getY()
                             + 140) {
@@ -146,6 +156,16 @@ public class GameScreen extends Activity {
                         player.changePos(player.getX() + 20, player.getY());
                     }
                 } else {
+                    if (player.getHealth() <= 0) {
+                        isUpPressed = false;
+                        isDownPressed = false;
+                        isLeftPressed = false;
+                        isRightPressed = false;
+                        handler.removeCallbacks(runnable);
+                        Intent end = new Intent(GameScreen.this, EndScreenLoser.class);
+                        startActivity(end);
+                        finish();
+                    }
                     if (character.getX() > door.getX() - 80 && character.getX() < door.getX() + 80
                             && character.getY() > door.getY() - 140 && character.getY()
                             < door.getY()
