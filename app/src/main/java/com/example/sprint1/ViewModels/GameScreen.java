@@ -15,10 +15,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 import com.example.sprint1.Models.Enemy;
-import com.example.sprint1.Models.Enemy1;
-import com.example.sprint1.Models.Enemy2;
-import com.example.sprint1.Models.Enemy3;
-import com.example.sprint1.Models.Enemy4;
 import com.example.sprint1.Models.EnemyFactory;
 import com.example.sprint1.Models.Player;
 import com.example.sprint1.R;
@@ -65,20 +61,11 @@ public class GameScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gamescreen);
 
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        screenWidth = displayMetrics.widthPixels;
-        screenHeight = displayMetrics.heightPixels;
-        // Initialize the Room with the screen dimensions
-        room = new Room(this, screenWidth, screenHeight);
-        // Start drawing the room background
-        drawRoomBackground();
+        initRoom();
+        initPlayer();
+        initEnemies();
 
         attempt++;
-
-        initPlayer();
-
-        initEnemies();
 
         // displays the score and decrements it every 2 seconds
         TextView scoreText = findViewById(R.id.scoreTextView);
@@ -123,6 +110,7 @@ public class GameScreen extends Activity {
                         startActivity(end);
                         finish();
                     }
+
                     if (player.getX() > door.getX() - 80 && player.getX() < door.getX() + 80
                             && player.getY() > door.getY() - 140 && player.getY() < door.getY()
                             + 140) {
@@ -166,6 +154,7 @@ public class GameScreen extends Activity {
                         startActivity(end);
                         finish();
                     }
+
                     if (character.getX() > door.getX() - 80 && character.getX() < door.getX() + 80
                             && character.getY() > door.getY() - 140 && character.getY()
                             < door.getY()
@@ -214,6 +203,17 @@ public class GameScreen extends Activity {
 
         movementButtons();
     } // onCreate
+
+    private void initRoom() {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        screenWidth = displayMetrics.widthPixels;
+        screenHeight = displayMetrics.heightPixels;
+        // Initialize the Room with the screen dimensions
+        room = new Room(this, screenWidth, screenHeight);
+        // Start drawing the room background
+        drawRoomBackground();
+    }
 
     private void drawRoomBackground() {
         // Create a Bitmap to draw the room background
@@ -272,6 +272,7 @@ public class GameScreen extends Activity {
 
     // initialize enemies
     private void initEnemies() {
+        // initialize the type of enemy depending on the current room
         if (room.getCurrentTileIndex() == 0) {
             enemy1 = EnemyFactory.createEnemy(1, difficulty);
             enemy2 = EnemyFactory.createEnemy(2, difficulty);
@@ -286,6 +287,7 @@ public class GameScreen extends Activity {
             enemy2 = EnemyFactory.createEnemy(1, difficulty);
         }
 
+        // display enemies—two per room
         enemy1Sprite = findViewById(R.id.enemyImage1);
         enemy1Sprite.setImageResource(enemy1.getCharacterID());
         enemy2Sprite = findViewById(R.id.enemyImage2);
