@@ -52,8 +52,8 @@ public class GameScreen extends Activity {
     private int healthInt;
     private static String dateTime;
     private Room room;
-    private int screenWidth;
-    private int screenHeight;
+    public static int screenWidth;
+    public static int screenHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +63,9 @@ public class GameScreen extends Activity {
 
         initRoom();
         initPlayer();
+        enemy1Sprite = findViewById(R.id.enemyImage1);
+        enemy2Sprite = findViewById(R.id.enemyImage2);
+
         initEnemies();
 
         attempt++;
@@ -128,6 +131,8 @@ public class GameScreen extends Activity {
                         player.notifyPlayer(350, player.getY());
                         player.notifyPlayer(player.getX(), 500);
                         initEnemies();
+                        enemy1.changePos(1600, 700);
+                        enemy2.changePos(1500, 1000);
                         drawRoomBackground();
                     }
 
@@ -143,6 +148,9 @@ public class GameScreen extends Activity {
                     if (isRightPressed && player.getX() < screenWidth - 300) {
                         player.changePos(player.getX() + 20, player.getY());
                     }
+
+                    enemy1.move();
+                    enemy2.move();
                 } else {
                     if (player.getHealth() <= 0) {
                         isUpPressed = false;
@@ -175,6 +183,8 @@ public class GameScreen extends Activity {
                         player.changePos(350, player.getY());
                         player.changePos(player.getX(), 500);
                         initEnemies();
+                        enemy1.changePos(1600, 700);
+                        enemy2.changePos(1500, 1000);
                         drawRoomBackground();
                     }
 
@@ -194,6 +204,8 @@ public class GameScreen extends Activity {
                         player.changePos(player.getX() + 20, player.getY());
                         character.setX(character.getX() + 20);
                     }
+                    enemy1.move();
+                    enemy2.move();
                 }
 
                 handlerMovement.postDelayed(this, 80);
@@ -272,25 +284,27 @@ public class GameScreen extends Activity {
 
     // initialize enemies
     private void initEnemies() {
+
         // initialize the type of enemy depending on the current room
+
         if (room.getCurrentTileIndex() == 0) {
-            enemy1 = EnemyFactory.createEnemy(1, difficulty);
-            enemy2 = EnemyFactory.createEnemy(2, difficulty);
+            enemy1 = EnemyFactory.createEnemy(1, difficulty, enemy1Sprite);
+            enemy2 = EnemyFactory.createEnemy(2, difficulty, enemy2Sprite);
         } else if (room.getCurrentTileIndex() == 1) {
-            enemy1 = EnemyFactory.createEnemy(2, difficulty);
-            enemy2 = EnemyFactory.createEnemy(3, difficulty);
+            enemy1 = EnemyFactory.createEnemy(2, difficulty, enemy1Sprite);
+            enemy2 = EnemyFactory.createEnemy(3, difficulty, enemy2Sprite);
         } else if (room.getCurrentTileIndex() == 2) {
-            enemy1 = EnemyFactory.createEnemy(3, difficulty);
-            enemy2 = EnemyFactory.createEnemy(4, difficulty);
+            enemy1 = EnemyFactory.createEnemy(3, difficulty, enemy1Sprite);
+            enemy2 = EnemyFactory.createEnemy(4, difficulty, enemy2Sprite);
         } else if (room.getCurrentTileIndex() == 3) {
-            enemy1 = EnemyFactory.createEnemy(4, difficulty);
-            enemy2 = EnemyFactory.createEnemy(1, difficulty);
+            enemy1 = EnemyFactory.createEnemy(4, difficulty, enemy1Sprite);
+            enemy2 = EnemyFactory.createEnemy(1, difficulty, enemy2Sprite);
         }
 
+
         // display enemies—two per room
-        enemy1Sprite = findViewById(R.id.enemyImage1);
+
         enemy1Sprite.setImageResource(enemy1.getCharacterID());
-        enemy2Sprite = findViewById(R.id.enemyImage2);
         enemy2Sprite.setImageResource(enemy2.getCharacterID());
     }
 

@@ -13,4 +13,5 @@ public interface Enemy extends EntityMovement {
     void setCharacter(ImageView charc);
     void setX(float x);
     void setY(float y);
+    boolean isAlive = true;
 }

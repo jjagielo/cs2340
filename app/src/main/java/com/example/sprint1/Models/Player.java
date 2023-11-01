@@ -2,6 +2,8 @@ package com.example.sprint1.Models;
 
 import android.widget.ImageView;
 
+import java.util.Random;
+
 public class Player implements EntityMovement, ScoreObserver, MovementObserver {
     private String name;
     private int health;
@@ -87,6 +89,12 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver {
     public void changePos(float newX, float newY) {
         character.setY(newY);
         character.setX(newX);
+    }
+
+    //Might implement if we need to shrink game screen code
+    @Override
+    public void move(){
+
     }
 
 
