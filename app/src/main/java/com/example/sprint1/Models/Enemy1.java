@@ -1,6 +1,8 @@
 package com.example.sprint1.Models;
 import com.example.sprint1.R;
+import com.example.sprint1.ViewModels.GameScreen;
 
+import android.provider.ContactsContract;
 import android.widget.ImageView;
 import java.util.Random;
 
@@ -11,9 +13,14 @@ public class Enemy1 implements Enemy, EntityMovement {
     private ImageView character;
     private float movementSpeed;
 
-    public Enemy1(double diff) {
+    int timer = 0;
+    Random direction = new Random();
+    int dir = direction.nextInt(4);
+
+    public Enemy1(double diff, ImageView character) {
         this.difficulty = diff;
         this.movementSpeed = 0.5f;
+        this.character = character;
 
         if (diff == 0.5) {
             health = 200;
@@ -28,21 +35,46 @@ public class Enemy1 implements Enemy, EntityMovement {
 
     @Override
     public void changePos(float currX, float currY) {
-        Random direction = new Random();
-        int dir = direction.nextInt(4);
+        setX(currX);
+        setY(currY);
+    }
+    @Override
+    public void move(){
 
-        // The constant 4 is subject to change
-        // Must either implement wall collision recognition in either
-        // changePos() or setX()/setY() methods
-        if (dir == 0) {
-            character.setX(character.getX() + 4);
-        } else if (dir == 1) {
-            character.setX(character.getX() - 4);
-        } else if (dir == 2) {
-            character.setY(character.getY() + 4);
-        } else if (dir == 3) {
-            character.setY(character.getY() - 4);
+        if (timer <= 0) {
+            direction = new Random();
+            dir = direction.nextInt(4);
+
+            timer = 40;
+        } else {
+            if (dir == 0) {
+                if(character.getX() < GameScreen.screenWidth - 300){
+                    character.setX(character.getX() + 30);
+                } else {
+                    timer = 1;
+                }
+            } else if (dir == 1) {
+                if(character.getX() > 250) {
+                    character.setX(character.getX() - 30);
+                } else {
+                    timer = 1;
+                }
+            } else if (dir == 2 ) {
+                if(character.getY() < GameScreen.screenHeight - 270) {
+                    character.setY(character.getY() + 30);
+                } else {
+                    timer = 1;
+                }
+            } else if (dir == 3) {
+                if(character.getY() > 20) {
+                    character.setY(character.getY() - 30);
+                } else {
+                    timer = 1;
+                }
+            }
+            timer--;
         }
+
     }
 
     // Methods implemented from Enemy interface

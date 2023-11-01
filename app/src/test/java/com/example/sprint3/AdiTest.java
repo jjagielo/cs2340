@@ -29,7 +29,7 @@ public class AdiTest{
     @Test
     public void testStrategyPatternEnemy() {
         Player player = Player.getPlayer("Bob", 1.0, null);
-        Enemy enemy = new Enemy1(player.getDifficulty());
+        Enemy enemy = new Enemy1(player.getDifficulty(), null);
 
         // Tests Enemy class
         assertEquals(enemy.getHealth(), 100);
