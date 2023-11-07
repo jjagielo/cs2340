@@ -14,6 +14,7 @@ import android.util.DisplayMetrics;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
+import com.example.sprint1.Models.Collision;
 import com.example.sprint1.Models.Enemy;
 import com.example.sprint1.Models.EnemyFactory;
 import com.example.sprint1.Models.Player;
@@ -102,6 +103,11 @@ public class GameScreen extends Activity {
         Runnable runnableMovement = new Runnable() {
             @Override
             public void run() {
+
+                TextView healthText = (TextView) findViewById(R.id.healthTextView);
+                Collision.checkCollision(GameScreen.this, player, enemy1, enemy2);
+                healthText.setText("Health: " + player.getHealth());
+
                 if (attempt == 1) {
                     if (player.getHealth() <= 0) {
                         isUpPressed = false;
