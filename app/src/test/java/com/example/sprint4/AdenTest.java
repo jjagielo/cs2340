@@ -14,10 +14,10 @@ import org.junit.Test;
 public class AdenTest {
     @Test
     public void testEnemySprites() {
-        Enemy enemyType1 = new Enemy1(0.5);
-        Enemy enemyType2 = new Enemy2(0.5);
-        Enemy enemyType3 = new Enemy3(0.5);
-        Enemy enemyType4 = new Enemy4(0.5);
+        Enemy enemyType1 = new Enemy1(0.5, null);
+        Enemy enemyType2 = new Enemy2(0.5, null);
+        Enemy enemyType3 = new Enemy3(0.5, null);
+        Enemy enemyType4 = new Enemy4(0.5, null);
 
         assertEquals(enemyType1.getCharacterID(), R.drawable.necromancer_anim_f0);
         assertEquals(enemyType2.getCharacterID(), R.drawable.pumpkin_dude_idle_anim_f0);
@@ -27,10 +27,10 @@ public class AdenTest {
 
     @Test
     public void testEnemyMovementSpeed() {
-        Enemy enemyType1 = new Enemy1(0.5);
-        Enemy enemyType2 = new Enemy2(0.5);
-        Enemy enemyType3 = new Enemy3(0.5);
-        Enemy enemyType4 = new Enemy4(0.5);
+        Enemy enemyType1 = new Enemy1(0.5, null);
+        Enemy enemyType2 = new Enemy2(0.5, null);
+        Enemy enemyType3 = new Enemy3(0.5, null);
+        Enemy enemyType4 = new Enemy4(0.5, null);
 
         assertTrue(enemyType4.getMovementSpeed() > enemyType3.getMovementSpeed());
         assertTrue(enemyType3.getMovementSpeed() > enemyType2.getMovementSpeed());

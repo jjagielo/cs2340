@@ -7,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 
 import com.example.sprint1.Models.Enemy;
 import com.example.sprint1.R;
+import com.example.sprint1.ViewModels.GameScreen;
 
 import org.junit.Test;
 
@@ -15,10 +16,10 @@ public class JasonTest {
     @Test
     public void enemyFactoryTest() {
         int enemyNum = 1;
-        Enemy enemyTest1 = createEnemy(1, 1);
-        Enemy enemyTest2 = createEnemy(2, 1);
-        Enemy enemyTest3 = createEnemy(3, 1);
-        Enemy enemyTest4 = createEnemy(4, 1);
+        Enemy enemyTest1 = createEnemy(1, 1, null);
+        Enemy enemyTest2 = createEnemy(2, 1, null);
+        Enemy enemyTest3 = createEnemy(3, 1, null);
+        Enemy enemyTest4 = createEnemy(4, 1, null);
 
         // Test creation of first type of enemy through EnemyFactory.java
         assertEquals(enemyTest1.getCharacterID(), R.drawable.necromancer_anim_f0);
