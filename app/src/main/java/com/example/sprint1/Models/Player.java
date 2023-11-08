@@ -4,7 +4,7 @@ import android.widget.ImageView;
 
 import java.util.Random;
 
-public class Player implements EntityMovement, ScoreObserver, MovementObserver {
+public class Player implements EntityMovement, ScoreObserver, MovementObserver, CollisionObserver {
     private String name;
     private int health;
     private double difficulty;
@@ -114,5 +114,27 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver {
         character.setY(newY);
         character.setX(newX);
     }
+
+    public boolean notifyHealth(Player player, Enemy enemy) {
+        return player.alertCollision(player, enemy);
+
+    }
+
+    @Override
+    public boolean alertCollision(Player player, Enemy enemy) {
+        float playerX = player.getX();
+        float playerY = player.getY();
+        float enemyX = enemy.getX();
+        float enemyY = enemy.getY();
+
+
+        boolean isColliding = Math.abs(playerX - enemyX) < 50 && Math.abs(playerY - enemyY) < 50;
+
+        return isColliding;
+    }
+
+
+
+
 
 }
