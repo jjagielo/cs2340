@@ -38,6 +38,10 @@
             android:name=".ViewModels.EndScreen"
             android:exported="false" />
 
+        <activity
+            android:name=".ViewModels.EndScreenLoser"
+            android:exported="false" />
+
     </application>
 
 </manifest>
