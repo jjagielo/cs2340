@@ -110,6 +110,7 @@ public class GameScreen extends Activity {
 
                 if (attempt == 1) {
                     if (player.getHealth() <= 0) {
+                        player.setHealth(100);
                         isUpPressed = false;
                         isDownPressed = false;
                         isLeftPressed = false;
@@ -159,6 +160,7 @@ public class GameScreen extends Activity {
                     enemy2.move();
                 } else {
                     if (player.getHealth() <= 0) {
+                        player.setHealth(100);
                         isUpPressed = false;
                         isDownPressed = false;
                         isLeftPressed = false;
