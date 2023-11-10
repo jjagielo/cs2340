@@ -5,7 +5,13 @@ import android.content.Context;
 public class Collision {
     public static void checkCollision(Context context, Player player, Enemy enemy1, Enemy enemy2) {
         if (isColliding(player, enemy1) || isColliding(player, enemy2)) {
-            player.setHealth(player.getHealth() - 15);
+            if (player.getDifficulty() == 1) {
+                player.setHealth(player.getHealth() - 15);
+            } else if (player.getDifficulty() == 0.75) {
+                player.setHealth(player.getHealth() - 12);
+            } else {
+                player.setHealth(player.getHealth() - 10);
+            }
         }
     }
 
