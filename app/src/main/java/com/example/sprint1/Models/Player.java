@@ -45,11 +45,17 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
     }
 
     public float getX() {
-        return character.getX();
-    }
+        if (character != null) {
+            return character.getX();
+        } // if
+            return getInitX();
+    } // getX()
 
     public float getY() {
-        return character.getY();
+        if (character != null) {
+            return character.getY();
+        } // if
+        return getInitY();
     }
 
     public float getInitX() {
@@ -59,6 +65,8 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
     public float getInitY() {
         return 0.0f;
     }
+
+
 
     public double getDifficulty() {
         return difficulty;

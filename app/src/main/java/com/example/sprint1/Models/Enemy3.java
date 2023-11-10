@@ -97,14 +97,28 @@ public class Enemy3 implements Enemy, EntityMovement {
         return movementSpeed;
     }
 
+    public float getInitX() {
+        return 0.0f;
+    }
+
+    public float getInitY() {
+        return 0.0f;
+    }
+
     @Override
     public float getX() {
-        return character.getX();
+        if (character != null) {
+            return character.getX();
+        } // if
+        return getInitX();
     }
 
     @Override
     public float getY() {
-        return character.getY();
+        if (character != null) {
+            return character.getY();
+        } // if
+        return getInitY();
     }
 
     @Override
