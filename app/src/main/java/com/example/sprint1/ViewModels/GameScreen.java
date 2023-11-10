@@ -120,6 +120,10 @@ public class GameScreen extends Activity {
                         startActivity(end);
                         finish();
                         player.setActive(false);
+//                        character.setX(350);
+//                        character.setY(500);
+//                        player.notifyPlayer(350, player.getY());
+//                        player.notifyPlayer(player.getX(), 500);
                     }
 
                     if (player.getX() > door.getX() - 80 && player.getX() < door.getX() + 80
@@ -171,6 +175,10 @@ public class GameScreen extends Activity {
                         startActivity(end);
                         finish();
                         player.setActive(false);
+//                        character.setX(350);
+//                        character.setY(500);
+//                        player.changePos(350, player.getY());
+//                        player.changePos(player.getX(), 500);
                     }
 
                     if (character.getX() > door.getX() - 80 && character.getX() < door.getX() + 80
@@ -255,6 +263,8 @@ public class GameScreen extends Activity {
 
     // initialize player's attributes and how they are displayed
     private void initPlayer() {
+        player = null;
+
         // Initialize difficultyText to display difficulty user selected
         TextView difficultyText = (TextView) findViewById(R.id.difficultyTextView);
 

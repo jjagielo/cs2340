@@ -35,6 +35,11 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
                 }
             }
         }
+        player.setName(name);
+        player.setDifficulty(difficulty);
+        player.setChar(charc);
+        player.setHealth(100);
+        player.setActiveTrue();
         return player;
     }
 
@@ -84,6 +89,10 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
         this.name = name;
     }
 
+    public void setChar(ImageView character) {
+        this.character = character;
+    }
+
     public void setHealth(int health) {
         this.health = health;
     }
@@ -98,6 +107,10 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public void setActiveTrue() {
+        this.active = true;
     }
 
     @Override
