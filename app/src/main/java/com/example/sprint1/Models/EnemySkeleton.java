@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import java.util.Random;
 
 // Need to implement "Enemy" as an interface first
-public class Enemy4 implements Enemy, EntityMovement {
+public class EnemySkeleton implements Enemy, EntityMovement {
     private int health;
     private double difficulty;
     private ImageView character;
@@ -15,9 +15,9 @@ public class Enemy4 implements Enemy, EntityMovement {
     Random direction = new Random();
     int dir = direction.nextInt(4);
 
-    public Enemy4(double diff, ImageView character) {
+    public EnemySkeleton(double diff, ImageView character) {
         this.difficulty = diff;
-        this.movementSpeed = 2;
+        this.movementSpeed = 1.5f;
         this.character = character;
 
         if (diff == 0.5) {
@@ -30,6 +30,7 @@ public class Enemy4 implements Enemy, EntityMovement {
     }
 
     // Methods implemented from EntityMovement interface
+
     @Override
     public void changePos(float currX, float currY) {
         setX(currX);
@@ -88,7 +89,7 @@ public class Enemy4 implements Enemy, EntityMovement {
 
     @Override
     public int getCharacterID() {
-        return R.drawable.slug_anim_f0;
+        return R.drawable.skelet_idle_anim_f0;
     }
 
     @Override

@@ -6,18 +6,19 @@ import android.widget.ImageView;
 import java.util.Random;
 
 // Need to implement "Enemy" as an interface first
-public class Enemy3 implements Enemy, EntityMovement {
+public class EnemyNecromancer implements Enemy, EntityMovement {
     private int health;
     private double difficulty;
     private ImageView character;
     private float movementSpeed;
+
     int timer = 0;
     Random direction = new Random();
     int dir = direction.nextInt(4);
 
-    public Enemy3(double diff, ImageView character) {
+    public EnemyNecromancer(double diff, ImageView character) {
         this.difficulty = diff;
-        this.movementSpeed = 1.5f;
+        this.movementSpeed = 0.5f;
         this.character = character;
 
         if (diff == 0.5) {
@@ -47,25 +48,25 @@ public class Enemy3 implements Enemy, EntityMovement {
         } else {
             if (dir == 0) {
                 if(character.getX() < GameScreen.screenWidth - 300){
-                    character.setX(character.getX() + 8);
+                    character.setX(character.getX() + 30);
                 } else {
                     timer = 1;
                 }
             } else if (dir == 1) {
                 if(character.getX() > 250) {
-                    character.setX(character.getX() - 8);
+                    character.setX(character.getX() - 30);
                 } else {
                     timer = 1;
                 }
             } else if (dir == 2 ) {
                 if(character.getY() < GameScreen.screenHeight - 270) {
-                    character.setY(character.getY() + 8);
+                    character.setY(character.getY() + 30);
                 } else {
                     timer = 1;
                 }
             } else if (dir == 3) {
                 if(character.getY() > 20) {
-                    character.setY(character.getY() - 8);
+                    character.setY(character.getY() - 30);
                 } else {
                     timer = 1;
                 }
@@ -89,7 +90,7 @@ public class Enemy3 implements Enemy, EntityMovement {
 
     @Override
     public int getCharacterID() {
-        return R.drawable.skelet_idle_anim_f0;
+        return R.drawable.necromancer_anim_f0;
     }
 
     @Override
@@ -125,5 +126,5 @@ public class Enemy3 implements Enemy, EntityMovement {
     @Override
     public void setY(float y) {
         character.setY(y);
-    }
+    }   
 }
