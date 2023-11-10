@@ -75,8 +75,8 @@
 
     <ImageView
         android:id="@+id/characterImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="39dp"
+        android:layout_height="45dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
@@ -136,22 +136,22 @@
 
     <ImageView
         android:id="@+id/enemyImage1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="39dp"
+        android:layout_height="46dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="162dp"
-        android:layout_marginEnd="212dp"
+        android:layout_marginEnd="189dp"
         android:src="@drawable/slug_anim_f0" />
 
     <ImageView
         android:id="@+id/enemyImage2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="39dp"
+        android:layout_height="43dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="172dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="149dp"
+        android:layout_marginBottom="40dp"
         android:src="@drawable/slug_anim_f0" />
 
 </RelativeLayout>

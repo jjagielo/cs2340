@@ -10,12 +10,14 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
     private double difficulty;
     private ImageView character;
     private static Player player;
+    private boolean  active;
 
     private Player(String name, double diff, ImageView charc) {
         this.name = name;
         this.difficulty = diff;
         this.character = charc;
         health = 100;
+        this.active = true;
         if (difficulty == 1) {
             health = 100;
         } else if (difficulty == 0.75) {
@@ -48,7 +50,7 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
         if (character != null) {
             return character.getX();
         } // if
-            return getInitX();
+        return getInitX();
     } // getX()
 
     public float getY() {
@@ -66,12 +68,13 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
         return 0.0f;
     }
 
-
-
     public double getDifficulty() {
         return difficulty;
     }
 
+    public boolean getActive() {
+        return active;
+    }
 
     public void setDifficulty(double diff) {
         this.difficulty = diff;
@@ -91,6 +94,10 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
 
     public void setY(float y) {
         character.setY(y);
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     @Override

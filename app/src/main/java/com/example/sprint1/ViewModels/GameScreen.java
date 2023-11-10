@@ -109,7 +109,7 @@ public class GameScreen extends Activity {
                 healthText.setText("Health: " + player.getHealth());
 
                 if (attempt == 1) {
-                    if (player.getHealth() <= 0) {
+                    if (player.getHealth() <= 0 && player.getActive()) {
                         player.setHealth(100);
                         isUpPressed = false;
                         isDownPressed = false;
@@ -119,6 +119,7 @@ public class GameScreen extends Activity {
                         Intent end = new Intent(GameScreen.this, EndScreenLoser.class);
                         startActivity(end);
                         finish();
+                        player.setActive(false);
                     }
 
                     if (player.getX() > door.getX() - 80 && player.getX() < door.getX() + 80
@@ -159,7 +160,7 @@ public class GameScreen extends Activity {
                     enemy1.move();
                     enemy2.move();
                 } else {
-                    if (player.getHealth() <= 0) {
+                    if (player.getHealth() <= 0 && player.getActive()) {
                         player.setHealth(100);
                         isUpPressed = false;
                         isDownPressed = false;
@@ -169,6 +170,7 @@ public class GameScreen extends Activity {
                         Intent end = new Intent(GameScreen.this, EndScreenLoser.class);
                         startActivity(end);
                         finish();
+                        player.setActive(false);
                     }
 
                     if (character.getX() > door.getX() - 80 && character.getX() < door.getX() + 80
@@ -212,6 +214,7 @@ public class GameScreen extends Activity {
                         player.changePos(player.getX() + 20, player.getY());
                         character.setX(character.getX() + 20);
                     }
+
                     enemy1.move();
                     enemy2.move();
                 }
@@ -261,7 +264,6 @@ public class GameScreen extends Activity {
 
         // Displays the difficulty user selected as well as health associated with chosen difficulty
         difficulty = getIntent().getDoubleExtra("difficulty", 0.5);
-
 
         // Changes the sprite to the one user selected
         character = (ImageView) findViewById(R.id.characterImage);
