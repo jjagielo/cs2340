@@ -2,12 +2,11 @@ package com.example.sprint1.Models;
 import com.example.sprint1.R;
 import com.example.sprint1.ViewModels.GameScreen;
 
-import android.provider.ContactsContract;
 import android.widget.ImageView;
 import java.util.Random;
 
 // Need to implement "Enemy" as an interface first
-public class Enemy1 implements Enemy, EntityMovement {
+public class EnemyNecromancer implements Enemy, EntityMovement {
     private int health;
     private double difficulty;
     private ImageView character;
@@ -17,7 +16,7 @@ public class Enemy1 implements Enemy, EntityMovement {
     Random direction = new Random();
     int dir = direction.nextInt(4);
 
-    public Enemy1(double diff, ImageView character) {
+    public EnemyNecromancer(double diff, ImageView character) {
         this.difficulty = diff;
         this.movementSpeed = 0.5f;
         this.character = character;

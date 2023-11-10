@@ -1,7 +1,7 @@
 package com.example.sprint3;
 
 import com.example.sprint1.Models.Enemy;
-import com.example.sprint1.Models.Enemy1;
+import com.example.sprint1.Models.EnemyNecromancer;
 import com.example.sprint1.Models.EntityMovement;
 import com.example.sprint1.Models.Player;
 import com.example.sprint1.ViewModels.GameScreen;
@@ -29,7 +29,7 @@ public class AdiTest{
     @Test
     public void testStrategyPatternEnemy() {
         Player player = Player.getPlayer("Bob", 1.0, null);
-        Enemy enemy = new Enemy1(player.getDifficulty(), null);
+        Enemy enemy = new EnemyNecromancer(player.getDifficulty(), null);
 
         // Tests Enemy class
         assertEquals(enemy.getHealth(), 100);

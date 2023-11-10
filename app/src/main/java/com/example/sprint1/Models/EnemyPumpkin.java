@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import java.util.Random;
 
 // Need to implement "Enemy" as an interface first
-public class Enemy4 implements Enemy, EntityMovement {
+public class EnemyPumpkin implements Enemy, EntityMovement {
     private int health;
     private double difficulty;
     private ImageView character;
@@ -15,9 +15,9 @@ public class Enemy4 implements Enemy, EntityMovement {
     Random direction = new Random();
     int dir = direction.nextInt(4);
 
-    public Enemy4(double diff, ImageView character) {
+    public EnemyPumpkin(double diff, ImageView character) {
         this.difficulty = diff;
-        this.movementSpeed = 2;
+        this.movementSpeed = 1;
         this.character = character;
 
         if (diff == 0.5) {
@@ -30,6 +30,7 @@ public class Enemy4 implements Enemy, EntityMovement {
     }
 
     // Methods implemented from EntityMovement interface
+
     @Override
     public void changePos(float currX, float currY) {
         setX(currX);
@@ -42,7 +43,7 @@ public class Enemy4 implements Enemy, EntityMovement {
             direction = new Random();
             dir = direction.nextInt(4);
 
-            timer = 40;
+            timer = 20;
         } else {
             if (dir == 0) {
                 if(character.getX() < GameScreen.screenWidth - 300){
@@ -88,7 +89,7 @@ public class Enemy4 implements Enemy, EntityMovement {
 
     @Override
     public int getCharacterID() {
-        return R.drawable.slug_anim_f0;
+        return R.drawable.pumpkin_dude_idle_anim_f0;
     }
 
     @Override
