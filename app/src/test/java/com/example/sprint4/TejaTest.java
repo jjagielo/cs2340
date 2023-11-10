@@ -3,10 +3,13 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import android.widget.ImageView;
 
 import com.example.sprint1.Models.CollisionObserver;
+import com.example.sprint1.Models.Enemy;
+import com.example.sprint1.Models.EnemyFactory;
 import com.example.sprint1.Models.EntityMovement;
 import com.example.sprint1.Models.MovementObserver;
 import com.example.sprint1.Models.Player;
@@ -37,8 +40,21 @@ public class TejaTest {
         assertTrue(interfaces.contains(CollisionObserver.class));
 
     }
+    
 
+    @Test
+    public void testEnemyInterface() {
+        assertEnemyImplementsInterface(EnemyFactory.createEnemy(1, 1.0, null), Enemy.class);
+        assertEnemyImplementsInterface(EnemyFactory.createEnemy(2, 1.0, null), Enemy.class);
+        assertEnemyImplementsInterface(EnemyFactory.createEnemy(3, 1.0, null), Enemy.class);
+        assertEnemyImplementsInterface(EnemyFactory.createEnemy(4, 1.0, null), Enemy.class);
+        assertNull(EnemyFactory.createEnemy(5, 1.0, null));
+    }
 
+    private void assertEnemyImplementsInterface(Enemy enemy, Class<?> interfaceClass) {
+        assertNotNull(enemy);
+        assertTrue(interfaceClass.isAssignableFrom(enemy.getClass()));
+    }
 
 
 }
