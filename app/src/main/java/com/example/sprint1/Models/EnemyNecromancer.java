@@ -11,12 +11,11 @@ public class EnemyNecromancer implements Enemy, EntityMovement {
     private double difficulty;
     private ImageView character;
     private float movementSpeed;
-
-    private float x = 0f,y = 0f;
-
-    int timer = 0;
-    Random direction = new Random();
-    int dir = direction.nextInt(4);
+    private float x = 0f;
+    private float y = 0f;
+    private int timer = 0;
+    private Random direction = new Random();
+    private int dir = direction.nextInt(4);
 
     public EnemyNecromancer(double diff, ImageView character) {
         this.difficulty = diff;
@@ -36,7 +35,7 @@ public class EnemyNecromancer implements Enemy, EntityMovement {
 
     @Override
     public void changePos(float currX, float currY) {
-        if(character == null){
+        if (character == null) {
             x = currX;
             y = currY;
         } else {
@@ -46,7 +45,7 @@ public class EnemyNecromancer implements Enemy, EntityMovement {
 
     }
     @Override
-    public void move(){
+    public void move() {
 
         if (timer <= 0) {
             direction = new Random();
@@ -55,25 +54,25 @@ public class EnemyNecromancer implements Enemy, EntityMovement {
             timer = 40;
         } else {
             if (dir == 0) {
-                if(character.getX() < GameScreen.screenWidth - 300){
+                if (character.getX() < GameScreen.getScreenWidth() - 300) {
                     character.setX(character.getX() + 30);
                 } else {
                     timer = 1;
                 }
             } else if (dir == 1) {
-                if(character.getX() > 250) {
+                if (character.getX() > 250) {
                     character.setX(character.getX() - 30);
                 } else {
                     timer = 1;
                 }
-            } else if (dir == 2 ) {
-                if(character.getY() < GameScreen.screenHeight - 270) {
+            } else if (dir == 2) {
+                if (character.getY() < GameScreen.getScreenHeight() - 270) {
                     character.setY(character.getY() + 30);
                 } else {
                     timer = 1;
                 }
             } else if (dir == 3) {
-                if(character.getY() > 20) {
+                if (character.getY() > 20) {
                     character.setY(character.getY() - 30);
                 } else {
                     timer = 1;
