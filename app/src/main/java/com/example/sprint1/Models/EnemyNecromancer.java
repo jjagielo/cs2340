@@ -12,6 +12,8 @@ public class EnemyNecromancer implements Enemy, EntityMovement {
     private ImageView character;
     private float movementSpeed;
 
+    private float x = 0f,y = 0f;
+
     int timer = 0;
     Random direction = new Random();
     int dir = direction.nextInt(4);
@@ -34,8 +36,14 @@ public class EnemyNecromancer implements Enemy, EntityMovement {
 
     @Override
     public void changePos(float currX, float currY) {
-        setX(currX);
-        setY(currY);
+        if(character == null){
+            x = currX;
+            y = currY;
+        } else {
+            setX(currX);
+            setY(currY);
+        }
+
     }
     @Override
     public void move(){
@@ -100,11 +108,11 @@ public class EnemyNecromancer implements Enemy, EntityMovement {
 
 
     public float getInitX() {
-        return 0.0f;
+        return x;
     }
 
     public float getInitY() {
-        return 0.0f;
+        return y;
     }
 
     @Override
