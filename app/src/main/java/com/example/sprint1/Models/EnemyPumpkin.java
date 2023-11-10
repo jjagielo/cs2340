@@ -11,9 +11,9 @@ public class EnemyPumpkin implements Enemy, EntityMovement {
     private double difficulty;
     private ImageView character;
     private float movementSpeed;
-    int timer = 0;
-    Random direction = new Random();
-    int dir = direction.nextInt(4);
+    private int timer = 0;
+    private Random direction = new Random();
+    private int dir = direction.nextInt(4);
 
     public EnemyPumpkin(double diff, ImageView character) {
         this.difficulty = diff;
@@ -37,7 +37,7 @@ public class EnemyPumpkin implements Enemy, EntityMovement {
         setY(currY);
     }
     @Override
-    public void move(){
+    public void move() {
 
         if (timer <= 0) {
             direction = new Random();
@@ -46,25 +46,25 @@ public class EnemyPumpkin implements Enemy, EntityMovement {
             timer = 20;
         } else {
             if (dir == 0) {
-                if(character.getX() < GameScreen.screenWidth - 300){
+                if (character.getX() < GameScreen.getScreenWidth() - 300) {
                     character.setX(character.getX() + 8);
                 } else {
                     timer = 1;
                 }
             } else if (dir == 1) {
-                if(character.getX() > 250) {
+                if (character.getX() > 250) {
                     character.setX(character.getX() - 8);
                 } else {
                     timer = 1;
                 }
-            } else if (dir == 2 ) {
-                if(character.getY() < GameScreen.screenHeight - 270) {
+            } else if (dir == 2) {
+                if (character.getY() < GameScreen.getScreenHeight() - 270) {
                     character.setY(character.getY() + 8);
                 } else {
                     timer = 1;
                 }
             } else if (dir == 3) {
-                if(character.getY() > 20) {
+                if (character.getY() > 20) {
                     character.setY(character.getY() - 8);
                 } else {
                     timer = 1;

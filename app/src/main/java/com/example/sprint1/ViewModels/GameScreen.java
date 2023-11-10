@@ -53,8 +53,8 @@ public class GameScreen extends Activity {
     private int healthInt;
     private static String dateTime;
     private Room room;
-    public static int screenWidth;
-    public static int screenHeight;
+    private static int screenWidth;
+    private static int screenHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,23 +109,6 @@ public class GameScreen extends Activity {
                 healthText.setText("Health: " + player.getHealth());
 
                 if (attempt == 1) {
-                    if (player.getHealth() <= 0 && player.getActive()) {
-                        player.setHealth(100);
-                        isUpPressed = false;
-                        isDownPressed = false;
-                        isLeftPressed = false;
-                        isRightPressed = false;
-                        handler.removeCallbacks(runnable);
-                        Intent end = new Intent(GameScreen.this, EndScreenLoser.class);
-                        startActivity(end);
-                        finish();
-                        player.setActive(false);
-//                        character.setX(350);
-//                        character.setY(500);
-//                        player.notifyPlayer(350, player.getY());
-//                        player.notifyPlayer(player.getX(), 500);
-                    }
-
                     if (player.getX() > door.getX() - 80 && player.getX() < door.getX() + 80
                             && player.getY() > door.getY() - 140 && player.getY() < door.getY()
                             + 140) {
@@ -144,43 +127,10 @@ public class GameScreen extends Activity {
                         player.notifyPlayer(player.getX(), 500);
                         initEnemies();
                         enemy1.changePos(1600, 700);
-                        enemy2.changePos(1500, 1000);
+                        enemy2.changePos(1500, 800);
                         drawRoomBackground();
                     }
-
-                    if (isUpPressed && player.getY() > 10) {
-                        player.changePos(player.getX(), player.getY() - 20);
-                    }
-                    if (isLeftPressed && player.getX() > 250) {
-                        player.changePos(player.getX() - 20, player.getY());
-                    }
-                    if (isDownPressed && player.getY() < screenHeight - 270) {
-                        player.changePos(player.getX(), player.getY() + 20);
-                    }
-                    if (isRightPressed && player.getX() < screenWidth - 300) {
-                        player.changePos(player.getX() + 20, player.getY());
-                    }
-
-                    enemy1.move();
-                    enemy2.move();
                 } else {
-                    if (player.getHealth() <= 0 && player.getActive()) {
-                        player.setHealth(100);
-                        isUpPressed = false;
-                        isDownPressed = false;
-                        isLeftPressed = false;
-                        isRightPressed = false;
-                        handler.removeCallbacks(runnable);
-                        Intent end = new Intent(GameScreen.this, EndScreenLoser.class);
-                        startActivity(end);
-                        finish();
-                        player.setActive(false);
-//                        character.setX(350);
-//                        character.setY(500);
-//                        player.changePos(350, player.getY());
-//                        player.changePos(player.getX(), 500);
-                    }
-
                     if (character.getX() > door.getX() - 80 && character.getX() < door.getX() + 80
                             && character.getY() > door.getY() - 140 && character.getY()
                             < door.getY()
@@ -202,30 +152,39 @@ public class GameScreen extends Activity {
                         player.changePos(player.getX(), 500);
                         initEnemies();
                         enemy1.changePos(1600, 700);
-                        enemy2.changePos(1500, 1000);
+                        enemy2.changePos(1500, 800);
                         drawRoomBackground();
                     }
-
-                    if (isUpPressed && character.getY() > 10) {
-                        player.changePos(player.getX(), player.getY() - 20);
-                        character.setY(character.getY() - 20);
-                    }
-                    if (isLeftPressed && character.getX() > 250) {
-                        player.changePos(player.getX() - 20, player.getY());
-                        character.setX(character.getX() - 20);
-                    }
-                    if (isDownPressed && character.getY() < screenHeight - 270) {
-                        player.changePos(player.getX(), player.getY() + 20);
-                        character.setY(character.getY() + 20);
-                    }
-                    if (isRightPressed && character.getX() < screenWidth - 300) {
-                        player.changePos(player.getX() + 20, player.getY());
-                        character.setX(character.getX() + 20);
-                    }
-
-                    enemy1.move();
-                    enemy2.move();
                 }
+
+                if (player.getHealth() <= 0 && player.getActive()) {
+                    player.setHealth(100);
+                    isUpPressed = false;
+                    isDownPressed = false;
+                    isLeftPressed = false;
+                    isRightPressed = false;
+                    handler.removeCallbacks(runnable);
+                    Intent end = new Intent(GameScreen.this, EndScreenLoser.class);
+                    startActivity(end);
+                    finish();
+                    player.setActive(false);
+                }
+
+                if (isUpPressed && player.getY() > 10) {
+                    player.changePos(player.getX(), player.getY() - 20);
+                }
+                if (isLeftPressed && player.getX() > 250) {
+                    player.changePos(player.getX() - 20, player.getY());
+                }
+                if (isDownPressed && player.getY() < screenHeight - 270) {
+                    player.changePos(player.getX(), player.getY() + 20);
+                }
+                if (isRightPressed && player.getX() < screenWidth - 300) {
+                    player.changePos(player.getX() + 20, player.getY());
+                }
+
+                enemy1.move();
+                enemy2.move();
 
                 handlerMovement.postDelayed(this, 80);
             }
@@ -304,9 +263,7 @@ public class GameScreen extends Activity {
 
     // initialize enemies
     private void initEnemies() {
-
         // initialize the type of enemy depending on the current room
-
         if (room.getCurrentTileIndex() == 0) {
             enemy1 = EnemyFactory.createEnemy(1, difficulty, enemy1Sprite);
             enemy2 = EnemyFactory.createEnemy(2, difficulty, enemy2Sprite);
@@ -321,9 +278,7 @@ public class GameScreen extends Activity {
             enemy2 = EnemyFactory.createEnemy(1, difficulty, enemy2Sprite);
         }
 
-
         // display enemies—two per room
-
         enemy1Sprite.setImageResource(enemy1.getCharacterID());
         enemy2Sprite.setImageResource(enemy2.getCharacterID());
     }
@@ -383,5 +338,11 @@ public class GameScreen extends Activity {
     } 
     public Player getPlayer() {
         return Player.getPlayer(name, difficulty, character);
+    }
+    public static int getScreenWidth() {
+        return screenWidth;
+    }
+    public static int getScreenHeight() {
+        return screenHeight;
     }
 } // GameScreen
