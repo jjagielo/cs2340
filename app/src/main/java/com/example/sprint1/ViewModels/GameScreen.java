@@ -5,9 +5,7 @@ import java.text.SimpleDateFormat;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.app.Activity;
@@ -61,21 +59,18 @@ public class GameScreen extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Set gamescreen as current screen for user
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState); // Set gamescreen as current screen for user
         setContentView(R.layout.gamescreen);
 
         initRoom();
         initPlayer();
         enemy1Sprite = findViewById(R.id.enemyImage1);
         enemy2Sprite = findViewById(R.id.enemyImage2);
-
         initEnemies();
 
         attempt++;
 
-        // displays the score and decrements it every 2 seconds
-        TextView scoreText = findViewById(R.id.scoreTextView);
+        TextView scoreText = findViewById(R.id.scoreTextView); // displays and updates the score
         score = 100;
         Handler handler = new Handler();
         Runnable runnable = new Runnable() {
@@ -105,19 +100,16 @@ public class GameScreen extends Activity {
         };
         handler.postDelayed(runnable, 0);
 
-        // Get the current date and time
-        Calendar calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance(); // Get the current date and time
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         dateTime = dateFormat.format(calendar.getTime());
 
-        //Door
-        door = (ImageView) findViewById(R.id.doorImage);
+        door = (ImageView) findViewById(R.id.doorImage); //Door
         door.setImageResource(R.drawable.door_removebg_preview__1_);
         doorX = 0;
         doorY = 0;
 
-        // Run function for movement
-        Handler handlerMovement = new Handler();
+        Handler handlerMovement = new Handler(); // Run function for movement
         Runnable runnableMovement = new Runnable() {
             @Override
             public void run() {
