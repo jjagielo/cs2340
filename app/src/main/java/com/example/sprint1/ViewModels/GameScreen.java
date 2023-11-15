@@ -194,6 +194,10 @@ public class GameScreen extends Activity {
         movementButtons();
     } // onCreate
 
+    /*
+     * Initializes the room to the size of the device's screen and then calls
+     * function to start creating the room onto the screen.
+     */
     private void initRoom() {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -205,6 +209,10 @@ public class GameScreen extends Activity {
         drawRoomBackground();
     }
 
+    /*
+     * Uses the room sprite to create a bitmap. Draws the bitmap to the canvas
+     * to visually display to the user.
+     */
     private void drawRoomBackground() {
         // Create a Bitmap to draw the room background
         Bitmap roomBitmap = Bitmap.createBitmap(screenWidth, screenHeight, Bitmap.Config.ARGB_8888);
@@ -220,7 +228,9 @@ public class GameScreen extends Activity {
         roomCanvas.setImageBitmap(roomBitmap);
     }
 
-    // initialize player's attributes and how they are displayed
+    /*
+     * Initialize player's attributes and how they are displayed
+     */
     private void initPlayer() {
         player = null;
 
@@ -261,7 +271,9 @@ public class GameScreen extends Activity {
         } // if
     }
 
-    // initialize enemies
+    /*
+     * Creates the different enemies for the 3 rooms and initializes how they are displayed
+     */
     private void initEnemies() {
         // initialize the type of enemy depending on the current room
         if (room.getCurrentTileIndex() == 0) {
@@ -283,6 +295,9 @@ public class GameScreen extends Activity {
         enemy2Sprite.setImageResource(enemy2.getCharacterID());
     }
 
+    /*
+     * Implements functionality of the movement buttons on the screen for the user to use
+     */
     private void movementButtons() {
         //Movement Buttons
         Button upButton = findViewById(R.id.upButton);

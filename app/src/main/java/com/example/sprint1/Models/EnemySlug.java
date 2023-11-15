@@ -30,11 +30,22 @@ public class EnemySlug implements Enemy, EntityMovement {
     }
 
     // Methods implemented from EntityMovement interface
+
+    /*
+     * Method to change the position of the enemy
+     *
+     * @param currX the new x position to set the enemy to
+     * @param currY the new y position to set the enemy to
+     */
     @Override
     public void changePos(float currX, float currY) {
         setX(currX);
         setY(currY);
     }
+
+    /*
+     * Method to randomly move the enemy based on a timer
+     */
     @Override
     public void move() {
 

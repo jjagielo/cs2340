@@ -12,6 +12,13 @@ import com.example.sprint1.Models.ScoreData;
 
 public class EndScreen extends Activity {
 
+    /*
+     * Method to initialize and display the EndScreen class and its respective xml file
+     * to the user. This xml file is displayed if the user beats the game.
+     *
+     * @param savedInstanceState the data being passed into current activity from the previous
+     *                           activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // displaying the end screen xml file

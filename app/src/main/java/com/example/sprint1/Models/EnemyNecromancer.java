@@ -33,6 +33,12 @@ public class EnemyNecromancer implements Enemy, EntityMovement {
 
     // Methods implemented from EntityMovement interface
 
+    /*
+     * Method to change the position of the enemy
+     *
+     * @param currX the new x position to set the enemy to
+     * @param currY the new y position to set the enemy to
+     */
     @Override
     public void changePos(float currX, float currY) {
         if (character == null) {
@@ -44,6 +50,10 @@ public class EnemyNecromancer implements Enemy, EntityMovement {
         }
 
     }
+
+    /*
+     * Method to randomly move the enemy based on a timer
+     */
     @Override
     public void move() {
 
