@@ -9,6 +9,14 @@ import com.example.sprint1.R;
 
 public class LaunchScreen extends Activity {
 
+    /*
+     * Method to initialize and display the LaunchScreen class and its respective xml file
+     * to the user. This xml file is to the user when the app is launched and contains the
+     * start and exit buttons.
+     *
+     * @param savedInstanceState the data being passed into current activity from the previous
+     *                           activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // displaying the launch screen xml file

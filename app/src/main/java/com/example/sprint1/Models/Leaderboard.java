@@ -16,6 +16,12 @@ public class Leaderboard {
         }
     }
 
+    /*
+     * Utilizes the singleton design pattern to return the only existing instance of the
+     * leaderboard object
+     *
+     * @return Leaderboard the Leaderboard object
+     */
     public static Leaderboard getinstance() {
         if (instance == null) {
             synchronized (Leaderboard.class) {

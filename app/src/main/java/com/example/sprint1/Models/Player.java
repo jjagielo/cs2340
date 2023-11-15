@@ -25,6 +25,14 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
         } // if
     }
 
+    /*
+     * Utilizes the singleton design pattern to return the only existing player
+     *
+     * @param name the name of the player
+     * @param difficulty the difficulty of the game
+     * @param charc the character sprite of the player
+     * @return Leaderboard the Leaderboard object
+     */
     public static Player getPlayer(String name, double difficulty, ImageView charc) {
         if (player == null) {
             synchronized (Player.class) {
@@ -111,6 +119,12 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
         this.active = true;
     }
 
+    /*
+     * Method to change the position of the player
+     *
+     * @param currX the new x position to set the player to
+     * @param currY the new y position to set the player to
+     */
     @Override
     public void changePos(float newX, float newY) {
         character.setY(newY);
@@ -122,7 +136,6 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
     public void move() {
 
     }
-
 
     public void alert(int score) {
         if (score == 10) {

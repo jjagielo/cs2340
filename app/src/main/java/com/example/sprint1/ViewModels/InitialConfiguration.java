@@ -20,6 +20,14 @@ public class InitialConfiguration extends Activity {
     }
     public InitialConfiguration() { }
 
+    /*
+     * Method to initialize and display the InitialConfiguration class and its respective xml file
+     * to the user. This class prompts the user to select their name, difficulty, and character
+     * sprite.
+     *
+     * @param savedInstanceState the data being passed into current activity from the previous
+     *                           activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // displaying the initial configuration xml file
@@ -76,7 +84,12 @@ public class InitialConfiguration extends Activity {
         });
     }
 
-    // checks if the user inputted a proper name, else throw an error
+    /*
+     * Method to check if the user inputted a proper name. If a proper name is not inputted, an
+     * error is thrown
+     *
+     * @return boolean a boolean discerning whether or not a proper name was inputted
+     */
     public boolean checkAllFields() {
         if (name.length() == 0 || name == null || !(name.toString().trim().length() > 0)) {
             name.setError("Must input a valid name!");
