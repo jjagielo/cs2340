@@ -154,4 +154,14 @@
         android:layout_marginBottom="40dp"
         android:src="@drawable/slug_anim_f0" />
 
+    <Button
+        android:id="@+id/attackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="236dp"
+        android:layout_marginBottom="15dp"
+        android:text="ATTACK" />
+
 </RelativeLayout>

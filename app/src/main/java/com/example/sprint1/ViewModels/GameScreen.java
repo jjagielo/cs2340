@@ -5,7 +5,9 @@ import java.text.SimpleDateFormat;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.app.Activity;
@@ -55,6 +57,7 @@ public class GameScreen extends Activity {
     private Room room;
     private static int screenWidth;
     private static int screenHeight;
+    private int attackTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +84,21 @@ public class GameScreen extends Activity {
                 scoreText.setText("Score: " + score);
                 if (score > 0) {
                     score -= 5;
+                }
+
+                if (player.getAttacking()) {
+                    attackTimer--;
+                    if (attackTimer <= 0) {
+                        if (charInt == 1) {
+                            character.setImageResource(R.drawable.knight_f_idle_anim_f0);
+                        } else if (charInt == 2) {
+                            character.setImageResource(R.drawable.elf_f_idle_anim_f0);
+                        } else if (charInt == 3) {
+                            character.setImageResource(R.drawable.dwarf_f_idle_anim_f3);
+                        }
+
+                        player.setAttacking(false);
+                    }
                 }
                 handler.postDelayed(this, 2000);
             }
@@ -183,6 +201,7 @@ public class GameScreen extends Activity {
                     player.changePos(player.getX() + 20, player.getY());
                 }
 
+                updateEnemies();
                 enemy1.move();
                 enemy2.move();
 
@@ -192,6 +211,7 @@ public class GameScreen extends Activity {
         handlerMovement.postDelayed(runnableMovement, 0);
 
         movementButtons();
+        attackButton();
     } // onCreate
 
     /*
@@ -290,9 +310,23 @@ public class GameScreen extends Activity {
             enemy2 = EnemyFactory.createEnemy(1, difficulty, enemy2Sprite);
         }
 
+        enemy1.setActive(true);
+        enemy2.setActive(true);
+
         // display enemies—two per room
         enemy1Sprite.setImageResource(enemy1.getCharacterID());
         enemy2Sprite.setImageResource(enemy2.getCharacterID());
+        enemy1Sprite.setAlpha(1f);
+        enemy2Sprite.setAlpha(1f);
+    }
+
+    private void updateEnemies() {
+        if (!enemy1.getActive()) {
+            enemy1Sprite.setAlpha(0f);
+        }
+        if (!enemy2.getActive()) {
+            enemy2Sprite.setAlpha(0f);
+        }
     }
 
     /*
@@ -326,6 +360,23 @@ public class GameScreen extends Activity {
             isRightPressed = !isRightPressed;
             if (isLeftPressed) {
                 isLeftPressed = false;
+            }
+        });
+    }
+
+    private void attackButton() {
+        Button attackButton = findViewById(R.id.attackButton);
+        attackButton.setOnClickListener(v -> {
+            if (!player.getAttacking()) {
+                attackTimer = 1;
+                player.setAttacking(true);
+                if (charInt == 1) {
+                    character.setImageResource(R.drawable.knightsword);
+                } else if (charInt == 2) {
+                    character.setImageResource(R.drawable.elfsword);
+                } else if (charInt == 3) {
+                    character.setImageResource(R.drawable.dwarfsword);
+                }
             }
         });
     }

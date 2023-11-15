@@ -14,13 +14,34 @@ public class Collision {
      * @param enemy2 one of the two enemies located in each room
      */
     public static void checkCollision(Context context, Player player, Enemy enemy1, Enemy enemy2) {
-        if (isColliding(player, enemy1) || isColliding(player, enemy2)) {
-            if (player.getDifficulty() == 1) {
-                player.setHealth(player.getHealth() - 15);
-            } else if (player.getDifficulty() == 0.75) {
-                player.setHealth(player.getHealth() - 12);
+        if (isColliding(player, enemy1)) {
+            if (player.getAttacking()) {
+                enemy1.setActive(false);
             } else {
-                player.setHealth(player.getHealth() - 10);
+                if (enemy1.getActive()) {
+                    if (player.getDifficulty() == 1) {
+                        player.setHealth(player.getHealth() - 15);
+                    } else if (player.getDifficulty() == 0.75) {
+                        player.setHealth(player.getHealth() - 12);
+                    } else {
+                        player.setHealth(player.getHealth() - 10);
+                    }
+                }
+            }
+        }
+        if (isColliding(player, enemy2)) {
+            if (player.getAttacking()) {
+                enemy2.setActive(false);
+            } else {
+                if (enemy2.getActive()) {
+                    if (player.getDifficulty() == 1) {
+                        player.setHealth(player.getHealth() - 15);
+                    } else if (player.getDifficulty() == 0.75) {
+                        player.setHealth(player.getHealth() - 12);
+                    } else {
+                        player.setHealth(player.getHealth() - 10);
+                    }
+                }
             }
         }
     } // checkCollision
@@ -35,6 +56,4 @@ public class Collision {
     private static boolean isColliding(Player player, Enemy enemy) {
         return player.notifyHealth(player, enemy);
     }
-
-
 }
