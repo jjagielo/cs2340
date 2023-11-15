@@ -211,7 +211,7 @@ public class GameScreen extends Activity {
         handlerMovement.postDelayed(runnableMovement, 0);
 
         movementButtons();
-        attackButton();
+        attack();
     } // onCreate
 
     /*
@@ -364,7 +364,7 @@ public class GameScreen extends Activity {
         });
     }
 
-    private void attackButton() {
+    private void attack() {
         Button attackButton = findViewById(R.id.attackButton);
         attackButton.setOnClickListener(v -> {
             if (!player.getAttacking()) {
