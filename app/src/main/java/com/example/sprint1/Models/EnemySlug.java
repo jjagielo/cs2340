@@ -14,11 +14,13 @@ public class EnemySlug implements Enemy, EntityMovement {
     private int timer = 0;
     private Random direction = new Random();
     private int dir = direction.nextInt(4);
+    private boolean active;
 
     public EnemySlug(double diff, ImageView character) {
         this.difficulty = diff;
         this.movementSpeed = 2;
         this.character = character;
+        this.active = true;
 
         if (diff == 0.5) {
             health = 200;
@@ -149,5 +151,13 @@ public class EnemySlug implements Enemy, EntityMovement {
     @Override
     public void setY(float y) {
         character.setY(y);
+    }
+    @Override
+    public boolean getActive() {
+        return active;
+    }
+    @Override
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
