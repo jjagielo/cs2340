@@ -46,11 +46,14 @@ public class GameScreen extends Activity {
     // Character Selection
     private int charInt;
     // Player score
-    private static int score;
+    private static int totalScore;
+    // Score from timer
+    private static int timeScore;
+    // Difficulty multiplier for score
+    private static int diffMultiplier;
     //number of attempts
     private static int attempt;
     private static String name;
-    private int healthInt;
     private static String dateTime;
     private Room room;
     private static int screenWidth;
@@ -71,15 +74,30 @@ public class GameScreen extends Activity {
         attempt++;
 
         TextView scoreText = findViewById(R.id.scoreTextView); // displays and updates the score
-        score = 100;
+        timeScore = 505;
+
         Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                scoreText.setText("Score: " + score);
-                if (score > 0) {
-                    score -= 5;
+                // Set difficulty buff for score
+                if (difficulty == 1) {
+                    diffMultiplier = 3;
+                } else if (difficulty == 0.75) {
+                    diffMultiplier = 2;
+                } else if (difficulty == 0.5) {
+                    diffMultiplier = 1;
                 }
+                // Decrement score due to time
+                if (timeScore > 0) {
+                    timeScore -= 5;
+                }
+
+                totalScore = (diffMultiplier * (timeScore + player.getHealth()));
+
+                // Display score on the screen
+                scoreText.setText("Score: " + totalScore);
+
 
                 if (player.getAttacking()) {
                     attackTimer--;
@@ -374,10 +392,10 @@ public class GameScreen extends Activity {
     }
 
     public static int getScore() {
-        return score;
+        return totalScore;
     }
     public static void resetScore() {
-        score = 100;
+        timeScore = 505;
     }
     public static int getAttempt() {
         return attempt;
