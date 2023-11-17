@@ -50,7 +50,7 @@ public class GameScreen extends Activity {
     // Score from timer
     private static int timeScore;
     // Difficulty multiplier for score
-    private static int diffMultiplier;
+    private static float diffMultiplier;
     //number of attempts
     private static int attempt;
     private static String name;
@@ -59,6 +59,11 @@ public class GameScreen extends Activity {
     private static int screenWidth;
     private static int screenHeight;
     private int attackTimer;
+    private int enemiesKilled;
+    //Used to track enemy and make sure kill count only increments by 1
+    private int trackEnemy1;
+    //Used to track enemy and make sure kill count only increments by 1
+    private int trackEnemy2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +80,7 @@ public class GameScreen extends Activity {
 
         TextView scoreText = findViewById(R.id.scoreTextView); // displays and updates the score
         timeScore = 505;
+        enemiesKilled = 0;
 
         Handler handler = new Handler();
         Runnable runnable = new Runnable() {
@@ -82,18 +88,18 @@ public class GameScreen extends Activity {
             public void run() {
                 // Set difficulty buff for score
                 if (difficulty == 1) {
-                    diffMultiplier = 3;
+                    diffMultiplier = 1.5f;
                 } else if (difficulty == 0.75) {
-                    diffMultiplier = 2;
+                    diffMultiplier = 1.25f;
                 } else if (difficulty == 0.5) {
-                    diffMultiplier = 1;
+                    diffMultiplier = 1f;
                 }
                 // Decrement score due to time
                 if (timeScore > 0) {
                     timeScore -= 5;
                 }
 
-                totalScore = (diffMultiplier * (timeScore + player.getHealth()));
+                totalScore = (int) (diffMultiplier * (timeScore + (100 * enemiesKilled)));
 
                 // Display score on the screen
                 scoreText.setText("Score: " + totalScore);
@@ -321,7 +327,9 @@ public class GameScreen extends Activity {
         }
 
         enemy1.setActive(true);
+        trackEnemy1 = 0;
         enemy2.setActive(true);
+        trackEnemy2 = 0;
 
         // display enemies—two per room
         enemy1Sprite.setImageResource(enemy1.getCharacterID());
@@ -333,9 +341,17 @@ public class GameScreen extends Activity {
     private void updateEnemies() {
         if (!enemy1.getActive()) {
             enemy1Sprite.setAlpha(0f);
+            if (trackEnemy1 == 0) {
+                enemiesKilled++;
+                trackEnemy1++;
+            }
         }
         if (!enemy2.getActive()) {
             enemy2Sprite.setAlpha(0f);
+            if (trackEnemy2 == 0) {
+                enemiesKilled++;
+                trackEnemy2++;
+            }
         }
     }
 
