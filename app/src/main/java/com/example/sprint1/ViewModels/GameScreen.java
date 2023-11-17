@@ -410,6 +410,7 @@ public class GameScreen extends Activity {
     public static int getScore() {
         return totalScore;
     }
+    public int getInitScore() { return (int) (diffMultiplier * (timeScore + (100 * enemiesKilled))); }
     public static void resetScore() {
         timeScore = 505;
     }
@@ -436,5 +437,14 @@ public class GameScreen extends Activity {
     }
     public static int getScreenHeight() {
         return screenHeight;
+    }
+    public void setDiffMultipler(double difficulty) {
+        if (difficulty == 1) {
+            diffMultiplier = 1.5f;
+        } else if (difficulty == 0.75) {
+            diffMultiplier = 1.25f;
+        } else if (difficulty == 0.5) {
+            diffMultiplier = 1f;
+        }
     }
 } // GameScreen
