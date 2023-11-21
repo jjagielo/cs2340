@@ -10,6 +10,7 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
     private static Player player;
     private boolean  active;
     private boolean attacking;
+    private int speed;
 
     private Player(String name, double diff, ImageView charc) {
         this.name = name;
@@ -18,6 +19,8 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
         health = 100;
         this.active = true;
         this.attacking = false;
+        this.speed = 20;
+
         if (difficulty == 1) {
             health = 100;
         } else if (difficulty == 0.75) {
@@ -49,6 +52,7 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
         player.setHealth(100);
         player.setActiveTrue();
         player.setAttackingFalse();
+        player.setSpeed(20);
         return player;
     }
 
@@ -93,6 +97,9 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
     public boolean getAttacking() {
         return attacking;
     }
+    public int getSpeed() {
+        return speed;
+    }
 
     public void setDifficulty(double diff) {
         this.difficulty = diff;
@@ -132,6 +139,9 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
 
     public void setAttackingFalse() {
         this.attacking = false;
+    }
+    public void setSpeed(int newSpeed) {
+        this.speed = newSpeed;
     }
 
     /*

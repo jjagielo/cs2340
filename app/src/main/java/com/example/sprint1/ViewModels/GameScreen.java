@@ -205,16 +205,16 @@ public class GameScreen extends Activity {
                 }
 
                 if (isUpPressed && player.getY() > 10) {
-                    player.changePos(player.getX(), player.getY() - 20);
+                    player.changePos(player.getX(), player.getY() - player.getSpeed());
                 }
                 if (isLeftPressed && player.getX() > 250) {
-                    player.changePos(player.getX() - 20, player.getY());
+                    player.changePos(player.getX() - player.getSpeed(), player.getY());
                 }
                 if (isDownPressed && player.getY() < screenHeight - 270) {
-                    player.changePos(player.getX(), player.getY() + 20);
+                    player.changePos(player.getX(), player.getY() + player.getSpeed());
                 }
                 if (isRightPressed && player.getX() < screenWidth - 300) {
-                    player.changePos(player.getX() + 20, player.getY());
+                    player.changePos(player.getX() + player.getSpeed(), player.getY());
                 }
 
                 updateEnemies();
