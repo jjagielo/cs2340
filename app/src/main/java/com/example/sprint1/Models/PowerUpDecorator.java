@@ -16,5 +16,7 @@ public abstract class PowerUpDecorator{
         return decoratedPlayer.getSpeed();
     }
 
+    public boolean getInvincible() {
+        return decoratedPlayer.getInvincible();
     }
 }
