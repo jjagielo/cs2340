@@ -149,6 +149,7 @@ public class GameScreen extends Activity {
 
                 TextView healthText = (TextView) findViewById(R.id.healthTextView);
                 Collision.checkCollision(GameScreen.this, player, enemy1, enemy2);
+                Collision.checkCollision(GameScreen.this, player, powerupSprite, powerup);
                 healthText.setText("Health: " + player.getHealth());
 
                 if (attempt == 1) {
@@ -370,16 +371,20 @@ public class GameScreen extends Activity {
             if (trackEnemy1 == 0) {
                 enemiesKilled++;
                 trackEnemy1++;
-            }
-        }
+            } // if
+        } // if
         if (!enemy2.getActive()) {
             enemy2Sprite.setAlpha(0f);
             if (trackEnemy2 == 0) {
                 enemiesKilled++;
                 trackEnemy2++;
-            }
-        }
-    }
+            } // if
+        } // if
+
+        if (!powerup.getActive()) {
+            powerupSprite.setAlpha(0f);
+        }   // if
+    } // updateEnemies
 
     /*
      * Implements functionality of the movement buttons on the screen for the user to use

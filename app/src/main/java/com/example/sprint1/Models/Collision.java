@@ -1,6 +1,7 @@
 package com.example.sprint1.Models;
 
 import android.content.Context;
+import android.widget.ImageView;
 
 public class Collision {
 
@@ -46,6 +47,14 @@ public class Collision {
         }
     } // checkCollision
 
+    public static void checkCollision(Context context, Player player, ImageView powerupImage,
+                                       PowerUpDecorator powerup) {
+        if (isColliding(player, powerupImage) && powerup.getActive()) {
+            powerup.updatePlayer();
+            powerup.setActive(false);
+        }
+    }
+
     /*
      * Uses the observer pattern to check if the player is colliding with an enemy
      *
@@ -55,5 +64,9 @@ public class Collision {
      */
     private static boolean isColliding(Player player, Enemy enemy) {
         return player.notifyHealth(player, enemy);
+    }
+
+    private static boolean isColliding(Player player, ImageView powerup) {
+        return player.alertPowerupCollision(player, powerup);
     }
 }

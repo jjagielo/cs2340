@@ -3,30 +3,31 @@ package com.example.sprint1.Models;
 import com.example.sprint1.R;
 
 public class InvinciblePowerUp implements PowerUpDecorator{
-    Player decoratedPlayer;
+    private Player decoratedPlayer;
+    private boolean active;
+
+
     public InvinciblePowerUp(Player player) {
         decoratedPlayer = player;
+        active = true;
     } // HealthPowerUp
 
     @Override
-    public boolean getInvincible() {
+    public void updatePlayer() {
         if (!decoratedPlayer.getInvincible()) {
             decoratedPlayer.setInvincible(true);
         }
-        return decoratedPlayer.getInvincible();
-    }
-    @Override
-    public int getHealth() {
-        return decoratedPlayer.getHealth();
-    } // getHealth
-
-    @Override
-    public int getSpeed() {
-        return decoratedPlayer.getSpeed();
     }
 
     @Override
     public int getPowerupID() {
         return R.drawable.health_potion;
+    }
+
+    public boolean getActive() {
+        return active;
+    }
+    public void setActive(boolean newActive) {
+        active = newActive;
     }
 }

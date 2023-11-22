@@ -20,7 +20,7 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
         health = 100;
         this.active = true;
         this.attacking = false;
-        this.speed = 20;
+        this.speed = 10;
         this.invincible = false;
 
         if (difficulty == 1) {
@@ -54,7 +54,7 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
         player.setHealth(100);
         player.setActiveTrue();
         player.setAttackingFalse();
-        player.setSpeed(20);
+        player.setSpeed(10);
         return player;
     }
 
@@ -203,6 +203,18 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
 
 
         boolean isColliding = Math.abs(playerX - enemyX) < 50 && Math.abs(playerY - enemyY) < 50;
+
+        return isColliding;
+    }
+
+    @Override
+    public boolean alertPowerupCollision(Player player, ImageView powerup) {
+        float playerX = player.getX();
+        float playerY = player.getY();
+        float powerX = powerup.getX();
+        float powerY = powerup.getY();
+
+        boolean isColliding = Math.abs(playerX - powerX) < 50 && Math.abs(playerY - powerY) < 50;
 
         return isColliding;
     }
