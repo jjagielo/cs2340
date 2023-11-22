@@ -5,30 +5,28 @@ import com.example.sprint1.ViewModels.GameScreen;
 
 import android.widget.ImageView;
 public class HealthPowerUp implements PowerUpDecorator{
-    Player decoratedPlayer;
+    private Player decoratedPlayer;
+    private boolean active;
 
     public HealthPowerUp(Player player) {
         decoratedPlayer = player;
+        active = true;
     } // HealthPowerUp
 
     @Override
-    public int getHealth() {
+    public void updatePlayer() {
         decoratedPlayer.setHealth(decoratedPlayer.getHealth() + 50);
-        return decoratedPlayer.getHealth();
     } // getHealth
-
-    @Override
-    public int getSpeed() {
-        return decoratedPlayer.getSpeed();
-    }
-
-    @Override
-    public boolean getInvincible() {
-        return decoratedPlayer.getInvincible();
-    }
 
     @Override
     public int getPowerupID() {
         return R.drawable.health_potion;
+    }
+
+    public boolean getActive() {
+        return active;
+    }
+    public void setActive(boolean newActive) {
+        active = newActive;
     }
 }
