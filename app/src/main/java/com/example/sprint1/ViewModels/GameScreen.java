@@ -17,7 +17,10 @@ import android.graphics.Canvas;
 import com.example.sprint1.Models.Collision;
 import com.example.sprint1.Models.Enemy;
 import com.example.sprint1.Models.EnemyFactory;
+import com.example.sprint1.Models.HealthPowerUp;
 import com.example.sprint1.Models.Player;
+import com.example.sprint1.Models.PowerUpDecorator;
+import com.example.sprint1.Models.SpeedPowerUp;
 import com.example.sprint1.R;
 import com.example.sprint1.Models.Room;
 
@@ -38,6 +41,9 @@ public class GameScreen extends Activity {
     // enemy sprites
     private ImageView enemy1Sprite;
     private ImageView enemy2Sprite;
+    // powerup
+    private PowerUpDecorator powerup;
+    private ImageView powerupSprite;
     //Door sprite
     private ImageView door;
     // Door Coordinates
@@ -75,6 +81,9 @@ public class GameScreen extends Activity {
         enemy1Sprite = findViewById(R.id.enemyImage1);
         enemy2Sprite = findViewById(R.id.enemyImage2);
         initEnemies();
+        powerupSprite = findViewById(R.id.powerup);
+        initPowerups();
+
 
         attempt++;
 
@@ -160,6 +169,7 @@ public class GameScreen extends Activity {
                         player.notifyPlayer(350, player.getY());
                         player.notifyPlayer(player.getX(), 500);
                         initEnemies();
+                        initPowerups();
                         enemy1.changePos(1600, 700);
                         enemy2.changePos(1500, 800);
                         drawRoomBackground();
@@ -185,6 +195,7 @@ public class GameScreen extends Activity {
                         player.changePos(350, player.getY());
                         player.changePos(player.getX(), 500);
                         initEnemies();
+                        initPowerups();
                         enemy1.changePos(1600, 700);
                         enemy2.changePos(1500, 800);
                         drawRoomBackground();
@@ -305,6 +316,21 @@ public class GameScreen extends Activity {
         } else if (difficulty == 0.5) {
             difficultyText.setText("Difficulty: Easy");
         } // if
+    }
+
+    private void initPowerups() {
+        if (room.getCurrentTileIndex() == 0) {
+            powerup = new SpeedPowerUp(player);
+        } else if (room.getCurrentTileIndex() == 1) {
+            powerup = new HealthPowerUp(player);
+        } else if (room.getCurrentTileIndex() == 2) {
+            powerup = new HealthPowerUp(player);
+        } else if (room.getCurrentTileIndex() == 3) {
+            powerup = new SpeedPowerUp(player);
+        } // if
+
+        powerupSprite.setImageResource(powerup.getPowerupID());
+        powerupSprite.setAlpha(1f);
     }
 
     /*

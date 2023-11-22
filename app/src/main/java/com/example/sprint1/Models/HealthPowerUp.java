@@ -1,8 +1,14 @@
 package com.example.sprint1.Models;
 
-public class HealthPowerUp extends PowerUpDecorator{
+import com.example.sprint1.R;
+import com.example.sprint1.ViewModels.GameScreen;
+
+import android.widget.ImageView;
+public class HealthPowerUp implements PowerUpDecorator{
+    Player decoratedPlayer;
+
     public HealthPowerUp(Player player) {
-        super(player);
+        decoratedPlayer = player;
     } // HealthPowerUp
 
     @Override
@@ -10,4 +16,19 @@ public class HealthPowerUp extends PowerUpDecorator{
         decoratedPlayer.setHealth(decoratedPlayer.getHealth() + 50);
         return decoratedPlayer.getHealth();
     } // getHealth
+
+    @Override
+    public int getSpeed() {
+        return decoratedPlayer.getSpeed();
+    }
+
+    @Override
+    public boolean getInvincible() {
+        return decoratedPlayer.getInvincible();
+    }
+
+    @Override
+    public int getPowerupID() {
+        return R.drawable.health_potion;
+    }
 }

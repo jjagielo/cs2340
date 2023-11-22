@@ -1,22 +1,12 @@
 package com.example.sprint1.Models;
 
-import android.widget.ImageView;
+public interface PowerUpDecorator{
 
-public abstract class PowerUpDecorator{
-    Player decoratedPlayer;
-    public PowerUpDecorator(Player player) {
-        this.decoratedPlayer = player;
-    } // PowerUpDecorator
+    public int getHealth();
 
-    public int getHealth() {
-        return decoratedPlayer.getHealth();
-    } // getHealth
+    public int getSpeed();
 
-    public int getSpeed() {
-        return decoratedPlayer.getSpeed();
-    }
+    public boolean getInvincible();
 
-    public boolean getInvincible() {
-        return decoratedPlayer.getInvincible();
-    }
+    public int getPowerupID();
 }
