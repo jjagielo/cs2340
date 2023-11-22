@@ -1,8 +1,11 @@
 package com.example.sprint1.Models;
 
-public class InvinciblePowerUp extends PowerUpDecorator{
+import com.example.sprint1.R;
+
+public class InvinciblePowerUp implements PowerUpDecorator{
+    Player decoratedPlayer;
     public InvinciblePowerUp(Player player) {
-        super(player);
+        decoratedPlayer = player;
     } // HealthPowerUp
 
     @Override
@@ -11,5 +14,19 @@ public class InvinciblePowerUp extends PowerUpDecorator{
             decoratedPlayer.setInvincible(true);
         }
         return decoratedPlayer.getInvincible();
-    } // getInvincible
+    }
+    @Override
+    public int getHealth() {
+        return decoratedPlayer.getHealth();
+    } // getHealth
+
+    @Override
+    public int getSpeed() {
+        return decoratedPlayer.getSpeed();
+    }
+
+    @Override
+    public int getPowerupID() {
+        return R.drawable.health_potion;
+    }
 }
