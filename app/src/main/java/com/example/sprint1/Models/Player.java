@@ -11,7 +11,7 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
     private boolean  active;
     private boolean attacking;
     private int speed;
-    private boolean invincible;
+    private boolean timeFreeze;
 
     private Player(String name, double diff, ImageView charc) {
         this.name = name;
@@ -21,7 +21,7 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
         this.active = true;
         this.attacking = false;
         this.speed = 10;
-        this.invincible = false;
+        this.timeFreeze = false;
 
         if (difficulty == 1) {
             health = 100;
@@ -103,8 +103,8 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
         return speed;
     }
 
-    public boolean getInvincible() {
-        return invincible;
+    public boolean getTimeFreeze() {
+        return timeFreeze;
     }
 
     public void setDifficulty(double diff) {
@@ -150,8 +150,8 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
         this.speed = newSpeed;
     }
 
-    public void setInvincible(boolean invincible) {
-        this.invincible = invincible;
+    public void setTimeFreeze(boolean timeFreeze) {
+        this.timeFreeze = timeFreeze;
     }
 
     /*

@@ -18,6 +18,7 @@ import com.example.sprint1.Models.Collision;
 import com.example.sprint1.Models.Enemy;
 import com.example.sprint1.Models.EnemyFactory;
 import com.example.sprint1.Models.HealthPowerUp;
+import com.example.sprint1.Models.TimeFreezePowerUp;
 import com.example.sprint1.Models.Player;
 import com.example.sprint1.Models.PowerUpDecorator;
 import com.example.sprint1.Models.SpeedPowerUp;
@@ -167,6 +168,7 @@ public class GameScreen extends Activity {
                             finish();
                         }
                         room.nextTile();
+                        player.setTimeFreeze(false);
                         player.notifyPlayer(350, player.getY());
                         player.notifyPlayer(player.getX(), 500);
                         initEnemies();
@@ -191,6 +193,7 @@ public class GameScreen extends Activity {
                             finish();
                         }
                         room.nextTile();
+                        player.setTimeFreeze(false);
                         character.setX(350);
                         character.setY(500);
                         player.changePos(350, player.getY());
@@ -230,8 +233,10 @@ public class GameScreen extends Activity {
                 }
 
                 updateEnemies();
-                enemy1.move();
-                enemy2.move();
+                if (!player.getTimeFreeze()) {
+                    enemy1.move();
+                    enemy2.move();
+                } // if
 
                 handlerMovement.postDelayed(this, 80);
             }
@@ -325,7 +330,7 @@ public class GameScreen extends Activity {
         } else if (room.getCurrentTileIndex() == 1) {
             powerup = new HealthPowerUp(player);
         } else if (room.getCurrentTileIndex() == 2) {
-            powerup = new HealthPowerUp(player);
+            powerup = new TimeFreezePowerUp(player);
         } else if (room.getCurrentTileIndex() == 3) {
             powerup = new SpeedPowerUp(player);
         } // if
