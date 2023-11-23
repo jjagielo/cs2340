@@ -49,7 +49,7 @@ public class Collision {
 
     public static void checkCollision(Context context, Player player, ImageView powerupImage,
                                        PowerUpDecorator powerup) {
-        if (isColliding(player, powerupImage) && powerup.getActive()) {
+        if (isColliding(player, powerupImage, powerup) && powerup.getActive()) {
             powerup.updatePlayer();
             powerup.setActive(false);
         }
@@ -66,7 +66,7 @@ public class Collision {
         return player.notifyHealth(player, enemy);
     }
 
-    private static boolean isColliding(Player player, ImageView powerup) {
-        return player.alertPowerupCollision(player, powerup);
+    private static boolean isColliding(Player player, ImageView powerupImage, PowerUpDecorator powerup) {
+        return player.alertPowerupCollision(player, powerupImage, powerup);
     }
 }
