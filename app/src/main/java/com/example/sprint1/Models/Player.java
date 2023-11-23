@@ -208,11 +208,11 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
     }
 
     @Override
-    public boolean alertPowerupCollision(Player player, ImageView powerup) {
+    public boolean alertPowerupCollision(Player player, ImageView powerupImage, PowerUpDecorator powerup) {
         float playerX = player.getX();
         float playerY = player.getY();
-        float powerX = powerup.getX();
-        float powerY = powerup.getY();
+        float powerX = powerup.getX(powerupImage);
+        float powerY = powerup.getY(powerupImage);
 
         boolean isColliding = Math.abs(playerX - powerX) < 50 && Math.abs(playerY - powerY) < 50;
 
