@@ -4,11 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    android:paddingBottom="16dp"
     tools:context=".ViewModels.LaunchScreen">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/launchscreenbg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|top"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="345dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/welcome_overlay" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/StartButton"
@@ -16,26 +33,27 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="206dp"
-        android:text="Start Game" />
+        android:layout_marginTop="180dp"
+        android:text="Start Game"
+        android:background="@drawable/button_styles"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
+
 
     <Button
         android:id="@+id/QuitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/StartButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="281dp"
-        android:text="Quit Game" />
+        android:layout_marginTop="15dp"
+        android:text="Quit Game"
+        android:background="@drawable/button_styles"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="323dp"
-        android:layout_marginTop="107dp"
-        android:text="Welcome" />
 </RelativeLayout>
