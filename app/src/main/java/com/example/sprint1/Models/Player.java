@@ -208,7 +208,8 @@ public class Player implements EntityMovement, ScoreObserver, MovementObserver, 
     }
 
     @Override
-    public boolean alertPowerupCollision(Player player, ImageView powerupImage, PowerUpDecorator powerup) {
+    public boolean alertPowerupCollision(Player player, ImageView powerupImage,
+                                         PowerUpDecorator powerup) {
         float playerX = player.getX();
         float playerY = player.getY();
         float powerX = powerup.getX(powerupImage);

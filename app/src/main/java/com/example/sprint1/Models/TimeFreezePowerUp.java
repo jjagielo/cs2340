@@ -4,7 +4,7 @@ import android.widget.ImageView;
 
 import com.example.sprint1.R;
 
-public class TimeFreezePowerUp implements PowerUpDecorator{
+public class TimeFreezePowerUp implements PowerUpDecorator {
     private Player decoratedPlayer;
     private boolean active;
 

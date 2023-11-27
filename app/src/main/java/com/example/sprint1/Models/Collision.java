@@ -73,7 +73,8 @@ public class Collision {
         return player.notifyHealth(player, enemy);
     }
 
-    private static boolean isColliding(Player player, ImageView powerupImage, PowerUpDecorator powerup) {
+    private static boolean isColliding(Player player, ImageView powerupImage,
+                                       PowerUpDecorator powerup) {
         return player.alertPowerupCollision(player, powerupImage, powerup);
     }
 }
