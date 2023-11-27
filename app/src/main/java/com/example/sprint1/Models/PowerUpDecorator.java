@@ -2,7 +2,7 @@ package com.example.sprint1.Models;
 
 import android.widget.ImageView;
 
-public interface PowerUpDecorator{
+public interface PowerUpDecorator {
 
     public void updatePlayer();
 

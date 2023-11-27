@@ -77,43 +77,27 @@ public class GameScreen extends Activity {
         super.onCreate(savedInstanceState); // Set gamescreen as current screen for user
         setContentView(R.layout.gamescreen);
 
-        initRoom();
-        initPlayer();
-        enemy1Sprite = findViewById(R.id.enemyImage1);
-        enemy2Sprite = findViewById(R.id.enemyImage2);
-        initEnemies();
-        powerupSprite = findViewById(R.id.powerup);
-        initPowerups();
-
-
+        initGame();
         attempt++;
-
         TextView scoreText = findViewById(R.id.scoreTextView); // displays and updates the score
         timeScore = 505;
         enemiesKilled = 0;
-
         Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                // Set difficulty buff for score
-                if (difficulty == 1) {
+                if (difficulty == 1) { // Set difficulty buff for score
                     diffMultiplier = 1.5f;
                 } else if (difficulty == 0.75) {
                     diffMultiplier = 1.25f;
                 } else if (difficulty == 0.5) {
                     diffMultiplier = 1f;
                 }
-                // Decrement score due to time
-                if (timeScore > 0) {
+                if (timeScore > 0) { // Decrement score due to time
                     timeScore -= 5;
                 }
-
                 totalScore = (int) (diffMultiplier * (timeScore + (100 * enemiesKilled)));
-
-                // Display score on the screen
-                scoreText.setText("Score: " + totalScore);
-
+                scoreText.setText("Score: " + totalScore); // Display score on the screen
 
                 if (player.getAttacking()) {
                     attackTimer--;
@@ -133,7 +117,6 @@ public class GameScreen extends Activity {
             }
         };
         handler.postDelayed(runnable, 0);
-
         Calendar calendar = Calendar.getInstance(); // Get the current date and time
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         dateTime = dateFormat.format(calendar.getTime());
@@ -147,12 +130,10 @@ public class GameScreen extends Activity {
         Runnable runnableMovement = new Runnable() {
             @Override
             public void run() {
-
                 TextView healthText = (TextView) findViewById(R.id.healthTextView);
                 Collision.checkCollision(GameScreen.this, player, enemy1, enemy2);
                 Collision.checkCollision(GameScreen.this, player, powerupSprite, powerup);
                 healthText.setText("Health: " + player.getHealth());
-
                 if (attempt == 1) {
                     if (player.getX() > door.getX() - 80 && player.getX() < door.getX() + 80
                             && player.getY() > door.getY() - 140 && player.getY() < door.getY()
@@ -205,7 +186,6 @@ public class GameScreen extends Activity {
                         drawRoomBackground();
                     }
                 }
-
                 if (player.getHealth() <= 0 && player.getActive()) {
                     player.setHealth(100);
                     isUpPressed = false;
@@ -218,7 +198,6 @@ public class GameScreen extends Activity {
                     finish();
                     player.setActive(false);
                 }
-
                 if (isUpPressed && player.getY() > 10) {
                     player.changePos(player.getX(), player.getY() - player.getSpeed());
                 }
@@ -231,13 +210,11 @@ public class GameScreen extends Activity {
                 if (isRightPressed && player.getX() < screenWidth - 300) {
                     player.changePos(player.getX() + player.getSpeed(), player.getY());
                 }
-
                 updateEnemies();
                 if (!player.getTimeFreeze()) {
                     enemy1.move();
                     enemy2.move();
                 } // if
-
                 handlerMovement.postDelayed(this, 80);
             }
         };
@@ -246,6 +223,16 @@ public class GameScreen extends Activity {
         movementButtons();
         attack();
     } // onCreate
+
+    private void initGame() {
+        initRoom();
+        initPlayer();
+        enemy1Sprite = findViewById(R.id.enemyImage1);
+        enemy2Sprite = findViewById(R.id.enemyImage2);
+        initEnemies();
+        powerupSprite = findViewById(R.id.powerup);
+        initPowerups();
+    }
 
     /*
      * Initializes the room to the size of the device's screen and then calls
@@ -446,7 +433,10 @@ public class GameScreen extends Activity {
     public static int getScore() {
         return totalScore;
     }
-    public int getInitScore() { return (int) (diffMultiplier * (timeScore + (100 * enemiesKilled))); }
+    public int getInitScore() {
+        return (int) (diffMultiplier * (timeScore
+            + (100 * enemiesKilled)));
+    }
     public static void resetScore() {
         timeScore = 505;
     }
