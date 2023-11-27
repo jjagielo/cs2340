@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#786464"
+    android:background="#3C1C00"
     tools:context=".ViewModels.InitialConfiguration">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:foregroundTint="#C10000"
         android:padding="40dp">
 
         <TextView
@@ -17,10 +18,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:fontFamily="serif"
             android:text="Choose your difficulty:"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,11 +30,10 @@
             android:id="@+id/textView7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="220dp"
-            android:fontFamily="serif"
+            android:layout_marginTop="280dp"
             android:text="Choose your character:"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextName" />
@@ -43,11 +42,10 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="serif"
+            android:layout_marginTop="1dp"
             android:text="What is your name...?"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,13 +54,13 @@
         <EditText
             android:id="@+id/editTextName"
             android:layout_width="717dp"
-            android:layout_height="96dp"
+            android:layout_height="50dp"
             android:autofillHints=""
             android:ems="10"
-            android:fontFamily="serif"
             android:inputType="text"
             android:text=""
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.444"
@@ -70,20 +68,30 @@
             app:layout_constraintTop_toBottomOf="@+id/textView5"
             app:layout_constraintVertical_bias="0.037" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/editTextName"
+        app:layout_constraintEnd_toEndOf="@id/editTextName"
+        app:layout_constraintStart_toStartOf="@id/editTextName" />
+
         <Button
             android:id="@+id/continueBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:fontFamily="serif"
+            android:background="@drawable/button_styles"
+            android:fontFamily="sans-serif"
+            android:padding="16dp"
             android:text="CONTINUE"
             android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-            android:textColor="#000000"
-            android:textStyle="bold"
+            android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/characterRadioGroup" />
+
 
         <RadioGroup
             android:id="@+id/difficultyRadioGroup"
@@ -98,7 +106,8 @@
                 android:id="@+id/radioButton1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="serif"
+                android:buttonTint="#FFFFFF"
+                android:textColor="#FFFFFF"
                 android:text="Easy"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
@@ -106,7 +115,8 @@
                 android:id="@+id/radioButton2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="serif"
+                android:buttonTint="#FFFFFF"
+                android:textColor="#FFFFFF"
                 android:text="Medium"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
@@ -114,7 +124,8 @@
                 android:id="@+id/radioHard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="serif"
+                android:buttonTint="#FFFFFF"
+                android:textColor="#FFFFFF"
                 android:text="Hard"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
         </RadioGroup>
@@ -131,7 +142,8 @@
                 android:id="@+id/character1"
                 android:layout_width="match_parent"
                 android:layout_height="127dp"
-                android:fontFamily="serif"
+                android:buttonTint="#FFFFFF"
+                android:textColor="#FFFFFF"
                 android:text="1"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
 
@@ -139,7 +151,8 @@
                 android:id="@+id/character2"
                 android:layout_width="match_parent"
                 android:layout_height="124dp"
-                android:fontFamily="serif"
+                android:buttonTint="#FFFFFF"
+                android:textColor="#FFFFFF"
                 android:text="2"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
 
@@ -147,7 +160,8 @@
                 android:id="@+id/character3"
                 android:layout_width="match_parent"
                 android:layout_height="138dp"
-                android:fontFamily="serif"
+                android:buttonTint="#FFFFFF"
+                android:textColor="#FFFFFF"
                 android:text="3"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
         </RadioGroup>
@@ -157,31 +171,31 @@
             android:layout_width="166dp"
             android:layout_height="119dp"
             android:layout_marginEnd="192dp"
+            android:src="@drawable/elf_f_idle_anim_f0"
             app:layout_constraintBottom_toTopOf="@+id/imageView6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView5"
-            app:layout_constraintVertical_bias="0.0"
-            android:src="@drawable/elf_f_idle_anim_f0" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/imageView5"
             android:layout_width="169dp"
             android:layout_height="127dp"
             android:layout_marginEnd="192dp"
+            android:src="@drawable/knight_f_idle_anim_f0"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7"
-            android:src="@drawable/knight_f_idle_anim_f0" />
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <ImageView
             android:id="@+id/imageView6"
             android:layout_width="155dp"
             android:layout_height="135dp"
             android:layout_marginBottom="104dp"
+            android:src="@drawable/dwarf_f_idle_anim_f3"
             app:layout_constraintBottom_toTopOf="@+id/continueBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.286"
-            app:layout_constraintStart_toEndOf="@+id/characterRadioGroup"
-            android:src="@drawable/dwarf_f_idle_anim_f3" />
+            app:layout_constraintStart_toEndOf="@+id/characterRadioGroup" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
