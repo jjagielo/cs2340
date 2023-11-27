@@ -5,6 +5,8 @@ import android.widget.ImageView;
 
 public class Collision {
 
+    private static boolean collisionOccured;
+
     /*
      * Using the isColliding() method, determines the amount of health to subtract from the
      * player depending on if a collision is observed, and the difficulty
@@ -50,9 +52,14 @@ public class Collision {
     public static void checkCollision(Context context, Player player, ImageView powerupImage,
                                        PowerUpDecorator powerup) {
         if (isColliding(player, powerupImage, powerup) && powerup.getActive()) {
+            collisionOccured = true;
             powerup.updatePlayer();
             powerup.setActive(false);
         }
+    }
+
+    public static boolean getCollision() {
+        return collisionOccured;
     }
 
     /*
