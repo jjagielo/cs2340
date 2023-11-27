@@ -483,4 +483,8 @@ public class GameScreen extends Activity {
             diffMultiplier = 1f;
         }
     }
+
+    public Enemy getEnemy1() {
+        return enemy1;
+    }
 } // GameScreen
